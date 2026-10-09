@@ -276,6 +276,17 @@ section { padding-block: 72px; }
 .plan.pro .soon { background: #2E2A66; color: #C5C2FB; }
 .plan.pro .badge { position: absolute; top: -13px; inset-inline-start: 24px; background: #4F46E5; color: #fff; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 4px 12px; }
 .plan.pro .btn-primary { background: #4F46E5; color: #fff; }
+.setup { margin-top: 18px; background: var(--surface); border: 1px dashed var(--line); border-radius: 22px; padding: 22px 26px;
+         display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 28px; align-items: center; }
+.setup .k { font-size: 13.5px; font-weight: 600; color: var(--accent-ink); }
+.setup h3 { font-size: 22px; margin-block: 2px 6px; }
+.setup p { color: var(--muted); font-size: 15.5px; max-width: 62ch; }
+.setup .offer { display: grid; justify-items: end; gap: 2px; text-align: end; }
+.setup .was { font: 700 24px/1 var(--f-plate); color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; }
+.setup .free { font: var(--display-weight) 44px/1 var(--f-display); color: var(--good); }
+.setup .when { color: var(--muted); font-size: 14px; }
+@media (max-width: 620px) { .setup .offer { justify-items: start; text-align: start; } }
+@media (max-width: 620px) { .setup { grid-template-columns: minmax(0, 1fr); } }
 .plans-note { margin-top: 22px; color: var(--muted); font-size: 15px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
 .plans-note span { display: inline-flex; gap: 7px; align-items: center; }
 .plans-note svg { width: 17px; height: 17px; color: var(--good); }
@@ -535,7 +546,7 @@ section { padding-block: 72px; }
     <div class="sec-head">
       <div class="eyebrow" data-i18n="nav.pricing">מחירים</div>
       <h2 data-i18n="pr.h2">מנוי חודשי, לפי מה שהמוסך צריך</h2>
-      <p class="lead" data-i18n="pr.lead">בכל התוכניות: התקנה במוסך, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.</p>
+      <p class="lead" data-i18n="pr.lead">בכל התוכניות: עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.</p>
     </div>
     <div class="plans">
       <article class="plan">
@@ -586,6 +597,18 @@ section { padding-block: 72px; }
         <a class="btn btn-ghost" href="#contact" data-plan="premium" data-i18n="cta.premium">אני רוצה את פרימיום</a>
       </article>
     </div>
+    <div class="setup">
+      <div>
+        <div class="k" data-i18n="setup.k">מבצע השקה</div>
+        <h3 data-i18n="setup.h">דמי הקמה</h3>
+        <p data-i18n="setup.p">התקנה במוסך, קישור התוכנה למוסך שלכם, הגדרת פרטי העסק והדרכה ראשונה. משלמים פעם אחת, בהתחלה.</p>
+      </div>
+      <div class="offer">
+        <span class="was num">₪1,000</span>
+        <span class="free" data-i18n="setup.free">חינם</span>
+        <span class="when" data-i18n="setup.when">למוסכים שמצטרפים עכשיו</span>
+      </div>
+    </div>
     <div class="plans-note">
       <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.vat">המחירים לפני מע״מ</span></span>
       <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.today">היום: אוטו כותב את ההודעה ואתם שולחים בלחיצה</span></span>
@@ -607,6 +630,7 @@ section { padding-block: 72px; }
       <details><summary data-i18n="q3">באיזו שפה התוכנה?</summary><p data-i18n="a3">בעברית או באנגלית. מחליפים שפה בלחיצה בהגדרות.</p></details>
       <details><summary data-i18n="q4">מה רואה החשבון מקבל?</summary><p data-i18n="a4">כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.</p></details>
       <details><summary data-i18n="q5">הנתונים שלי בטוחים?</summary><p data-i18n="a5">הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.</p></details>
+      <details><summary data-i18n="q8">יש תשלום חד-פעמי?</summary><p data-i18n="a8">דמי ההקמה הם ₪1,000 + מע״מ, ועכשיו הם בחינם למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. משלמים רק את המנוי החודשי.</p></details>
       <details><summary data-i18n="q6">אפשר לעבור בין תוכניות?</summary><p data-i18n="a6">כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.</p></details>
       <details><summary data-i18n="q7">איך עובדות ההודעות בוואטסאפ?</summary><p data-i18n="a7">היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב לפרו ולפרימיום.</p></details>
     </div>
@@ -730,9 +754,16 @@ const T = {
   "g4.b": ["כל מוסך רואה רק את שלו", "Each garage sees only its own data", "كل كراج يرى بياناته فقط"],
   "g4.s": ["כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.", "Each copy signs in with its own link code. The data is backed up in the cloud and never opened to anyone else.", "كل نسخة تدخل برمز ربط خاص بها. البيانات محفوظة في السحابة ولا تُفتح لأي أحد آخر."],
   "pr.h2": ["מנוי חודשי, לפי מה שהמוסך צריך", "A monthly plan, sized to your garage", "اشتراك شهري حسب احتياج الكراج"],
-  "pr.lead": ["בכל התוכניות: התקנה במוסך, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.",
-              "Every plan includes installation at your garage, updates, cloud backup and the in-app guide. You can switch plans remotely, with no reinstall.",
-              "كل الباقات تشمل التركيب في الكراج، التحديثات، النسخ الاحتياطي في السحابة والدليل داخل البرنامج. يمكن تغيير الباقة عن بُعد بدون إعادة تركيب."],
+  "pr.lead": ["בכל התוכניות: עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.",
+              "Every plan includes updates, cloud backup and the in-app guide. You can switch plans remotely, with no reinstall.",
+              "كل الباقات تشمل التحديثات، النسخ الاحتياطي في السحابة والدليل داخل البرنامج. يمكن تغيير الباقة عن بُعد بدون إعادة تركيب."],
+  "setup.k": ["מבצע השקה", "Launch offer", "عرض الإطلاق"],
+  "setup.h": ["דמי הקמה", "Setup fee", "رسوم التجهيز"],
+  "setup.p": ["התקנה במוסך, קישור התוכנה למוסך שלכם, הגדרת פרטי העסק והדרכה ראשונה. משלמים פעם אחת, בהתחלה.",
+              "Installation at your garage, linking the app to your garage, setting up your business details and a first training session. Paid once, at the start.",
+              "التركيب في الكراج، ربط البرنامج بالكراج، إعداد تفاصيل المصلحة وتدريب أوّل. تُدفع مرة واحدة في البداية."],
+  "setup.free": ["חינם", "Free", "مجانًا"],
+  "setup.when": ["למוסכים שמצטרפים עכשיו", "for garages joining now", "للكراجات التي تنضم الآن"],
   "plan.basic": ["בסיס", "Basic", "أساسي"],
   "plan.pro": ["פרו", "Pro", "برو"],
   "plan.premium": ["פרימיום", "Premium", "بريميوم"],
@@ -774,6 +805,10 @@ const T = {
   "a4": ["כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.", "Every document is saved as a tidy PDF, and you can produce a uniform-format file (OPENFRMT) that accountants and the Tax Authority's systems read.", "كل مستند يُحفظ كملف PDF مرتّب، ويمكن إصدار ملف المبنى الموحد (OPENFRMT) الذي يقرؤه المحاسب وأنظمة سلطة الضرائب."],
   "q5": ["הנתונים שלי בטוחים?", "Is my data safe?", "هل بياناتي آمنة؟"],
   "a5": ["הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.", "Your data is stored and backed up in the cloud. Each garage signs in with its own link code and sees only its own data.", "البيانات محفوظة في السحابة مع نسخ احتياطي. كل كراج يدخل برمز ربط خاص به ويرى بياناته فقط."],
+  "q8": ["יש תשלום חד-פעמי?", "Is there a one-time payment?", "هل هناك دفعة لمرة واحدة؟"],
+  "a8": ["דמי ההקמה הם ₪1,000 + מע״מ, ועכשיו הם בחינם למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. משלמים רק את המנוי החודשי.",
+         "The setup fee is ₪1,000 + VAT, and right now it's free for garages that join. It covers installation at your garage, linking, setting up your business details and training. You only pay the monthly plan.",
+         "رسوم التجهيز ₪1,000 + ضريبة القيمة المضافة، وهي الآن مجانية للكراجات التي تنضم. وتشمل التركيب في الكراج، الربط، إعداد تفاصيل المصلحة والتدريب. تدفع الاشتراك الشهري فقط."],
   "q6": ["אפשר לעבור בין תוכניות?", "Can I switch plans?", "هل يمكن تغيير الباقة؟"],
   "a6": ["כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.", "Yes. Switching between Basic, Pro and Premium is done remotely and reaches Oto at your garage within a few hours.", "نعم. التغيير بين الأساسي وبرو وبريميوم يتم عن بُعد ويصل إلى أوتو في الكراج خلال ساعات قليلة."],
   "q7": ["איך עובדות ההודעות בוואטסאפ?", "How do the WhatsApp messages work?", "كيف تعمل رسائل الواتساب؟"],
