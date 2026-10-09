@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>אוטו · תוכנה לניהול מוסך</title>
+<meta name="description" content="אוטו: חשבוניות וקבלות חוקיות, לקוחות ורכבים, תורים, מלאי ותזכורות טסט. תוכנה רשומה ברשות המסים, בעברית ופשוטה לשימוש.">
+<meta property="og:title" content="אוטו · תוכנה לניהול מוסך">
+<meta property="og:description" content="מקלידים מספר רכב. אוטו עושה את השאר.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta name="theme-color" content="#15171C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: one long RTL page. A dark Oto window is the hero object; the Israeli plate is the recurring signature; everything else is quiet. */
+:root {
+  --bg: #F3F3F7;          /* ground: grey with a slight indigo bias */
+  --surface: #FFFFFF;
+  --ink: #15171C;         /* Oto's sidebar ink */
+  --muted: #5A5F6E;
+  --line: #E2E3EB;
+  --accent: #4F46E5;      /* Oto indigo */
+  --accent-ink: #3730A3;
+  --soft: #ECEBFD;
+  --good: #0F7B55;
+  --good-soft: #E3F5EC;
+  --night: #15171C;       /* the app window and the featured plan stay dark in both themes */
+  --night-2: #1F2229;
+  --night-ink: #EDEEF2;
+  --night-muted: #9AA0AE;
+  --plate: #F7C51A;       /* Israeli plate yellow and its blue strip: same in both themes */
+  --plate-blue: #1E4FAF;
+  --plate-ink: #111214;
+
+  --f-display: "Secular One", "IBM Plex Sans Hebrew", "Arial Hebrew", "Segoe UI", sans-serif;
+  --f-body: "IBM Plex Sans Hebrew", "Arial Hebrew", "Segoe UI", Tahoma, sans-serif;
+  --f-plate: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+
+  --r: 18px;
+  --wrap: 1180px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E0F13; --surface: #17191F; --ink: #ECEDF2; --muted: #9AA0AE; --line: #262833;
+    --accent: #8C86F6; --accent-ink: #C5C2FB; --soft: #22213F; --good: #5EE08A; --good-soft: #15302A;
+    --night: #1B1D24; --night-2: #23262E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E0F13; --surface: #17191F; --ink: #ECEDF2; --muted: #9AA0AE; --line: #262833;
+  --accent: #8C86F6; --accent-ink: #C5C2FB; --soft: #22213F; --good: #5EE08A; --good-soft: #15302A;
+  --night: #1B1D24; --night-2: #23262E;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.6; }
+.site { direction: rtl; text-align: right; overflow-x: clip; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+h2 { font-size: clamp(30px, 4.2vw, 46px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+.lead { color: var(--muted); font-size: 19px; max-width: 58ch; }
+.eyebrow { font-size: 14px; font-weight: 600; color: var(--accent-ink); letter-spacing: 0.02em; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── Buttons ── */
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 14px;
+       font: 600 17px/1 var(--f-body); text-decoration: none; border: 1px solid transparent; cursor: pointer;
+       transition: transform .25s cubic-bezier(.3,1.4,.5,1), background-color .2s, border-color .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-ink); }
+:root[data-theme="dark"] .btn-primary:hover { background: #A29DF8; color: #15171C; }
+.btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--accent); }
+.btn svg { width: 20px; height: 20px; flex: none; }
+@media (prefers-reduced-motion: reduce) { .btn, .btn:hover { transition: none; transform: none; } }
+
+/* ── Header ── */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent);
+       backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 28px; min-height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 400 26px/1 var(--f-display); }
+.brand svg { width: 34px; height: 34px; }
+.brand .mark-bg { fill: var(--ink); } .brand .mark-hex { fill: var(--bg); }
+.nav { display: flex; gap: 24px; margin-inline-start: auto; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 16px; }
+.nav a:hover { color: var(--ink); }
+.top .btn { min-height: 44px; padding: 0 18px; font-size: 15.5px; }
+@media (max-width: 860px) { .nav { display: none; } .top .btn { margin-inline-start: auto; } }
+
+/* ── Plate (the signature) ── */
+.plate { display: inline-flex; align-items: stretch; direction: ltr; background: var(--plate); border: 2.5px solid var(--plate-ink);
+         border-radius: 9px; overflow: hidden; box-shadow: 0 1px 0 rgba(0,0,0,.25); }
+.plate .il { background: var(--plate-blue); color: #fff; display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+             padding: 0 7px 5px; font: 700 11px/1 var(--f-body); letter-spacing: .04em; }
+.plate .digits { font: 700 34px/1 var(--f-plate); color: var(--plate-ink); letter-spacing: .06em; padding: 7px 16px 6px; min-width: 6.6ch; text-align: center; }
+.plate .digits.empty { color: rgba(17,18,20,.32); }
+.plate.sm .digits { font-size: 21px; padding: 4px 10px 3px; }
+.plate.sm .il { font-size: 9px; padding: 0 5px 3px; }
+.caret { display: inline-block; width: 2px; height: .9em; background: var(--plate-ink); vertical-align: -0.1em; margin-inline-start: 2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ── Hero ── */
+.hero { padding-block: 64px 40px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 66px); margin-block: 14px 20px; }
+.hero h1 .line2 { color: var(--accent); display: block; }
+.hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.proof { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 28px; color: var(--muted); font-size: 14.5px; }
+.proof span { display: inline-flex; align-items: center; gap: 7px; }
+.proof svg { width: 17px; height: 17px; color: var(--good); }
+@media (max-width: 980px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; } .hero { padding-block: 40px 24px; } }
+
+/* The Oto window (built in HTML, plays a short demo) */
+.app { background: var(--night); color: var(--night-ink); border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px -20px rgba(21,23,28,.45), 0 0 0 1px rgba(255,255,255,.04);
+       display: grid; grid-template-columns: 158px minmax(0, 1fr); font-size: 13.5px; line-height: 1.45; min-height: 430px; }
+.app .side { background: #111216; padding: 16px 12px; display: flex; flex-direction: column; gap: 3px; }
+.app .side .brand { font-size: 19px; color: #fff; margin: 2px 6px 14px; }
+.app .side .brand svg { width: 24px; height: 24px; }
+.app .side .brand .mark-bg { fill: #fff; } .app .side .brand .mark-hex { fill: #111216; }
+.app .new { background: var(--accent); color: #fff; border-radius: 10px; padding: 8px 10px; font-weight: 600; margin-bottom: 10px; text-align: center; }
+:root[data-theme="dark"] .app .new { color: #15171C; }
+.app .nav-i { color: #9AA0AE; padding: 6px 10px; border-radius: 8px; }
+.app .nav-i.on { background: #262A33; color: #fff; font-weight: 600; }
+.app .main { background: var(--night-2); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.app .t { font: 400 21px/1.1 var(--f-display); color: #fff; }
+.app .sub { color: var(--night-muted); font-size: 12.5px; margin-top: -6px; }
+.app .card { background: #1A1C22; border: 1px solid #2A2D36; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.app .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.app .fetch { border: 1px solid #343846; color: #E7E8EC; border-radius: 9px; padding: 6px 10px; font-weight: 600; font-size: 12.5px; transition: background-color .2s, transform .2s; }
+.app .fetch.press { background: #343846; transform: scale(.96); }
+.app .chips { display: flex; gap: 6px; flex-wrap: wrap; transition: opacity .35s, transform .35s; }
+.app .chip { border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600; background: #262A33; color: #E7E8EC; }
+.app .chip.ok { background: #15302A; color: #5EE08A; }
+.app .lines { display: flex; flex-direction: column; gap: 6px; }
+.app .ln { display: flex; justify-content: space-between; gap: 10px; padding: 7px 10px; background: #20232B; border-radius: 8px; transition: opacity .35s, transform .35s; }
+.app .ln b { font-weight: 600; color: #fff; }
+.app .ln span { color: var(--night-muted); }
+.app .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
+.app .total { font: 700 22px/1 var(--f-plate); letter-spacing: .02em; color: #fff; }
+.app .total small { font: 500 12px var(--f-body); color: var(--night-muted); display: block; margin-bottom: 3px; letter-spacing: 0; }
+.app .save { background: var(--accent); color: #fff; border-radius: 10px; padding: 9px 14px; font-weight: 600; transition: transform .2s, background-color .2s; }
+:root[data-theme="dark"] .app .save { color: #15171C; }
+.app .save.press { transform: scale(.95); }
+.app .toast { position: absolute; inset-inline: 0; margin-inline: auto; bottom: 16px; width: max-content; max-width: 90%; background: #fff; color: #15171C; border-radius: 12px;
+              padding: 9px 14px; font-weight: 600; font-size: 13px; display: flex; gap: 8px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+              transition: opacity .3s, transform .35s cubic-bezier(.3,1.4,.5,1); }
+.app .toast svg { width: 16px; height: 16px; color: #0F7B55; }
+.app-wrap { position: relative; }
+.hide { opacity: 0; transform: translateY(8px); }
+@media (max-width: 620px) {
+  .app { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .app .side { display: none; }
+}
+
+/* ── Sections ── */
+section { padding-block: 72px; }
+.sec-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+
+/* A day in the garage: a real timeline, so times are the structure */
+.day { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; }
+.step .time { font: 700 26px/1 var(--f-plate); color: var(--accent); letter-spacing: .02em; direction: ltr; text-align: right; }
+.step h3 { font-size: 20px; }
+.step p { color: var(--muted); font-size: 15.5px; }
+.step .tag { margin-top: auto; align-self: flex-start; font-size: 12.5px; font-weight: 600; color: var(--accent-ink); background: var(--soft); border-radius: 999px; padding: 3px 10px; }
+@media (max-width: 1080px) { .day { grid-template-columns: repeat(2, minmax(0, 1fr)); } .step:last-child { grid-column: 1 / -1; } }
+@media (max-width: 620px) { .day { grid-template-columns: minmax(0, 1fr); } }
+
+/* Easy to use */
+.easy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.easy ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.easy li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start; }
+.ico { width: 44px; height: 44px; border-radius: 12px; background: var(--soft); color: var(--accent-ink); display: grid; place-items: center; }
+.ico svg { width: 22px; height: 22px; }
+.easy li b { display: block; font-weight: 600; font-size: 17.5px; }
+.easy li span { color: var(--muted); font-size: 15.5px; }
+.lesson { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: grid; gap: 14px; }
+.lesson .bubble { background: var(--night); color: var(--night-ink); border-radius: 16px; padding: 16px 18px; display: grid; gap: 6px; }
+.lesson .bubble .k { font-size: 12.5px; color: var(--night-muted); }
+.lesson .bubble b { font: 400 19px/1.2 var(--f-display); color: #fff; }
+.lesson .bubble .acts { display: flex; gap: 8px; margin-top: 6px; }
+.lesson .bubble .acts span { border-radius: 9px; padding: 6px 12px; font-size: 13px; font-weight: 600; background: #2A2D36; }
+.lesson .bubble .acts span.go { background: var(--accent); color: #fff; }
+:root[data-theme="dark"] .lesson .bubble .acts span.go { color: #15171C; }
+.lesson .steps { display: flex; gap: 6px; }
+.lesson .steps i { flex: 1; height: 6px; border-radius: 3px; background: var(--line); }
+.lesson .steps i.on { background: var(--accent); }
+.lesson .sizes { display: flex; gap: 8px; align-items: baseline; color: var(--muted); font-size: 14px; flex-wrap: wrap; }
+.lesson .sizes span { border: 1px solid var(--line); border-radius: 10px; padding: 4px 12px; color: var(--ink); }
+.lesson .sizes span.on { border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+@media (max-width: 900px) { .easy { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+
+/* Legal and safe: one certificate-like band */
+.cert { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 34px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 40px; }
+.cert .stamp { border: 2px dashed var(--line); border-radius: 18px; padding: 24px; display: grid; gap: 6px; align-content: center; }
+.cert .stamp .k { color: var(--muted); font-size: 14px; }
+.cert .stamp .n { font: 700 64px/1 var(--f-plate); letter-spacing: .04em; color: var(--ink); }
+.cert .stamp .v { color: var(--good); font-weight: 600; font-size: 15px; display: inline-flex; gap: 6px; align-items: center; }
+.cert .stamp .v svg { width: 17px; height: 17px; }
+.cert ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.cert li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; }
+.cert li svg { width: 24px; height: 24px; color: var(--accent); margin-top: 3px; }
+.cert li b { display: block; font-weight: 600; }
+.cert li span { color: var(--muted); font-size: 15.5px; }
+@media (max-width: 860px) { .cert { grid-template-columns: minmax(0, 1fr); padding: 24px; } .cert .stamp .n { font-size: 52px; } }
+
+/* Pricing */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+.plan { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px 26px; display: flex; flex-direction: column; gap: 18px; }
+.plan .name { font: 400 26px/1 var(--f-display); }
+.plan .for { color: var(--muted); font-size: 15px; margin-top: -8px; }
+.price { display: flex; align-items: baseline; gap: 6px; direction: rtl; }
+.price .amt { font: 700 64px/0.9 var(--f-plate); letter-spacing: .01em; }
+.price .cur { font: 700 30px/1 var(--f-plate); }
+.price .per { color: var(--muted); font-size: 14.5px; line-height: 1.25; }
+.plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.plan li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 15.5px; }
+.plan li svg { width: 18px; height: 18px; color: var(--good); margin-top: 4px; }
+.plan li.head { grid-template-columns: minmax(0, 1fr); font-weight: 600; color: var(--muted); font-size: 14.5px; }
+.soon { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent-ink); background: var(--soft); border-radius: 999px; padding: 1px 8px; margin-inline-start: 6px; vertical-align: 1px; }
+.plan .btn { margin-top: auto; justify-content: center; }
+.plan.pro { background: var(--night); color: var(--night-ink); border-color: var(--night); position: relative; }
+.plan.pro .for, .plan.pro .per, .plan.pro li.head { color: var(--night-muted); }
+.plan.pro li svg { color: #5EE08A; }
+.plan.pro .soon { background: #2E2A66; color: #C5C2FB; }
+.plan.pro .badge { position: absolute; top: -13px; inset-inline-start: 24px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 4px 12px; }
+:root[data-theme="dark"] .plan.pro .badge { color: #15171C; }
+.plan.pro .btn-ghost { background: #2A2D36; color: #fff; border-color: #2A2D36; }
+.plans-note { margin-top: 22px; color: var(--muted); font-size: 15px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.plans-note span { display: inline-flex; gap: 7px; align-items: center; }
+.plans-note svg { width: 17px; height: 17px; color: var(--good); }
+@media (max-width: 980px) { .plans { grid-template-columns: minmax(0, 1fr); max-width: 560px; } }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 18px; }
+.faq details:first-of-type { border-top: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; font-weight: 600; font-size: 18px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 400 26px/1 var(--f-body); color: var(--accent); transition: transform .25s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--muted); margin-top: 10px; max-width: 62ch; }
+@media (max-width: 860px) { .faq { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+
+/* Contact */
+.contact { background: var(--night); color: var(--night-ink); border-radius: 28px; padding: 44px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 44px; }
+.contact h2 { color: #fff; }
+.contact .lead { color: var(--night-muted); }
+.ways { display: grid; gap: 12px; margin-top: 28px; }
+.way { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 14px; align-items: center; background: #23262E; border-radius: 16px; padding: 12px 14px; }
+.way .ico { background: #2E3140; color: #fff; }
+.way .k { font-size: 13px; color: var(--night-muted); }
+.way .v { font-weight: 600; color: #fff; direction: ltr; text-align: right; word-break: break-all; }
+.copy { border: 1px solid #3A3E4B; background: transparent; color: #E7E8EC; border-radius: 10px; padding: 7px 12px; font: 600 13.5px var(--f-body); cursor: pointer; }
+.copy:hover { border-color: #8C86F6; }
+.form { background: #1F2229; border-radius: 22px; padding: 26px; display: grid; gap: 14px; }
+.form h3 { color: #fff; }
+.fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 14px; color: var(--night-muted); font-weight: 500; }
+.field input, .field select, .field textarea { width: 100%; background: #15171C; color: #fff; border: 1px solid #343846; border-radius: 12px;
+              padding: 12px 14px; font: 500 16px var(--f-body); color-scheme: dark; }
+.field textarea { min-height: 90px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: #8C86F6; box-shadow: 0 0 0 3px rgba(140,134,246,.25); }
+.form .send { justify-content: center; background: #25D366; color: #0B2B17; }
+.form .send:hover { background: #3BE07A; }
+.form .send[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.form .hint { color: var(--night-muted); font-size: 13.5px; }
+.form .missing { color: #F7B955; font-size: 14px; }
+@media (max-width: 900px) { .contact { grid-template-columns: minmax(0, 1fr); padding: 26px; } }
+@media (max-width: 520px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+
+/* Footer */
+.foot-site { padding-block: 36px 48px; color: var(--muted); font-size: 14.5px; }
+.foot-site .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; }
+.foot-site .brand { font-size: 21px; color: var(--ink); }
+.foot-site .brand svg { width: 26px; height: 26px; }
+.foot-site a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="site" dir="rtl" lang="he">
+
+<!-- The Oto mark, reused -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 100 100"><circle class="mark-bg" cx="50" cy="50" r="46"/><path class="mark-hex" d="M50,28 L30.95,39 L30.95,61 L50,72 L69.05,61 L69.05,39 Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.2 19L4 20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 9.2c.3 2.4 2.4 4.6 5 5.2l1.1-1.3-1.8-.9-.8.8c-.9-.4-1.9-1.4-2.3-2.3l.8-.8-.9-1.8L9 9.2z" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16.5 16.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6h16v12H4z M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 18L8.5 6 13 18 M5.6 14h5.8 M15 18l3-8 3 8 M15.9 15.5h4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-update" viewBox="0 0 24 24"><path d="M12 4v11 M7.5 10.5L12 15l4.5-4.5 M4.5 19.5h15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-1.8-3 1.8-3-1.8L6 21z M9 8h6 M9 11.5h6 M9 15h3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.5 11h11v9h-11z M8.5 11V8a3.5 3.5 0 0 1 7 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6.5v18h11V6.5z M14 3v3.5h3.5 M9.5 12.5h5 M9.5 16H13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 8L4.5 12 9 16 M4.5 12H15a5 5 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 0 1-.5-9A6 6 0 0 1 18 10a4 4 0 0 1-.5 8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="אוטו"><svg aria-hidden="true"><use href="#mark"/></svg>אוטו</a>
+    <nav class="nav" aria-label="ניווט">
+      <a href="#day">מה אוטו עושה</a>
+      <a href="#easy">פשוט לשימוש</a>
+      <a href="#legal">חוקי ומאובטח</a>
+      <a href="#pricing">מחירים</a>
+      <a href="#faq">שאלות</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">דברו איתנו</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═══ Hero ═══ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">תוכנה לניהול מוסך · רשומה ברשות המסים</div>
+      <h1>מקלידים מספר רכב.<span class="line2">אוטו עושה את השאר.</span></h1>
+      <p class="lead">פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית, בלי סיבוכים, גם למי שלא אוהב מחשבים.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg>רוצים לשמוע עוד</a>
+        <a class="btn btn-ghost" href="#pricing">מחירים</a>
+      </div>
+      <div class="proof">
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg>תעודת רישום 280401</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg>התקנה וקישור במוסך על ידינו</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg>עדכונים מגיעים לבד</span>
+      </div>
+    </div>
+
+    <!-- A short, real flow from Oto: plate → car details → lines → saved -->
+    <div class="app-wrap" aria-label="הדגמה: מסמך חדש באוטו">
+      <div class="app" id="demo">
+        <aside class="side" aria-hidden="true">
+          <span class="brand"><svg><use href="#mark"/></svg>Oto</span>
+          <div class="new">+ מסמך חדש</div>
+          <div class="nav-i">בית</div>
+          <div class="nav-i">לקוחות</div>
+          <div class="nav-i">חייבים</div>
+          <div class="nav-i">מלאי</div>
+          <div class="nav-i">איתור רכב</div>
+          <div class="nav-i">תורים</div>
+          <div class="nav-i">סטטיסטיקה</div>
+        </aside>
+        <div class="main">
+          <div class="t">מסמך חדש</div>
+          <div class="sub">חשבונית מס קבלה · מס׳ 001044</div>
+          <div class="card">
+            <div class="row">
+              <span class="plate sm"><span class="il">IL</span><span class="digits num" id="d-plate">58-412-37</span></span>
+              <span class="fetch" id="d-fetch">שליפת פרטי רכב</span>
+            </div>
+            <div class="chips" id="d-chips">
+              <span class="chip">מאזדה 3 · 2019 · לבן</span>
+              <span class="chip ok">טסט בתוקף עד 14/03/2027</span>
+            </div>
+          </div>
+          <div class="lines" id="d-lines">
+            <div class="ln"><b>טיפול 10,000 ק״מ</b><span class="num">₪250</span></div>
+            <div class="ln"><b>פילטר שמן</b><span class="num">₪45</span></div>
+            <div class="ln"><b>החלפת רפידות בלם קדמי</b><span class="num">₪200</span></div>
+          </div>
+          <div class="foot">
+            <div class="total"><small>סה״כ לתשלום, כולל מע״מ</small><span class="num" id="d-total">₪584.10</span></div>
+            <span class="save" id="d-save">שמור והדפס</span>
+          </div>
+        </div>
+      </div>
+      <div class="toast hide" id="d-toast" role="status"><svg aria-hidden="true"><use href="#i-check"/></svg>חשבונית מס קבלה 001044 נשמרה</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ A day in the garage ═══ -->
+<section id="day">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">יום במוסך, עם אוטו</div>
+      <h2>מהבוקר ועד סוף החודש</h2>
+      <p class="lead">אוטו בנוי סביב מה שקורה במוסך באמת: רכב נכנס, עבודה נעשית, לקוח משלם, ורואה החשבון מקבל את מה שהוא צריך.</p>
+    </div>
+    <div class="day">
+      <article class="step">
+        <div class="time num">07:30</div>
+        <h3>פותחים את המוסך</h3>
+        <p>במסך הראשי: התורים של היום, למי להזכיר על טסט, ומי עוד לא שילם.</p>
+      </article>
+      <article class="step">
+        <div class="time num">09:00</div>
+        <h3>רכב נכנס</h3>
+        <p>מקלידים מספר רכב ומקבלים יצרן, דגם, שנה ותוקף טסט ממאגר משרד התחבורה. כל ההיסטוריה של הרכב שם.</p>
+      </article>
+      <article class="step">
+        <div class="time num">13:00</div>
+        <h3>עבודה וחלקים</h3>
+        <p>העבודות והחלקים הנפוצים שלכם בלחיצה אחת. סורק ברקוד לחלקים, והמלאי יורד לבד.</p>
+        <span class="tag">מלאי וסורק: בפרו</span>
+      </article>
+      <article class="step">
+        <div class="time num">16:30</div>
+        <h3>הרכב מוכן</h3>
+        <p>חשבונית מס קבלה במספור רציף, מוכנה להדפסה. הודעת "הרכב מוכן" ללקוח בוואטסאפ, בלחיצה.</p>
+      </article>
+      <article class="step">
+        <div class="time num">סוף החודש</div>
+        <h3>מסדרים חשבונות</h3>
+        <p>מי חייב כמה, כמה הוצאתם וכמה הרווחתם. קובץ מבנה אחיד מוכן לרואה החשבון.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Easy ═══ -->
+<section id="easy">
+  <div class="wrap easy">
+    <div>
+      <div class="sec-head" style="margin-bottom:28px">
+        <div class="eyebrow">בנוי למוסכניקים, לא למתכנתים</div>
+        <h2>לא צריך להבין במחשבים</h2>
+      </div>
+      <ul>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-play"/></svg></span><div><b>מדריך בתוך התוכנה</b><span>בכל דף יש סיור קצר שמראה מה עושים, ותרגול צעד אחר צעד על המסך האמיתי.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-text"/></svg></span><div><b>טקסט גדול</b><span>שלושה גדלים: רגיל, גדול וגדול מאוד. כל התוכנה גדלה יחד.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><b>מצב בהיר או כהה</b><span>מה שנוח לעיניים, בלחיצה בהגדרות.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-update"/></svg></span><div><b>עדכונים לבד</b><span>כשיש גרסה חדשה מופיעה הודעה. לוחצים "עדכן" וזהו.</span></div></li>
+      </ul>
+    </div>
+    <div class="lesson" aria-label="דוגמה למדריך בתוך אוטו">
+      <div class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="bubble">
+        <span class="k">שלב 2 מתוך 5 · צופים</span>
+        <b>מספר הרכב</b>
+        <span>מקלידים את מספר הרכב. המקפים לא משנים.</span>
+        <div class="acts"><span class="go">הבא</span><span>הקודם</span><span>השהה</span></div>
+      </div>
+      <span class="plate"><span class="il">IL</span><span class="digits num">12-345-67<span class="caret" aria-hidden="true"></span></span></span>
+      <div class="sizes"><span>גודל טקסט:</span><span>רגיל</span><span class="on">גדול</span><span>גדול מאוד</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Legal and safe ═══ -->
+<section id="legal">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">חוקי, מגובה ופרטי</div>
+      <h2>מסמכים שרשות המסים מכירה</h2>
+    </div>
+    <div class="cert">
+      <div class="stamp">
+        <span class="k">אוטו רשומה במערכת רישום התוכנות של רשות המסים</span>
+        <span class="n num">280401</span>
+        <span class="k">מספר תעודת הרישום</span>
+        <span class="v"><svg aria-hidden="true"><use href="#i-check"/></svg>בתוקף עד 31/07/2028</span>
+      </div>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#i-doc"/></svg><div><b>כל סוגי המסמכים</b><span>חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה, תעודת משלוח והצעת מחיר.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-undo"/></svg><div><b>מספור רציף, בלי מחיקות</b><span>מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-file"/></svg><div><b>מבנה אחיד</b><span>קובץ OPENFRMT לרואה החשבון ולביקורת, בלחיצה.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-lock"/></svg><div><b>כל מוסך רואה רק את שלו</b><span>כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Pricing ═══ -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">מחירים</div>
+      <h2>מנוי חודשי, לפי מה שהמוסך צריך</h2>
+      <p class="lead">בכל התוכניות: התקנה במוסך, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.</p>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <div>
+          <div class="name">בסיס</div>
+          <p class="for">כל מה שצריך כדי לעבוד מסודר</p>
+        </div>
+        <div class="price"><span class="cur">₪</span><span class="amt num">149</span><span class="per">לחודש<br>+ מע״מ</span></div>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>מסמכים חוקיים ומספור רציף</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>לקוחות, רכבים והיסטוריית טיפולים</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>איתור רכב לפי מספר</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>הצעות מחיר</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>חייבים ותזכורת תשלום</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>הוצאות, רווח וסטטיסטיקה</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>מבנה אחיד לרואה החשבון</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-plan="בסיס">אני רוצה את בסיס</a>
+      </article>
+
+      <article class="plan pro">
+        <span class="badge">מומלץ</span>
+        <div>
+          <div class="name">פרו</div>
+          <p class="for">למוסך שרוצה סדר מלא</p>
+        </div>
+        <div class="price"><span class="cur">₪</span><span class="amt num">199</span><span class="per">לחודש<br>+ מע״מ</span></div>
+        <ul>
+          <li class="head">הכל בבסיס, ועוד:</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>לוח תורים שבועי</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>תזכורות טסט וטיפול, ורשימה יומית מוכנה</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>מלאי חלקים וסורק ברקוד</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>600 הודעות וואטסאפ אוטומטיות בחודש<span class="soon">בקרוב</span></span></li>
+        </ul>
+        <a class="btn btn-primary" href="#contact" data-plan="פרו">אני רוצה את פרו</a>
+      </article>
+
+      <article class="plan">
+        <div>
+          <div class="name">פרימיום</div>
+          <p class="for">למוסך עם הרבה לקוחות חוזרים</p>
+        </div>
+        <div class="price"><span class="cur">₪</span><span class="amt num">249</span><span class="per">לחודש<br>+ מע״מ</span></div>
+        <ul>
+          <li class="head">הכל בפרו, ועוד:</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>1,000 הודעות וואטסאפ אוטומטיות בחודש<span class="soon">בקרוב</span></span></li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-plan="פרימיום">אני רוצה את פרימיום</a>
+      </article>
+    </div>
+    <div class="plans-note">
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg>המחירים לפני מע״מ</span>
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg>היום: אוטו כותב את ההודעה ואתם שולחים בלחיצה</span>
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg>בקרוב: שליחה אוטומטית ממספר הוואטסאפ של אוטו</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="wrap faq">
+    <div class="sec-head">
+      <div class="eyebrow">שאלות</div>
+      <h2>מה שמוסכניקים שואלים אותנו</h2>
+    </div>
+    <div>
+      <details open>
+        <summary>על איזה מחשב זה עובד?</summary>
+        <p>על מחשב עם Windows. אנחנו מתקינים את אוטו במוסך ומקשרים אותו למוסך שלכם, וזה לוקח כמה דקות.</p>
+      </details>
+      <details>
+        <summary>צריך ניסיון עם מחשבים?</summary>
+        <p>לא. בכל דף יש סיור קצר שמראה מה עושים, ואפשר לתרגל צעד אחר צעד. אפשר גם להגדיל את כל הטקסט.</p>
+      </details>
+      <details>
+        <summary>מה רואה החשבון מקבל?</summary>
+        <p>כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.</p>
+      </details>
+      <details>
+        <summary>הנתונים שלי בטוחים?</summary>
+        <p>הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.</p>
+      </details>
+      <details>
+        <summary>אפשר לעבור בין תוכניות?</summary>
+        <p>כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.</p>
+      </details>
+      <details>
+        <summary>איך עובדות ההודעות בוואטסאפ?</summary>
+        <p>היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב לפרו ולפרימיום.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Contact ═══ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <div class="eyebrow" style="color:#C5C2FB">צור קשר</div>
+        <h2 style="margin-top:12px">בואו נראה לכם את אוטו</h2>
+        <p class="lead" style="margin-top:14px">ספרו לנו על המוסך ונחזור אליכם. אפשר גם לכתוב לנו ישר בוואטסאפ.</p>
+        <div class="ways" id="ways"></div>
+      </div>
+      <form class="form" id="lead" novalidate>
+        <h3>השאירו פרטים</h3>
+        <div class="fields">
+          <div class="field"><label for="f-name">שם</label><input id="f-name" autocomplete="name" required></div>
+          <div class="field"><label for="f-phone">טלפון</label><input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required></div>
+          <div class="field"><label for="f-garage">שם המוסך</label><input id="f-garage" autocomplete="organization"></div>
+          <div class="field"><label for="f-city">עיר</label><input id="f-city" autocomplete="address-level2"></div>
+          <div class="field full"><label for="f-plan">תוכנית שמעניינת אתכם</label>
+            <select id="f-plan"><option value="">עוד לא יודעים</option><option>בסיס</option><option>פרו</option><option>פרימיום</option></select></div>
+          <div class="field full"><label for="f-msg">הודעה (לא חובה)</label><textarea id="f-msg"></textarea></div>
+        </div>
+        <a class="btn send" id="send" href="#contact" target="_blank" rel="noopener" aria-disabled="true"><svg aria-hidden="true"><use href="#i-wa"/></svg>שליחה בוואטסאפ</a>
+        <p class="hint" id="hint">ממלאים שם וטלפון, והפרטים נשלחים אלינו כהודעת וואטסאפ מוכנה.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot-site">
+  <div class="wrap">
+    <span class="brand"><svg aria-hidden="true"><use href="#mark"/></svg>אוטו</span>
+    <span>© 2026 אוטו · עובידה ג׳בארה · תעודת רישום 280401</span>
+    <a href="https://github.com/obidadev/oto-releases/releases/latest" target="_blank" rel="noopener">הורדת אוטו ללקוחות קיימים</a>
+  </div>
+</footer>
+</div>
+
+<script>
+/* Contact details shown on the page and where the form's WhatsApp message goes.
+   Fill these in; anything left empty is simply not shown. WhatsApp: digits with country code, e.g. 972501234567. */
+const CONTACT = { whatsapp: "972535311267", phone: "053-531-1267", email: "" };
+
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  /* ── Contact ways ── */
+  const ways = $("ways");
+  const items = [];
+  if (CONTACT.whatsapp) items.push({ icon: "i-wa", k: "וואטסאפ", v: "+" + CONTACT.whatsapp, href: "https://wa.me/" + CONTACT.whatsapp });
+  if (CONTACT.phone) items.push({ icon: "i-phone", k: "טלפון", v: CONTACT.phone });
+  if (CONTACT.email) items.push({ icon: "i-mail", k: "אימייל", v: CONTACT.email });
+  for (const it of items) {
+    const row = document.createElement("div");
+    row.className = "way";
+    row.innerHTML = '<span class="ico"><svg aria-hidden="true"><use href="#' + it.icon + '"/></svg></span><div><div class="k"></div><div class="v"></div></div>';
+    row.querySelector(".k").textContent = it.k;
+    const v = row.querySelector(".v");
+    if (it.href) { const a = document.createElement("a"); a.href = it.href; a.target = "_blank"; a.rel = "noopener"; a.textContent = it.v; v.append(a); }
+    else v.textContent = it.v;
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "copy"; b.textContent = "העתקה";
+    b.addEventListener("click", () => {
+      const done = () => { b.textContent = "הועתק"; setTimeout(() => (b.textContent = "העתקה"), 1600); };
+      const fallback = () => { const r = document.createRange(); r.selectNodeContents(v); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(it.v).then(done, fallback); } catch (e) { fallback(); }
+    });
+    row.append(b);
+    ways.append(row);
+  }
+
+  /* ── The form writes a WhatsApp message ── */
+  const f = { name: $("f-name"), phone: $("f-phone"), garage: $("f-garage"), city: $("f-city"), plan: $("f-plan"), msg: $("f-msg") };
+  const send = $("send"), hint = $("hint");
+  function update() {
+    const ready = f.name.value.trim().length > 1 && f.phone.value.replace(/\D/g, "").length >= 9;
+    if (!CONTACT.whatsapp) {
+      send.setAttribute("aria-disabled", "true");
+      hint.className = "missing";
+      hint.textContent = "מספר הוואטסאפ של אוטו עוד לא הוגדר באתר.";
+      return;
+    }
+    const lines = ["שלום, אשמח לשמוע על אוטו.", "שם: " + f.name.value.trim(), "טלפון: " + f.phone.value.trim()];
+    if (f.garage.value.trim()) lines.push("מוסך: " + f.garage.value.trim());
+    if (f.city.value.trim()) lines.push("עיר: " + f.city.value.trim());
+    if (f.plan.value) lines.push("תוכנית: " + f.plan.value);
+    if (f.msg.value.trim()) lines.push(f.msg.value.trim());
+    send.href = "https://wa.me/" + CONTACT.whatsapp + "?text=" + encodeURIComponent(lines.join("\n"));
+    send.setAttribute("aria-disabled", ready ? "false" : "true");
+  }
+  Object.values(f).forEach((el) => el.addEventListener("input", update));
+  $("lead").addEventListener("submit", (e) => e.preventDefault());
+  update();
+
+  /* Plan buttons pre-select the plan in the form */
+  document.querySelectorAll("[data-plan]").forEach((a) => a.addEventListener("click", () => { f.plan.value = a.dataset.plan; update(); }));
+
+  /* ── Hero demo: type a plate, fetch the car, add lines, save. The page loads on its finished frame. ── */
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const plate = $("d-plate"), fetchBtn = $("d-fetch"), chips = $("d-chips"), lines = [...$("d-lines").children],
+        total = $("d-total"), save = $("d-save"), toast = $("d-toast");
+  const PLATE = "58-412-37", PRICES = [250, 45, 200];
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  let visible = true;
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe($("demo"));
+  const fmt = (n) => "₪" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  async function countTo(from, to) {
+    const t0 = performance.now(), dur = 450;
+    while (true) {
+      const k = Math.min(1, (performance.now() - t0) / dur);
+      total.textContent = fmt(from + (to - from) * (1 - Math.pow(1 - k, 3)));
+      if (k === 1) break;
+      await new Promise(requestAnimationFrame);
+    }
+  }
+
+  async function play() {
+    while (true) {
+      while (!visible) await sleep(400);
+      // reset
+      plate.textContent = "12-345-67"; plate.classList.add("empty");
+      chips.classList.add("hide"); lines.forEach((l) => l.classList.add("hide"));
+      total.textContent = fmt(0); toast.classList.add("hide");
+      await sleep(700);
+      plate.classList.remove("empty"); plate.textContent = "";
+      for (const ch of PLATE) { plate.textContent += ch; await sleep(ch === "-" ? 60 : 130); }
+      await sleep(350);
+      fetchBtn.classList.add("press"); await sleep(220); fetchBtn.classList.remove("press");
+      await sleep(450);
+      chips.classList.remove("hide");
+      await sleep(700);
+      let sum = 0;
+      for (let i = 0; i < lines.length; i++) {
+        lines[i].classList.remove("hide");
+        const next = sum + PRICES[i];
+        await countTo(sum * 1.18, next * 1.18);
+        sum = next;
+        await sleep(380);
+      }
+      await sleep(500);
+      save.classList.add("press"); await sleep(200); save.classList.remove("press");
+      toast.classList.remove("hide");
+      await sleep(3200);
+    }
+  }
+  setTimeout(play, 1800);
+})();
+</script>
+</body>
+</html>
