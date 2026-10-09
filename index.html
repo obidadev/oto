@@ -283,7 +283,7 @@ section { padding-block: 72px; }
 .setup p { color: var(--muted); font-size: 15.5px; max-width: 62ch; }
 .setup .offer { display: grid; justify-items: end; gap: 2px; text-align: end; }
 .setup .was { font: 700 24px/1 var(--f-plate); color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; }
-.setup .free { font: var(--display-weight) 44px/1 var(--f-display); color: var(--good); }
+.setup .free { font: 700 50px/1 var(--f-plate); color: var(--good); }
 .setup .when { color: var(--muted); font-size: 14px; }
 @media (max-width: 620px) { .setup .offer { justify-items: start; text-align: start; } }
 @media (max-width: 620px) { .setup { grid-template-columns: minmax(0, 1fr); } }
@@ -605,8 +605,8 @@ section { padding-block: 72px; }
       </div>
       <div class="offer">
         <span class="was num">₪1,000</span>
-        <span class="free" data-i18n="setup.free">חינם</span>
-        <span class="when" data-i18n="setup.when">למוסכים שמצטרפים עכשיו</span>
+        <span class="free num">₪500</span>
+        <span class="when" data-i18n="setup.when">+ מע״מ · למוסכים שמצטרפים עכשיו</span>
       </div>
     </div>
     <div class="plans-note">
@@ -630,7 +630,7 @@ section { padding-block: 72px; }
       <details><summary data-i18n="q3">באיזו שפה התוכנה?</summary><p data-i18n="a3">בעברית או באנגלית. מחליפים שפה בלחיצה בהגדרות.</p></details>
       <details><summary data-i18n="q4">מה רואה החשבון מקבל?</summary><p data-i18n="a4">כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.</p></details>
       <details><summary data-i18n="q5">הנתונים שלי בטוחים?</summary><p data-i18n="a5">הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.</p></details>
-      <details><summary data-i18n="q8">יש תשלום חד-פעמי?</summary><p data-i18n="a8">דמי ההקמה הם ₪1,000 + מע״מ, ועכשיו הם בחינם למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. משלמים רק את המנוי החודשי.</p></details>
+      <details><summary data-i18n="q8">יש תשלום חד-פעמי?</summary><p data-i18n="a8">כן, דמי הקמה, פעם אחת בהתחלה: ₪1,000 + מע״מ, ועכשיו ₪500 בלבד למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. אחר כך משלמים רק את המנוי החודשי.</p></details>
       <details><summary data-i18n="q6">אפשר לעבור בין תוכניות?</summary><p data-i18n="a6">כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.</p></details>
       <details><summary data-i18n="q7">איך עובדות ההודעות בוואטסאפ?</summary><p data-i18n="a7">היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב לפרו ולפרימיום.</p></details>
     </div>
@@ -762,8 +762,7 @@ const T = {
   "setup.p": ["התקנה במוסך, קישור התוכנה למוסך שלכם, הגדרת פרטי העסק והדרכה ראשונה. משלמים פעם אחת, בהתחלה.",
               "Installation at your garage, linking the app to your garage, setting up your business details and a first training session. Paid once, at the start.",
               "التركيب في الكراج، ربط البرنامج بالكراج، إعداد تفاصيل المصلحة وتدريب أوّل. تُدفع مرة واحدة في البداية."],
-  "setup.free": ["חינם", "Free", "مجانًا"],
-  "setup.when": ["למוסכים שמצטרפים עכשיו", "for garages joining now", "للكراجات التي تنضم الآن"],
+  "setup.when": ["+ מע״מ · למוסכים שמצטרפים עכשיו", "+ VAT · for garages joining now", "+ ضريبة القيمة المضافة · للكراجات التي تنضم الآن"],
   "plan.basic": ["בסיס", "Basic", "أساسي"],
   "plan.pro": ["פרו", "Pro", "برو"],
   "plan.premium": ["פרימיום", "Premium", "بريميوم"],
@@ -806,9 +805,9 @@ const T = {
   "q5": ["הנתונים שלי בטוחים?", "Is my data safe?", "هل بياناتي آمنة؟"],
   "a5": ["הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.", "Your data is stored and backed up in the cloud. Each garage signs in with its own link code and sees only its own data.", "البيانات محفوظة في السحابة مع نسخ احتياطي. كل كراج يدخل برمز ربط خاص به ويرى بياناته فقط."],
   "q8": ["יש תשלום חד-פעמי?", "Is there a one-time payment?", "هل هناك دفعة لمرة واحدة؟"],
-  "a8": ["דמי ההקמה הם ₪1,000 + מע״מ, ועכשיו הם בחינם למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. משלמים רק את המנוי החודשי.",
-         "The setup fee is ₪1,000 + VAT, and right now it's free for garages that join. It covers installation at your garage, linking, setting up your business details and training. You only pay the monthly plan.",
-         "رسوم التجهيز ₪1,000 + ضريبة القيمة المضافة، وهي الآن مجانية للكراجات التي تنضم. وتشمل التركيب في الكراج، الربط، إعداد تفاصيل المصلحة والتدريب. تدفع الاشتراك الشهري فقط."],
+  "a8": ["כן, דמי הקמה, פעם אחת בהתחלה: ₪1,000 + מע״מ, ועכשיו ₪500 בלבד למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. אחר כך משלמים רק את המנוי החודשי.",
+         "Yes, a setup fee, once at the start: ₪1,000 + VAT, and right now only ₪500 for garages that join. It covers installation at your garage, linking, setting up your business details and training. After that you only pay the monthly plan.",
+         "نعم، رسوم تجهيز مرة واحدة في البداية: ₪1,000 + ضريبة القيمة المضافة، والآن ₪500 فقط للكراجات التي تنضم. وتشمل التركيب في الكراج، الربط، إعداد تفاصيل المصلحة والتدريب. بعد ذلك تدفع الاشتراك الشهري فقط."],
   "q6": ["אפשר לעבור בין תוכניות?", "Can I switch plans?", "هل يمكن تغيير الباقة؟"],
   "a6": ["כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.", "Yes. Switching between Basic, Pro and Premium is done remotely and reaches Oto at your garage within a few hours.", "نعم. التغيير بين الأساسي وبرو وبريميوم يتم عن بُعد ويصل إلى أوتو في الكراج خلال ساعات قليلة."],
   "q7": ["איך עובדות ההודעות בוואטסאפ?", "How do the WhatsApp messages work?", "كيف تعمل رسائل الواتساب؟"],
