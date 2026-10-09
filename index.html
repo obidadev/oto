@@ -6,16 +6,23 @@
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>אוטו · תוכנה לניהול מוסך</title>
 <meta name="description" content="אוטו: חשבוניות וקבלות חוקיות, לקוחות ורכבים, תורים, מלאי ותזכורות טסט. תוכנה רשומה ברשות המסים, בעברית ופשוטה לשימוש.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%2315171C%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2228%22%20fill%3D%22%23fff%22/%3E%3Cpath%20d%3D%22M50%2C36.7%20L61.5%2C43.4%20L61.5%2C56.6%20L50%2C63.3%20L38.5%2C56.6%20L38.5%2C43.4%20Z%22%20fill%3D%22%2315171C%22/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="אוטו · תוכנה לניהול מוסך">
 <meta property="og:description" content="מקלידים מספר רכב. אוטו עושה את השאר.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://obidadev.github.io/oto/">
+<meta property="og:image" content="https://obidadev.github.io/oto/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#15171C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
 <style>
-/* Layout: one long RTL page. A dark Oto window is the hero object; the Israeli plate is the recurring signature; everything else is quiet. */
+/* Layout: one long page in Hebrew (default), English or Arabic. A dark Oto window is the hero object; the Israeli plate is the recurring signature; everything else is quiet. */
 :root {
   --bg: #F3F3F7;          /* ground: grey with a slight indigo bias */
   --surface: #FFFFFF;
@@ -26,18 +33,20 @@
   --accent-ink: #3730A3;
   --soft: #ECEBFD;
   --good: #0F7B55;
-  --good-soft: #E3F5EC;
   --night: #15171C;       /* the app window and the featured plan stay dark in both themes */
   --night-2: #1F2229;
   --night-ink: #EDEEF2;
   --night-muted: #9AA0AE;
+  --logo-tile: #15171C;   /* the app icon: dark tile, white ring */
+  --logo-edge: transparent;
   --plate: #F7C51A;       /* Israeli plate yellow and its blue strip: same in both themes */
   --plate-blue: #1E4FAF;
   --plate-ink: #111214;
 
   --f-display: "Secular One", "IBM Plex Sans Hebrew", "Arial Hebrew", "Segoe UI", sans-serif;
-  --f-body: "IBM Plex Sans Hebrew", "Arial Hebrew", "Segoe UI", Tahoma, sans-serif;
+  --f-body: "IBM Plex Sans Hebrew", "IBM Plex Sans", "Arial Hebrew", "Segoe UI", Tahoma, sans-serif;
   --f-plate: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+  --display-weight: 400;
 
   --r: 18px;
   --wrap: 1180px;
@@ -45,34 +54,52 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0E0F13; --surface: #17191F; --ink: #ECEDF2; --muted: #9AA0AE; --line: #262833;
-    --accent: #8C86F6; --accent-ink: #C5C2FB; --soft: #22213F; --good: #5EE08A; --good-soft: #15302A;
-    --night: #1B1D24; --night-2: #23262E;
+    --accent: #8C86F6; --accent-ink: #C5C2FB; --soft: #22213F; --good: #5EE08A;
+    --night: #1B1D24; --night-2: #23262E; --logo-tile: #1E2028; --logo-edge: rgba(255,255,255,.16);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0E0F13; --surface: #17191F; --ink: #ECEDF2; --muted: #9AA0AE; --line: #262833;
-  --accent: #8C86F6; --accent-ink: #C5C2FB; --soft: #22213F; --good: #5EE08A; --good-soft: #15302A;
-  --night: #1B1D24; --night-2: #23262E;
+  --accent: #8C86F6; --accent-ink: #C5C2FB; --soft: #22213F; --good: #5EE08A;
+  --night: #1B1D24; --night-2: #23262E; --logo-tile: #1E2028; --logo-edge: rgba(255,255,255,.16);
   color-scheme: dark;
+}
+/* Arabic and English faces (the Oto window keeps Hebrew glyphs available) */
+.site[lang="ar"] {
+  --f-display: "IBM Plex Sans Arabic", "IBM Plex Sans Hebrew", "Geeza Pro", "Segoe UI", sans-serif;
+  --f-body: "IBM Plex Sans Arabic", "IBM Plex Sans Hebrew", "Geeza Pro", "Segoe UI", Tahoma, sans-serif;
+  --display-weight: 700;
+}
+.site[lang="en"] {
+  --f-body: "IBM Plex Sans", "IBM Plex Sans Hebrew", "Segoe UI", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.6; }
-.site { direction: rtl; text-align: right; overflow-x: clip; }
+.site { text-align: start; overflow-x: clip; font-family: var(--f-body); }
 .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 
-h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
-h2 { font-size: clamp(30px, 4.2vw, 46px); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: var(--display-weight); line-height: 1.15; margin: 0; text-wrap: balance; overflow-wrap: break-word; }
+h2 { font-size: clamp(26px, 4.2vw, 46px); }
 h3 { font-size: 22px; }
 p { margin: 0; }
 .lead { color: var(--muted); font-size: 19px; max-width: 58ch; }
 .eyebrow { font-size: 14px; font-weight: 600; color: var(--accent-ink); letter-spacing: 0.02em; }
 .num { font-variant-numeric: tabular-nums; }
+.ltr { direction: ltr; unicode-bidi: isolate; }
+[dir="rtl"] .ltr-field { text-align: right; }
+[dir="ltr"] .ltr-field { text-align: left; }
+
+/* ── Logo: Oto's app icon, drawn here so it reads in both themes ── */
+.logo { width: 36px; height: 36px; flex: none; }
+.logo .tile { fill: var(--logo-tile); stroke: var(--logo-edge); stroke-width: 2; }
+.logo .ring { fill: #FFFFFF; }
+.logo .hole { fill: var(--logo-tile); }
 
 /* ── Buttons ── */
 .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 14px;
@@ -82,7 +109,9 @@ p { margin: 0; }
 .btn:active { transform: translateY(0) scale(.98); }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: var(--accent-ink); }
-:root[data-theme="dark"] .btn-primary:hover { background: #A29DF8; color: #15171C; }
+:root[data-theme="dark"] .btn-primary { color: #15171C; }
+:root[data-theme="dark"] .btn-primary:hover { background: #A29DF8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #15171C; } :root:not([data-theme="light"]) .btn-primary:hover { background: #A29DF8; } }
 .btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--accent); }
 .btn svg { width: 20px; height: 20px; flex: none; }
@@ -91,21 +120,28 @@ p { margin: 0; }
 /* ── Header ── */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent);
        backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; gap: 28px; min-height: 68px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 400 26px/1 var(--f-display); }
-.brand svg { width: 34px; height: 34px; }
-.brand .mark-bg { fill: var(--ink); } .brand .mark-hex { fill: var(--bg); }
-.nav { display: flex; gap: 24px; margin-inline-start: auto; }
-.nav a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 16px; }
+.top .wrap { display: flex; align-items: center; gap: 22px; min-height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: var(--display-weight) 25px/1 var(--f-display); color: var(--ink); }
+.nav { display: flex; gap: 22px; margin-inline-start: auto; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15.5px; white-space: nowrap; }
 .nav a:hover { color: var(--ink); }
-.top .btn { min-height: 44px; padding: 0 18px; font-size: 15.5px; }
-@media (max-width: 860px) { .nav { display: none; } .top .btn { margin-inline-start: auto; } }
+.top .btn { min-height: 42px; padding: 0 16px; font-size: 15px; }
+.langs { display: flex; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 3px; gap: 2px; }
+.langs button { border: 0; background: transparent; color: var(--muted); border-radius: 9px; padding: 6px 10px; cursor: pointer;
+                font: 600 14px/1 var(--f-body); }
+.langs button[lang="ar"] { font-family: "IBM Plex Sans Arabic", "Geeza Pro", sans-serif; }
+.langs button[lang="he"] { font-family: "IBM Plex Sans Hebrew", "Arial Hebrew", sans-serif; }
+.langs button[lang="en"] { font-family: "IBM Plex Sans", system-ui, sans-serif; }
+.langs button:hover { color: var(--ink); }
+.langs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+@media (max-width: 1060px) { .nav { display: none; } .langs { margin-inline-start: auto; } }
+@media (max-width: 520px) { .top .btn { display: none; } .brand .word { display: none; } }
 
 /* ── Plate (the signature) ── */
 .plate { display: inline-flex; align-items: stretch; direction: ltr; background: var(--plate); border: 2.5px solid var(--plate-ink);
          border-radius: 9px; overflow: hidden; box-shadow: 0 1px 0 rgba(0,0,0,.25); }
 .plate .il { background: var(--plate-blue); color: #fff; display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-             padding: 0 7px 5px; font: 700 11px/1 var(--f-body); letter-spacing: .04em; }
+             padding: 0 7px 5px; font: 700 11px/1 "IBM Plex Sans", sans-serif; letter-spacing: .04em; }
 .plate .digits { font: 700 34px/1 var(--f-plate); color: var(--plate-ink); letter-spacing: .06em; padding: 7px 16px 6px; min-width: 6.6ch; text-align: center; }
 .plate .digits.empty { color: rgba(17,18,20,.32); }
 .plate.sm .digits { font-size: 21px; padding: 4px 10px 3px; }
@@ -116,7 +152,9 @@ p { margin: 0; }
 /* ── Hero ── */
 .hero { padding-block: 64px 40px; }
 .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 56px; align-items: center; }
-.hero h1 { font-size: clamp(40px, 5.6vw, 66px); margin-block: 14px 20px; }
+.hero h1 { font-size: clamp(32px, 5.6vw, 66px); margin-block: 14px 20px; }
+.site[lang="en"] .hero h1 { font-size: clamp(32px, 5.2vw, 62px); }
+.site[lang="ar"] .hero h1 { font-size: clamp(30px, 5vw, 58px); }
 .hero h1 .line2 { color: var(--accent); display: block; }
 .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .proof { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 28px; color: var(--muted); font-size: 14.5px; }
@@ -126,17 +164,14 @@ p { margin: 0; }
 
 /* The Oto window (built in HTML, plays a short demo) */
 .app { background: var(--night); color: var(--night-ink); border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px -20px rgba(21,23,28,.45), 0 0 0 1px rgba(255,255,255,.04);
-       display: grid; grid-template-columns: 158px minmax(0, 1fr); font-size: 13.5px; line-height: 1.45; min-height: 430px; }
+       display: grid; grid-template-columns: 158px minmax(0, 1fr); font: 13.5px/1.45 "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; min-height: 430px; text-align: start; }
 .app .side { background: #111216; padding: 16px 12px; display: flex; flex-direction: column; gap: 3px; }
-.app .side .brand { font-size: 19px; color: #fff; margin: 2px 6px 14px; }
-.app .side .brand svg { width: 24px; height: 24px; }
-.app .side .brand .mark-bg { fill: #fff; } .app .side .brand .mark-hex { fill: #111216; }
-.app .new { background: var(--accent); color: #fff; border-radius: 10px; padding: 8px 10px; font-weight: 600; margin-bottom: 10px; text-align: center; }
-:root[data-theme="dark"] .app .new { color: #15171C; }
+.app .side .mk { display: flex; align-items: center; gap: 8px; font: 400 19px/1 "Secular One", sans-serif; color: #fff; margin: 2px 6px 14px; }
+.app .side .mk svg { width: 24px; height: 24px; }
+.app .new { background: #4F46E5; color: #fff; border-radius: 10px; padding: 8px 10px; font-weight: 600; margin-bottom: 10px; text-align: center; }
 .app .nav-i { color: #9AA0AE; padding: 6px 10px; border-radius: 8px; }
-.app .nav-i.on { background: #262A33; color: #fff; font-weight: 600; }
 .app .main { background: var(--night-2); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.app .t { font: 400 21px/1.1 var(--f-display); color: #fff; }
+.app .t { font: 400 21px/1.1 "Secular One", "IBM Plex Sans Hebrew", sans-serif; color: #fff; }
 .app .sub { color: var(--night-muted); font-size: 12.5px; margin-top: -6px; }
 .app .card { background: #1A1C22; border: 1px solid #2A2D36; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .app .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -151,15 +186,15 @@ p { margin: 0; }
 .app .ln span { color: var(--night-muted); }
 .app .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
 .app .total { font: 700 22px/1 var(--f-plate); letter-spacing: .02em; color: #fff; }
-.app .total small { font: 500 12px var(--f-body); color: var(--night-muted); display: block; margin-bottom: 3px; letter-spacing: 0; }
-.app .save { background: var(--accent); color: #fff; border-radius: 10px; padding: 9px 14px; font-weight: 600; transition: transform .2s, background-color .2s; }
-:root[data-theme="dark"] .app .save { color: #15171C; }
+.app .total small { font: 500 12px "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; color: var(--night-muted); display: block; margin-bottom: 3px; letter-spacing: 0; }
+.app .save { background: #4F46E5; color: #fff; border-radius: 10px; padding: 9px 14px; font-weight: 600; transition: transform .2s; }
 .app .save.press { transform: scale(.95); }
-.app .toast { position: absolute; inset-inline: 0; margin-inline: auto; bottom: 16px; width: max-content; max-width: 90%; background: #fff; color: #15171C; border-radius: 12px;
-              padding: 9px 14px; font-weight: 600; font-size: 13px; display: flex; gap: 8px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.35);
-              transition: opacity .3s, transform .35s cubic-bezier(.3,1.4,.5,1); }
-.app .toast svg { width: 16px; height: 16px; color: #0F7B55; }
 .app-wrap { position: relative; }
+.app-wrap .toast { position: absolute; inset-inline: 0; margin-inline: auto; bottom: 16px; width: max-content; max-width: 90%; background: #fff; color: #15171C; border-radius: 12px;
+              padding: 9px 14px; font: 600 13px "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; display: flex; gap: 8px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+              transition: opacity .3s, transform .35s cubic-bezier(.3,1.4,.5,1); }
+.app-wrap .toast svg { width: 16px; height: 16px; color: #0F7B55; }
+.app-note { margin-top: 12px; color: var(--muted); font-size: 14px; }
 .hide { opacity: 0; transform: translateY(8px); }
 @media (max-width: 620px) {
   .app { grid-template-columns: minmax(0, 1fr); min-height: 0; }
@@ -173,7 +208,8 @@ section { padding-block: 72px; }
 /* A day in the garage: a real timeline, so times are the structure */
 .day { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
 .step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; }
-.step .time { font: 700 26px/1 var(--f-plate); color: var(--accent); letter-spacing: .02em; direction: ltr; text-align: right; }
+.step .time { font: 700 26px/1 var(--f-plate); color: var(--accent); letter-spacing: .02em; }
+.site[lang="ar"] .step .time.word { font: 700 22px/1.1 var(--f-body); }
 .step h3 { font-size: 20px; }
 .step p { color: var(--muted); font-size: 15.5px; }
 .step .tag { margin-top: auto; align-self: flex-start; font-size: 12.5px; font-weight: 600; color: var(--accent-ink); background: var(--soft); border-radius: 999px; padding: 3px 10px; }
@@ -188,19 +224,20 @@ section { padding-block: 72px; }
 .ico svg { width: 22px; height: 22px; }
 .easy li b { display: block; font-weight: 600; font-size: 17.5px; }
 .easy li span { color: var(--muted); font-size: 15.5px; }
-.lesson { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: grid; gap: 14px; }
-.lesson .bubble { background: var(--night); color: var(--night-ink); border-radius: 16px; padding: 16px 18px; display: grid; gap: 6px; }
+.lesson { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: grid; gap: 14px; justify-items: start; }
+.lesson .bubble { background: var(--night); color: var(--night-ink); border-radius: 16px; padding: 16px 18px; display: grid; gap: 6px; justify-self: stretch;
+                  font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; text-align: start; }
 .lesson .bubble .k { font-size: 12.5px; color: var(--night-muted); }
-.lesson .bubble b { font: 400 19px/1.2 var(--f-display); color: #fff; }
+.lesson .bubble b { font: 400 19px/1.2 "Secular One", "IBM Plex Sans Hebrew", sans-serif; color: #fff; }
 .lesson .bubble .acts { display: flex; gap: 8px; margin-top: 6px; }
 .lesson .bubble .acts span { border-radius: 9px; padding: 6px 12px; font-size: 13px; font-weight: 600; background: #2A2D36; }
-.lesson .bubble .acts span.go { background: var(--accent); color: #fff; }
-:root[data-theme="dark"] .lesson .bubble .acts span.go { color: #15171C; }
-.lesson .steps { display: flex; gap: 6px; }
+.lesson .bubble .acts span.go { background: #4F46E5; color: #fff; }
+.lesson .steps { display: flex; gap: 6px; justify-self: stretch; }
 .lesson .steps i { flex: 1; height: 6px; border-radius: 3px; background: var(--line); }
 .lesson .steps i.on { background: var(--accent); }
 .lesson .sizes { display: flex; gap: 8px; align-items: baseline; color: var(--muted); font-size: 14px; flex-wrap: wrap; }
 .lesson .sizes span { border: 1px solid var(--line); border-radius: 10px; padding: 4px 12px; color: var(--ink); }
+.lesson .sizes span.lbl { border: 0; padding: 0; color: var(--muted); }
 .lesson .sizes span.on { border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
 @media (max-width: 900px) { .easy { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
 
@@ -221,9 +258,9 @@ section { padding-block: 72px; }
 /* Pricing */
 .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
 .plan { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px 26px; display: flex; flex-direction: column; gap: 18px; }
-.plan .name { font: 400 26px/1 var(--f-display); }
+.plan .name { font: var(--display-weight) 26px/1.1 var(--f-display); }
 .plan .for { color: var(--muted); font-size: 15px; margin-top: -8px; }
-.price { display: flex; align-items: baseline; gap: 6px; direction: rtl; }
+.price { display: flex; align-items: baseline; gap: 6px; }
 .price .amt { font: 700 64px/0.9 var(--f-plate); letter-spacing: .01em; }
 .price .cur { font: 700 30px/1 var(--f-plate); }
 .price .per { color: var(--muted); font-size: 14.5px; line-height: 1.25; }
@@ -237,9 +274,8 @@ section { padding-block: 72px; }
 .plan.pro .for, .plan.pro .per, .plan.pro li.head { color: var(--night-muted); }
 .plan.pro li svg { color: #5EE08A; }
 .plan.pro .soon { background: #2E2A66; color: #C5C2FB; }
-.plan.pro .badge { position: absolute; top: -13px; inset-inline-start: 24px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 4px 12px; }
-:root[data-theme="dark"] .plan.pro .badge { color: #15171C; }
-.plan.pro .btn-ghost { background: #2A2D36; color: #fff; border-color: #2A2D36; }
+.plan.pro .badge { position: absolute; top: -13px; inset-inline-start: 24px; background: #4F46E5; color: #fff; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 4px 12px; }
+.plan.pro .btn-primary { background: #4F46E5; color: #fff; }
 .plans-note { margin-top: 22px; color: var(--muted); font-size: 15px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
 .plans-note span { display: inline-flex; gap: 7px; align-items: center; }
 .plans-note svg { width: 17px; height: 17px; color: var(--good); }
@@ -258,13 +294,14 @@ section { padding-block: 72px; }
 
 /* Contact */
 .contact { background: var(--night); color: var(--night-ink); border-radius: 28px; padding: 44px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 44px; }
-.contact h2 { color: #fff; }
-.contact .lead { color: var(--night-muted); }
+.contact h2 { color: #fff; margin-top: 12px; }
+.contact .eyebrow { color: #C5C2FB; }
+.contact .lead { color: var(--night-muted); margin-top: 14px; }
 .ways { display: grid; gap: 12px; margin-top: 28px; }
 .way { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 14px; align-items: center; background: #23262E; border-radius: 16px; padding: 12px 14px; }
 .way .ico { background: #2E3140; color: #fff; }
 .way .k { font-size: 13px; color: var(--night-muted); }
-.way .v { font-weight: 600; color: #fff; direction: ltr; text-align: right; word-break: break-all; }
+.way .v { font-weight: 600; color: #fff; word-break: break-all; }
 .copy { border: 1px solid #3A3E4B; background: transparent; color: #E7E8EC; border-radius: 10px; padding: 7px 12px; font: 600 13.5px var(--f-body); cursor: pointer; }
 .copy:hover { border-color: #8C86F6; }
 .form { background: #1F2229; border-radius: 22px; padding: 26px; display: grid; gap: 14px; }
@@ -281,24 +318,21 @@ section { padding-block: 72px; }
 .form .send:hover { background: #3BE07A; }
 .form .send[aria-disabled="true"] { opacity: .45; pointer-events: none; }
 .form .hint { color: var(--night-muted); font-size: 13.5px; }
-.form .missing { color: #F7B955; font-size: 14px; }
 @media (max-width: 900px) { .contact { grid-template-columns: minmax(0, 1fr); padding: 26px; } }
 @media (max-width: 520px) { .fields { grid-template-columns: minmax(0, 1fr); } }
 
 /* Footer */
 .foot-site { padding-block: 36px 48px; color: var(--muted); font-size: 14.5px; }
 .foot-site .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; }
-.foot-site .brand { font-size: 21px; color: var(--ink); }
-.foot-site .brand svg { width: 26px; height: 26px; }
+.foot-site .brand { font-size: 21px; }
+.foot-site .logo { width: 28px; height: 28px; }
 .foot-site a { color: var(--muted); }
 </style>
 </head>
 <body>
-<div class="site" dir="rtl" lang="he">
+<div class="site" id="site" dir="rtl" lang="he">
 
-<!-- The Oto mark, reused -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="mark" viewBox="0 0 100 100"><circle class="mark-bg" cx="50" cy="50" r="46"/><path class="mark-hex" d="M50,28 L30.95,39 L30.95,61 L50,72 L69.05,61 L69.05,39 Z"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.2 19L4 20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 9.2c.3 2.4 2.4 4.6 5 5.2l1.1-1.3-1.8-.9-.8.8c-.9-.4-1.9-1.4-2.3-2.3l.8-.8-.9-1.8L9 9.2z" fill="currentColor"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16.5 16.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
@@ -307,24 +341,32 @@ section { padding-block: 72px; }
   <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 18L8.5 6 13 18 M5.6 14h5.8 M15 18l3-8 3 8 M15.9 15.5h4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-update" viewBox="0 0 24 24"><path d="M12 4v11 M7.5 10.5L12 15l4.5-4.5 M4.5 19.5h15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 12h17 M12 3.5c2.6 2.6 2.6 14.4 0 17 M12 3.5c-2.6 2.6-2.6 14.4 0 17" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-1.8-3 1.8-3-1.8L6 21z M9 8h6 M9 11.5h6 M9 15h3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.5 11h11v9h-11z M8.5 11V8a3.5 3.5 0 0 1 7 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6.5v18h11V6.5z M14 3v3.5h3.5 M9.5 12.5h5 M9.5 16H13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 8L4.5 12 9 16 M4.5 12H15a5 5 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 0 1-.5-9A6 6 0 0 1 18 10a4 4 0 0 1-.5 8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
 </svg>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="אוטו"><svg aria-hidden="true"><use href="#mark"/></svg>אוטו</a>
-    <nav class="nav" aria-label="ניווט">
-      <a href="#day">מה אוטו עושה</a>
-      <a href="#easy">פשוט לשימוש</a>
-      <a href="#legal">חוקי ומאובטח</a>
-      <a href="#pricing">מחירים</a>
-      <a href="#faq">שאלות</a>
+    <a class="brand" href="#top">
+      <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><rect class="tile" x="1" y="1" width="98" height="98" rx="22"/><circle class="ring" cx="50" cy="50" r="28"/><path class="hole" d="M50,36.7 L61.5,43.4 L61.5,56.6 L50,63.3 L38.5,56.6 L38.5,43.4 Z"/></svg>
+      <span class="word" data-i18n="brand">אוטו</span>
+    </a>
+    <nav class="nav" aria-label="Menu">
+      <a href="#day" data-i18n="nav.what">מה אוטו עושה</a>
+      <a href="#easy" data-i18n="nav.easy">פשוט לשימוש</a>
+      <a href="#legal" data-i18n="nav.legal">חוקי ומאובטח</a>
+      <a href="#pricing" data-i18n="nav.pricing">מחירים</a>
+      <a href="#faq" data-i18n="nav.faq">שאלות</a>
     </nav>
-    <a class="btn btn-primary" href="#contact">דברו איתנו</a>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" lang="he" data-lang="he" aria-pressed="true">עברית</button>
+      <button type="button" lang="en" data-lang="en" aria-pressed="false">English</button>
+      <button type="button" lang="ar" data-lang="ar" aria-pressed="false">العربية</button>
+    </div>
+    <a class="btn btn-primary" href="#contact" data-i18n="nav.cta">דברו איתנו</a>
   </div>
 </header>
 
@@ -334,59 +376,62 @@ section { padding-block: 72px; }
 <section class="hero">
   <div class="wrap">
     <div>
-      <div class="eyebrow">תוכנה לניהול מוסך · רשומה ברשות המסים</div>
-      <h1>מקלידים מספר רכב.<span class="line2">אוטו עושה את השאר.</span></h1>
-      <p class="lead">פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית, בלי סיבוכים, גם למי שלא אוהב מחשבים.</p>
+      <div class="eyebrow" data-i18n="hero.eyebrow">תוכנה לניהול מוסך · רשומה ברשות המסים</div>
+      <h1><span data-i18n="hero.h1a">מקלידים מספר רכב.</span><span class="line2" data-i18n="hero.h1b">אוטו עושה את השאר.</span></h1>
+      <p class="lead" data-i18n="hero.lead">פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית, בלי סיבוכים, גם למי שלא אוהב מחשבים.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg>רוצים לשמוע עוד</a>
-        <a class="btn btn-ghost" href="#pricing">מחירים</a>
+        <a class="btn btn-primary" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="hero.cta1">רוצים לשמוע עוד</span></a>
+        <a class="btn btn-ghost" href="#pricing" data-i18n="nav.pricing">מחירים</a>
       </div>
       <div class="proof">
-        <span><svg aria-hidden="true"><use href="#i-check"/></svg>תעודת רישום 280401</span>
-        <span><svg aria-hidden="true"><use href="#i-check"/></svg>התקנה וקישור במוסך על ידינו</span>
-        <span><svg aria-hidden="true"><use href="#i-check"/></svg>עדכונים מגיעים לבד</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="proof.1">תעודת רישום 280401</span></span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="proof.2">התקנה וקישור במוסך על ידינו</span></span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="proof.3">עדכונים מגיעים לבד</span></span>
       </div>
     </div>
 
-    <!-- A short, real flow from Oto: plate → car details → lines → saved -->
-    <div class="app-wrap" aria-label="הדגמה: מסמך חדש באוטו">
-      <div class="app" id="demo">
-        <aside class="side" aria-hidden="true">
-          <span class="brand"><svg><use href="#mark"/></svg>Oto</span>
-          <div class="new">+ מסמך חדש</div>
-          <div class="nav-i">בית</div>
-          <div class="nav-i">לקוחות</div>
-          <div class="nav-i">חייבים</div>
-          <div class="nav-i">מלאי</div>
-          <div class="nav-i">איתור רכב</div>
-          <div class="nav-i">תורים</div>
-          <div class="nav-i">סטטיסטיקה</div>
-        </aside>
-        <div class="main">
-          <div class="t">מסמך חדש</div>
-          <div class="sub">חשבונית מס קבלה · מס׳ 001044</div>
-          <div class="card">
-            <div class="row">
-              <span class="plate sm"><span class="il">IL</span><span class="digits num" id="d-plate">58-412-37</span></span>
-              <span class="fetch" id="d-fetch">שליפת פרטי רכב</span>
+    <!-- A short, real flow from Oto: plate → car details → lines → saved. Shown in Oto's own languages (Hebrew, English). -->
+    <div>
+      <div class="app-wrap">
+        <div class="app" id="demo" dir="rtl" lang="he">
+          <aside class="side" aria-hidden="true">
+            <span class="mk"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M50,28 L30.95,39 L30.95,61 L50,72 L69.05,61 L69.05,39 Z" fill="#111216"/></svg>Oto</span>
+            <div class="new" data-ui="new">+ מסמך חדש</div>
+            <div class="nav-i" data-ui="home">בית</div>
+            <div class="nav-i" data-ui="customers">לקוחות</div>
+            <div class="nav-i" data-ui="debtors">חייבים</div>
+            <div class="nav-i" data-ui="inventory">מלאי</div>
+            <div class="nav-i" data-ui="finder">איתור רכב</div>
+            <div class="nav-i" data-ui="appts">תורים</div>
+            <div class="nav-i" data-ui="stats">סטטיסטיקה</div>
+          </aside>
+          <div class="main">
+            <div class="t" data-ui="title">מסמך חדש</div>
+            <div class="sub" data-ui="sub">חשבונית מס קבלה · מס׳ 001044</div>
+            <div class="card">
+              <div class="row">
+                <span class="plate sm"><span class="il">IL</span><span class="digits num" id="d-plate">58-412-37</span></span>
+                <span class="fetch" id="d-fetch" data-ui="fetch">שליפת פרטי רכב</span>
+              </div>
+              <div class="chips" id="d-chips">
+                <span class="chip" data-ui="car">מאזדה 3 · 2019 · לבן</span>
+                <span class="chip ok" data-ui="test">טסט בתוקף עד 14/03/2027</span>
+              </div>
             </div>
-            <div class="chips" id="d-chips">
-              <span class="chip">מאזדה 3 · 2019 · לבן</span>
-              <span class="chip ok">טסט בתוקף עד 14/03/2027</span>
+            <div class="lines" id="d-lines">
+              <div class="ln"><b data-ui="l1">טיפול 10,000 ק״מ</b><span class="num">₪250</span></div>
+              <div class="ln"><b data-ui="l2">פילטר שמן</b><span class="num">₪45</span></div>
+              <div class="ln"><b data-ui="l3">החלפת רפידות בלם קדמי</b><span class="num">₪200</span></div>
             </div>
-          </div>
-          <div class="lines" id="d-lines">
-            <div class="ln"><b>טיפול 10,000 ק״מ</b><span class="num">₪250</span></div>
-            <div class="ln"><b>פילטר שמן</b><span class="num">₪45</span></div>
-            <div class="ln"><b>החלפת רפידות בלם קדמי</b><span class="num">₪200</span></div>
-          </div>
-          <div class="foot">
-            <div class="total"><small>סה״כ לתשלום, כולל מע״מ</small><span class="num" id="d-total">₪584.10</span></div>
-            <span class="save" id="d-save">שמור והדפס</span>
+            <div class="foot">
+              <div class="total"><small data-ui="totalLbl">סה״כ לתשלום, כולל מע״מ</small><span class="num" id="d-total">₪584.10</span></div>
+              <span class="save" id="d-save" data-ui="save">שמור והדפס</span>
+            </div>
           </div>
         </div>
+        <div class="toast hide" id="d-toast" role="status"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-ui="toast">חשבונית מס קבלה 001044 נשמרה</span></div>
       </div>
-      <div class="toast hide" id="d-toast" role="status"><svg aria-hidden="true"><use href="#i-check"/></svg>חשבונית מס קבלה 001044 נשמרה</div>
+      <p class="app-note" id="app-note" hidden data-i18n="demo.note"></p>
     </div>
   </div>
 </section>
@@ -395,36 +440,36 @@ section { padding-block: 72px; }
 <section id="day">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">יום במוסך, עם אוטו</div>
-      <h2>מהבוקר ועד סוף החודש</h2>
-      <p class="lead">אוטו בנוי סביב מה שקורה במוסך באמת: רכב נכנס, עבודה נעשית, לקוח משלם, ורואה החשבון מקבל את מה שהוא צריך.</p>
+      <div class="eyebrow" data-i18n="day.eyebrow">יום במוסך, עם אוטו</div>
+      <h2 data-i18n="day.h2">מהבוקר ועד סוף החודש</h2>
+      <p class="lead" data-i18n="day.lead">אוטו בנוי סביב מה שקורה במוסך באמת: רכב נכנס, עבודה נעשית, לקוח משלם, ורואה החשבון מקבל את מה שהוא צריך.</p>
     </div>
     <div class="day">
       <article class="step">
         <div class="time num">07:30</div>
-        <h3>פותחים את המוסך</h3>
-        <p>במסך הראשי: התורים של היום, למי להזכיר על טסט, ומי עוד לא שילם.</p>
+        <h3 data-i18n="s1.h">פותחים את המוסך</h3>
+        <p data-i18n="s1.p">במסך הראשי: התורים של היום, למי להזכיר על טסט, ומי עוד לא שילם.</p>
       </article>
       <article class="step">
         <div class="time num">09:00</div>
-        <h3>רכב נכנס</h3>
-        <p>מקלידים מספר רכב ומקבלים יצרן, דגם, שנה ותוקף טסט ממאגר משרד התחבורה. כל ההיסטוריה של הרכב שם.</p>
+        <h3 data-i18n="s2.h">רכב נכנס</h3>
+        <p data-i18n="s2.p">מקלידים מספר רכב ומקבלים יצרן, דגם, שנה ותוקף טסט ממאגר משרד התחבורה. כל ההיסטוריה של הרכב שם.</p>
       </article>
       <article class="step">
         <div class="time num">13:00</div>
-        <h3>עבודה וחלקים</h3>
-        <p>העבודות והחלקים הנפוצים שלכם בלחיצה אחת. סורק ברקוד לחלקים, והמלאי יורד לבד.</p>
-        <span class="tag">מלאי וסורק: בפרו</span>
+        <h3 data-i18n="s3.h">עבודה וחלקים</h3>
+        <p data-i18n="s3.p">העבודות והחלקים הנפוצים שלכם בלחיצה אחת. סורק ברקוד לחלקים, והמלאי יורד לבד.</p>
+        <span class="tag" data-i18n="s3.tag">מלאי וסורק: בפרו</span>
       </article>
       <article class="step">
         <div class="time num">16:30</div>
-        <h3>הרכב מוכן</h3>
-        <p>חשבונית מס קבלה במספור רציף, מוכנה להדפסה. הודעת "הרכב מוכן" ללקוח בוואטסאפ, בלחיצה.</p>
+        <h3 data-i18n="s4.h">הרכב מוכן</h3>
+        <p data-i18n="s4.p">חשבונית מס קבלה במספור רציף, מוכנה להדפסה. הודעת "הרכב מוכן" ללקוח בוואטסאפ, בלחיצה.</p>
       </article>
       <article class="step">
-        <div class="time num">סוף החודש</div>
-        <h3>מסדרים חשבונות</h3>
-        <p>מי חייב כמה, כמה הוצאתם וכמה הרווחתם. קובץ מבנה אחיד מוכן לרואה החשבון.</p>
+        <div class="time word" data-i18n="s5.time">סוף החודש</div>
+        <h3 data-i18n="s5.h">מסדרים חשבונות</h3>
+        <p data-i18n="s5.p">מי חייב כמה, כמה הוצאתם וכמה הרווחתם. קובץ מבנה אחיד מוכן לרואה החשבון.</p>
       </article>
     </div>
   </div>
@@ -435,26 +480,27 @@ section { padding-block: 72px; }
   <div class="wrap easy">
     <div>
       <div class="sec-head" style="margin-bottom:28px">
-        <div class="eyebrow">בנוי למוסכניקים, לא למתכנתים</div>
-        <h2>לא צריך להבין במחשבים</h2>
+        <div class="eyebrow" data-i18n="easy.eyebrow">בנוי למוסכניקים, לא למתכנתים</div>
+        <h2 data-i18n="easy.h2">לא צריך להבין במחשבים</h2>
       </div>
       <ul>
-        <li><span class="ico"><svg aria-hidden="true"><use href="#i-play"/></svg></span><div><b>מדריך בתוך התוכנה</b><span>בכל דף יש סיור קצר שמראה מה עושים, ותרגול צעד אחר צעד על המסך האמיתי.</span></div></li>
-        <li><span class="ico"><svg aria-hidden="true"><use href="#i-text"/></svg></span><div><b>טקסט גדול</b><span>שלושה גדלים: רגיל, גדול וגדול מאוד. כל התוכנה גדלה יחד.</span></div></li>
-        <li><span class="ico"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><b>מצב בהיר או כהה</b><span>מה שנוח לעיניים, בלחיצה בהגדרות.</span></div></li>
-        <li><span class="ico"><svg aria-hidden="true"><use href="#i-update"/></svg></span><div><b>עדכונים לבד</b><span>כשיש גרסה חדשה מופיעה הודעה. לוחצים "עדכן" וזהו.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-play"/></svg></span><div><b data-i18n="e1.b">מדריך בתוך התוכנה</b><span data-i18n="e1.s">בכל דף יש סיור קצר שמראה מה עושים, ותרגול צעד אחר צעד על המסך האמיתי.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-text"/></svg></span><div><b data-i18n="e2.b">טקסט גדול</b><span data-i18n="e2.s">שלושה גדלים: רגיל, גדול וגדול מאוד. כל התוכנה גדלה יחד.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><b data-i18n="e3.b">מצב בהיר או כהה</b><span data-i18n="e3.s">מה שנוח לעיניים, בלחיצה בהגדרות.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-lang"/></svg></span><div><b data-i18n="e5.b">עברית או אנגלית</b><span data-i18n="e5.s">מחליפים שפה בלחיצה, וכל התוכנה מתהפכת.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-update"/></svg></span><div><b data-i18n="e4.b">עדכונים לבד</b><span data-i18n="e4.s">כשיש גרסה חדשה מופיעה הודעה. לוחצים "עדכן" וזהו.</span></div></li>
       </ul>
     </div>
-    <div class="lesson" aria-label="דוגמה למדריך בתוך אוטו">
+    <div class="lesson" id="lesson" dir="rtl" lang="he">
       <div class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
       <div class="bubble">
-        <span class="k">שלב 2 מתוך 5 · צופים</span>
-        <b>מספר הרכב</b>
-        <span>מקלידים את מספר הרכב. המקפים לא משנים.</span>
-        <div class="acts"><span class="go">הבא</span><span>הקודם</span><span>השהה</span></div>
+        <span class="k" data-ui="lk">שלב 2 מתוך 5 · צופים</span>
+        <b data-ui="lb">מספר הרכב</b>
+        <span data-ui="ls">מקלידים את מספר הרכב. המקפים לא משנים.</span>
+        <div class="acts"><span class="go" data-ui="next">הבא</span><span data-ui="back">הקודם</span><span data-ui="pause">השהה</span></div>
       </div>
       <span class="plate"><span class="il">IL</span><span class="digits num">12-345-67<span class="caret" aria-hidden="true"></span></span></span>
-      <div class="sizes"><span>גודל טקסט:</span><span>רגיל</span><span class="on">גדול</span><span>גדול מאוד</span></div>
+      <div class="sizes"><span class="lbl" data-ui="size">גודל טקסט:</span><span data-ui="normal">רגיל</span><span class="on" data-ui="large">גדול</span><span data-ui="xl">גדול מאוד</span></div>
     </div>
   </div>
 </section>
@@ -463,21 +509,21 @@ section { padding-block: 72px; }
 <section id="legal">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">חוקי, מגובה ופרטי</div>
-      <h2>מסמכים שרשות המסים מכירה</h2>
+      <div class="eyebrow" data-i18n="legal.eyebrow">חוקי, מגובה ופרטי</div>
+      <h2 data-i18n="legal.h2">מסמכים שרשות המסים מכירה</h2>
     </div>
     <div class="cert">
       <div class="stamp">
-        <span class="k">אוטו רשומה במערכת רישום התוכנות של רשות המסים</span>
+        <span class="k" data-i18n="stamp.k1">אוטו רשומה במערכת רישום התוכנות של רשות המסים</span>
         <span class="n num">280401</span>
-        <span class="k">מספר תעודת הרישום</span>
-        <span class="v"><svg aria-hidden="true"><use href="#i-check"/></svg>בתוקף עד 31/07/2028</span>
+        <span class="k" data-i18n="stamp.k2">מספר תעודת הרישום</span>
+        <span class="v"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="stamp.v">בתוקף עד 31/07/2028</span></span>
       </div>
       <ul>
-        <li><svg aria-hidden="true"><use href="#i-doc"/></svg><div><b>כל סוגי המסמכים</b><span>חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה, תעודת משלוח והצעת מחיר.</span></div></li>
-        <li><svg aria-hidden="true"><use href="#i-undo"/></svg><div><b>מספור רציף, בלי מחיקות</b><span>מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.</span></div></li>
-        <li><svg aria-hidden="true"><use href="#i-file"/></svg><div><b>מבנה אחיד</b><span>קובץ OPENFRMT לרואה החשבון ולביקורת, בלחיצה.</span></div></li>
-        <li><svg aria-hidden="true"><use href="#i-lock"/></svg><div><b>כל מוסך רואה רק את שלו</b><span>כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-doc"/></svg><div><b data-i18n="g1.b">כל סוגי המסמכים</b><span data-i18n="g1.s">חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה, תעודת משלוח והצעת מחיר.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-undo"/></svg><div><b data-i18n="g2.b">מספור רציף, בלי מחיקות</b><span data-i18n="g2.s">מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-file"/></svg><div><b data-i18n="g3.b">מבנה אחיד</b><span data-i18n="g3.s">קובץ OPENFRMT לרואה החשבון ולביקורת, בלחיצה.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-lock"/></svg><div><b data-i18n="g4.b">כל מוסך רואה רק את שלו</b><span data-i18n="g4.s">כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.</span></div></li>
       </ul>
     </div>
   </div>
@@ -487,63 +533,63 @@ section { padding-block: 72px; }
 <section id="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">מחירים</div>
-      <h2>מנוי חודשי, לפי מה שהמוסך צריך</h2>
-      <p class="lead">בכל התוכניות: התקנה במוסך, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.</p>
+      <div class="eyebrow" data-i18n="nav.pricing">מחירים</div>
+      <h2 data-i18n="pr.h2">מנוי חודשי, לפי מה שהמוסך צריך</h2>
+      <p class="lead" data-i18n="pr.lead">בכל התוכניות: התקנה במוסך, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.</p>
     </div>
     <div class="plans">
       <article class="plan">
         <div>
-          <div class="name">בסיס</div>
-          <p class="for">כל מה שצריך כדי לעבוד מסודר</p>
+          <div class="name" data-i18n="plan.basic">בסיס</div>
+          <p class="for" data-i18n="basic.for">כל מה שצריך כדי לעבוד מסודר</p>
         </div>
-        <div class="price"><span class="cur">₪</span><span class="amt num">149</span><span class="per">לחודש<br>+ מע״מ</span></div>
+        <div class="price"><span class="cur">₪</span><span class="amt num">149</span><span class="per"><span data-i18n="per">לחודש</span><br><span data-i18n="vat">+ מע״מ</span></span></div>
         <ul>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>מסמכים חוקיים ומספור רציף</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>לקוחות, רכבים והיסטוריית טיפולים</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>איתור רכב לפי מספר</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>הצעות מחיר</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>חייבים ותזכורת תשלום</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>הוצאות, רווח וסטטיסטיקה</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>מבנה אחיד לרואה החשבון</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b1">מסמכים חוקיים ומספור רציף</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b2">לקוחות, רכבים והיסטוריית טיפולים</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b3">איתור רכב לפי מספר</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b4">הצעות מחיר</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b5">חייבים ותזכורת תשלום</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b6">הוצאות, רווח וסטטיסטיקה</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b7">מבנה אחיד לרואה החשבון</span></li>
         </ul>
-        <a class="btn btn-ghost" href="#contact" data-plan="בסיס">אני רוצה את בסיס</a>
+        <a class="btn btn-ghost" href="#contact" data-plan="basic" data-i18n="cta.basic">אני רוצה את בסיס</a>
       </article>
 
       <article class="plan pro">
-        <span class="badge">מומלץ</span>
+        <span class="badge" data-i18n="badge">מומלץ</span>
         <div>
-          <div class="name">פרו</div>
-          <p class="for">למוסך שרוצה סדר מלא</p>
+          <div class="name" data-i18n="plan.pro">פרו</div>
+          <p class="for" data-i18n="pro.for">למוסך שרוצה סדר מלא</p>
         </div>
-        <div class="price"><span class="cur">₪</span><span class="amt num">199</span><span class="per">לחודש<br>+ מע״מ</span></div>
+        <div class="price"><span class="cur">₪</span><span class="amt num">199</span><span class="per"><span data-i18n="per">לחודש</span><br><span data-i18n="vat">+ מע״מ</span></span></div>
         <ul>
-          <li class="head">הכל בבסיס, ועוד:</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>לוח תורים שבועי</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>תזכורות טסט וטיפול, ורשימה יומית מוכנה</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>מלאי חלקים וסורק ברקוד</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>600 הודעות וואטסאפ אוטומטיות בחודש<span class="soon">בקרוב</span></span></li>
+          <li class="head" data-i18n="pro.head">הכל בבסיס, ועוד:</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p1">לוח תורים שבועי</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p2">תזכורות טסט וטיפול, ורשימה יומית מוכנה</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p3">מלאי חלקים וסורק ברקוד</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span data-i18n="p4">600 הודעות וואטסאפ אוטומטיות בחודש</span><span class="soon" data-i18n="soon">בקרוב</span></span></li>
         </ul>
-        <a class="btn btn-primary" href="#contact" data-plan="פרו">אני רוצה את פרו</a>
+        <a class="btn btn-primary" href="#contact" data-plan="pro" data-i18n="cta.pro">אני רוצה את פרו</a>
       </article>
 
       <article class="plan">
         <div>
-          <div class="name">פרימיום</div>
-          <p class="for">למוסך עם הרבה לקוחות חוזרים</p>
+          <div class="name" data-i18n="plan.premium">פרימיום</div>
+          <p class="for" data-i18n="prem.for">למוסך עם הרבה לקוחות חוזרים</p>
         </div>
-        <div class="price"><span class="cur">₪</span><span class="amt num">249</span><span class="per">לחודש<br>+ מע״מ</span></div>
+        <div class="price"><span class="cur">₪</span><span class="amt num">249</span><span class="per"><span data-i18n="per">לחודש</span><br><span data-i18n="vat">+ מע״מ</span></span></div>
         <ul>
-          <li class="head">הכל בפרו, ועוד:</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>1,000 הודעות וואטסאפ אוטומטיות בחודש<span class="soon">בקרוב</span></span></li>
+          <li class="head" data-i18n="prem.head">הכל בפרו, ועוד:</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span data-i18n="m1">1,000 הודעות וואטסאפ אוטומטיות בחודש</span><span class="soon" data-i18n="soon">בקרוב</span></span></li>
         </ul>
-        <a class="btn btn-ghost" href="#contact" data-plan="פרימיום">אני רוצה את פרימיום</a>
+        <a class="btn btn-ghost" href="#contact" data-plan="premium" data-i18n="cta.premium">אני רוצה את פרימיום</a>
       </article>
     </div>
     <div class="plans-note">
-      <span><svg aria-hidden="true"><use href="#i-check"/></svg>המחירים לפני מע״מ</span>
-      <span><svg aria-hidden="true"><use href="#i-check"/></svg>היום: אוטו כותב את ההודעה ואתם שולחים בלחיצה</span>
-      <span><svg aria-hidden="true"><use href="#i-check"/></svg>בקרוב: שליחה אוטומטית ממספר הוואטסאפ של אוטו</span>
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.vat">המחירים לפני מע״מ</span></span>
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.today">היום: אוטו כותב את ההודעה ואתם שולחים בלחיצה</span></span>
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.soon">בקרוב: שליחה אוטומטית ממספר הוואטסאפ של אוטו</span></span>
     </div>
   </div>
 </section>
@@ -552,34 +598,17 @@ section { padding-block: 72px; }
 <section id="faq">
   <div class="wrap faq">
     <div class="sec-head">
-      <div class="eyebrow">שאלות</div>
-      <h2>מה שמוסכניקים שואלים אותנו</h2>
+      <div class="eyebrow" data-i18n="nav.faq">שאלות</div>
+      <h2 data-i18n="faq.h2">מה שמוסכניקים שואלים אותנו</h2>
     </div>
     <div>
-      <details open>
-        <summary>על איזה מחשב זה עובד?</summary>
-        <p>על מחשב עם Windows. אנחנו מתקינים את אוטו במוסך ומקשרים אותו למוסך שלכם, וזה לוקח כמה דקות.</p>
-      </details>
-      <details>
-        <summary>צריך ניסיון עם מחשבים?</summary>
-        <p>לא. בכל דף יש סיור קצר שמראה מה עושים, ואפשר לתרגל צעד אחר צעד. אפשר גם להגדיל את כל הטקסט.</p>
-      </details>
-      <details>
-        <summary>מה רואה החשבון מקבל?</summary>
-        <p>כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.</p>
-      </details>
-      <details>
-        <summary>הנתונים שלי בטוחים?</summary>
-        <p>הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.</p>
-      </details>
-      <details>
-        <summary>אפשר לעבור בין תוכניות?</summary>
-        <p>כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.</p>
-      </details>
-      <details>
-        <summary>איך עובדות ההודעות בוואטסאפ?</summary>
-        <p>היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב לפרו ולפרימיום.</p>
-      </details>
+      <details open><summary data-i18n="q1">על איזה מחשב זה עובד?</summary><p data-i18n="a1">על מחשב עם Windows. אנחנו מתקינים את אוטו במוסך ומקשרים אותו למוסך שלכם, וזה לוקח כמה דקות.</p></details>
+      <details><summary data-i18n="q2">צריך ניסיון עם מחשבים?</summary><p data-i18n="a2">לא. בכל דף יש סיור קצר שמראה מה עושים, ואפשר לתרגל צעד אחר צעד. אפשר גם להגדיל את כל הטקסט.</p></details>
+      <details><summary data-i18n="q3">באיזו שפה התוכנה?</summary><p data-i18n="a3">בעברית או באנגלית. מחליפים שפה בלחיצה בהגדרות.</p></details>
+      <details><summary data-i18n="q4">מה רואה החשבון מקבל?</summary><p data-i18n="a4">כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.</p></details>
+      <details><summary data-i18n="q5">הנתונים שלי בטוחים?</summary><p data-i18n="a5">הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.</p></details>
+      <details><summary data-i18n="q6">אפשר לעבור בין תוכניות?</summary><p data-i18n="a6">כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.</p></details>
+      <details><summary data-i18n="q7">איך עובדות ההודעות בוואטסאפ?</summary><p data-i18n="a7">היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב לפרו ולפרימיום.</p></details>
     </div>
   </div>
 </section>
@@ -589,24 +618,29 @@ section { padding-block: 72px; }
   <div class="wrap">
     <div class="contact">
       <div>
-        <div class="eyebrow" style="color:#C5C2FB">צור קשר</div>
-        <h2 style="margin-top:12px">בואו נראה לכם את אוטו</h2>
-        <p class="lead" style="margin-top:14px">ספרו לנו על המוסך ונחזור אליכם. אפשר גם לכתוב לנו ישר בוואטסאפ.</p>
+        <div class="eyebrow" data-i18n="c.eyebrow">צור קשר</div>
+        <h2 data-i18n="c.h2">בואו נראה לכם את אוטו</h2>
+        <p class="lead" data-i18n="c.lead">ספרו לנו על המוסך ונחזור אליכם. אפשר גם לכתוב לנו ישר בוואטסאפ.</p>
         <div class="ways" id="ways"></div>
       </div>
       <form class="form" id="lead" novalidate>
-        <h3>השאירו פרטים</h3>
+        <h3 data-i18n="f.h3">השאירו פרטים</h3>
         <div class="fields">
-          <div class="field"><label for="f-name">שם</label><input id="f-name" autocomplete="name" required></div>
-          <div class="field"><label for="f-phone">טלפון</label><input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required></div>
-          <div class="field"><label for="f-garage">שם המוסך</label><input id="f-garage" autocomplete="organization"></div>
-          <div class="field"><label for="f-city">עיר</label><input id="f-city" autocomplete="address-level2"></div>
-          <div class="field full"><label for="f-plan">תוכנית שמעניינת אתכם</label>
-            <select id="f-plan"><option value="">עוד לא יודעים</option><option>בסיס</option><option>פרו</option><option>פרימיום</option></select></div>
-          <div class="field full"><label for="f-msg">הודעה (לא חובה)</label><textarea id="f-msg"></textarea></div>
+          <div class="field"><label for="f-name" data-i18n="f.name">שם</label><input id="f-name" autocomplete="name" required></div>
+          <div class="field"><label for="f-phone" data-i18n="f.phone">טלפון</label><input id="f-phone" class="ltr-field" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required></div>
+          <div class="field"><label for="f-garage" data-i18n="f.garage">שם המוסך</label><input id="f-garage" autocomplete="organization"></div>
+          <div class="field"><label for="f-city" data-i18n="f.city">עיר</label><input id="f-city" autocomplete="address-level2"></div>
+          <div class="field full"><label for="f-plan" data-i18n="f.plan">תוכנית שמעניינת אתכם</label>
+            <select id="f-plan">
+              <option value="" data-i18n="f.unsure">עוד לא יודעים</option>
+              <option value="basic" data-i18n="plan.basic">בסיס</option>
+              <option value="pro" data-i18n="plan.pro">פרו</option>
+              <option value="premium" data-i18n="plan.premium">פרימיום</option>
+            </select></div>
+          <div class="field full"><label for="f-msg" data-i18n="f.msg">הודעה (לא חובה)</label><textarea id="f-msg"></textarea></div>
         </div>
-        <a class="btn send" id="send" href="#contact" target="_blank" rel="noopener" aria-disabled="true"><svg aria-hidden="true"><use href="#i-wa"/></svg>שליחה בוואטסאפ</a>
-        <p class="hint" id="hint">ממלאים שם וטלפון, והפרטים נשלחים אלינו כהודעת וואטסאפ מוכנה.</p>
+        <a class="btn send" id="send" href="#contact" target="_blank" rel="noopener" aria-disabled="true"><svg aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="f.send">שליחה בוואטסאפ</span></a>
+        <p class="hint" data-i18n="f.hint">ממלאים שם וטלפון, והפרטים נשלחים אלינו כהודעת וואטסאפ מוכנה.</p>
       </form>
     </div>
   </div>
@@ -616,71 +650,259 @@ section { padding-block: 72px; }
 
 <footer class="foot-site">
   <div class="wrap">
-    <span class="brand"><svg aria-hidden="true"><use href="#mark"/></svg>אוטו</span>
-    <span>© 2026 אוטו · עובידה ג׳בארה · תעודת רישום 280401</span>
-    <a href="https://github.com/obidadev/oto-releases/releases/latest" target="_blank" rel="noopener">הורדת אוטו ללקוחות קיימים</a>
+    <span class="brand">
+      <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><rect class="tile" x="1" y="1" width="98" height="98" rx="22"/><circle class="ring" cx="50" cy="50" r="28"/><path class="hole" d="M50,36.7 L61.5,43.4 L61.5,56.6 L50,63.3 L38.5,56.6 L38.5,43.4 Z"/></svg>
+      <span data-i18n="brand">אוטו</span>
+    </span>
+    <span data-i18n="foot">© 2026 אוטו · עובידה ג׳בארה · תעודת רישום 280401</span>
+    <a href="https://github.com/obidadev/oto-releases/releases/latest" target="_blank" rel="noopener" data-i18n="download">הורדת אוטו ללקוחות קיימים</a>
   </div>
 </footer>
 </div>
 
 <script>
 /* Contact details shown on the page and where the form's WhatsApp message goes.
-   Fill these in; anything left empty is simply not shown. WhatsApp: digits with country code, e.g. 972501234567. */
+   Anything left empty is simply not shown. WhatsApp: digits with country code. */
 const CONTACT = { whatsapp: "972535311267", phone: "053-531-1267", email: "" };
+
+/* Page text: [Hebrew, English, Arabic]. The Hebrew is also written in the HTML, so the page reads complete before this runs. */
+const T = {
+  "brand": ["אוטו", "Oto", "أوتو"],
+  "nav.what": ["מה אוטו עושה", "What Oto does", "ماذا يفعل أوتو"],
+  "nav.easy": ["פשוט לשימוש", "Easy to use", "سهل الاستخدام"],
+  "nav.legal": ["חוקי ומאובטח", "Legal and secure", "قانوني وآمن"],
+  "nav.pricing": ["מחירים", "Pricing", "الأسعار"],
+  "nav.faq": ["שאלות", "Questions", "أسئلة"],
+  "nav.cta": ["דברו איתנו", "Talk to us", "تواصلوا معنا"],
+  "hero.eyebrow": ["תוכנה לניהול מוסך · רשומה ברשות המסים", "Garage management software · Registered with the Israel Tax Authority", "برنامج لإدارة الكراج · مسجّل لدى سلطة الضرائب"],
+  "hero.h1a": ["מקלידים מספר רכב.", "Type a plate number.", "تكتب رقم السيارة،"],
+  "hero.h1b": ["אוטו עושה את השאר.", "Oto does the rest.", "وأوتو يكمل الباقي."],
+  "hero.lead": ["פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית, בלי סיבוכים, גם למי שלא אוהב מחשבים.",
+                "The car's details, its service history, a legal tax invoice-receipt and a reminder before its annual test, all in one place. Simple, even if computers aren't your thing.",
+                "تفاصيل السيارة، سجل الصيانة، فاتورة ضريبية-إيصال قانونية وتذكير قبل الفحص السنوي (التِست)، كلها في مكان واحد. بسيط، حتى لمن لا يحب الحاسوب."],
+  "hero.cta1": ["רוצים לשמוע עוד", "I'd like to hear more", "أريد أن أعرف أكثر"],
+  "proof.1": ["תעודת רישום 280401", "Registration certificate 280401", "شهادة تسجيل 280401"],
+  "proof.2": ["התקנה וקישור במוסך על ידינו", "We install and set it up at your garage", "نركّب البرنامج ونجهّزه في الكراج"],
+  "proof.3": ["עדכונים מגיעים לבד", "Updates arrive by themselves", "التحديثات تصل تلقائيًا"],
+  "demo.note": ["", "", "واجهة البرنامج نفسها بالعبرية أو بالإنجليزية."],
+  "day.eyebrow": ["יום במוסך, עם אוטו", "A day at the garage, with Oto", "يوم في الكراج مع أوتو"],
+  "day.h2": ["מהבוקר ועד סוף החודש", "From opening time to month-end", "من الصباح حتى نهاية الشهر"],
+  "day.lead": ["אוטו בנוי סביב מה שקורה במוסך באמת: רכב נכנס, עבודה נעשית, לקוח משלם, ורואה החשבון מקבל את מה שהוא צריך.",
+               "Oto is built around what really happens at a garage: a car comes in, the work gets done, the customer pays, and your accountant gets what they need.",
+               "أوتو مبني حول ما يحدث فعلًا في الكراج: سيارة تدخل، يُنجز العمل، يدفع الزبون، ويحصل المحاسب على ما يحتاجه."],
+  "s1.h": ["פותחים את המוסך", "Opening up", "فتح الكراج"],
+  "s1.p": ["במסך הראשי: התורים של היום, למי להזכיר על טסט, ומי עוד לא שילם.", "The home screen shows today's appointments, who needs a test reminder, and who still owes you.", "الشاشة الرئيسية تعرض مواعيد اليوم، ومن يحتاج تذكيرًا بالفحص السنوي، ومن لم يدفع بعد."],
+  "s2.h": ["רכב נכנס", "A car comes in", "سيارة تدخل"],
+  "s2.p": ["מקלידים מספר רכב ומקבלים יצרן, דגם, שנה ותוקף טסט ממאגר משרד התחבורה. כל ההיסטוריה של הרכב שם.",
+           "Type the plate and get the make, model, year and test date from the Ministry of Transport database. The car's whole history is right there.",
+           "تكتب رقم السيارة فتحصل على الشركة المصنّعة والطراز والسنة وموعد الفحص من قاعدة بيانات وزارة المواصلات. وكل تاريخ السيارة أمامك."],
+  "s3.h": ["עבודה וחלקים", "Work and parts", "العمل وقطع الغيار"],
+  "s3.p": ["העבודות והחלקים הנפוצים שלכם בלחיצה אחת. סורק ברקוד לחלקים, והמלאי יורד לבד.", "Your most common jobs and parts in one click. Scan parts with a barcode scanner, and stock goes down by itself.", "أكثر الأعمال والقطع استعمالًا عندك بضغطة واحدة. ماسح باركود للقطع، والمخزون ينقص تلقائيًا."],
+  "s3.tag": ["מלאי וסורק: בפרו", "Inventory and scanner: Pro", "المخزون والماسح: في باقة برو"],
+  "s4.h": ["הרכב מוכן", "The car is ready", "السيارة جاهزة"],
+  "s4.p": ["חשבונית מס קבלה במספור רציף, מוכנה להדפסה. הודעת \"הרכב מוכן\" ללקוח בוואטסאפ, בלחיצה.", "A tax invoice-receipt with sequential numbering, ready to print. A \"your car is ready\" WhatsApp to the customer, in one tap.", "فاتورة ضريبية-إيصال بترقيم متسلسل وجاهزة للطباعة. ورسالة واتساب للزبون \"سيارتك جاهزة\" بضغطة واحدة."],
+  "s5.time": ["סוף החודש", "Month-end", "نهاية الشهر"],
+  "s5.h": ["מסדרים חשבונות", "Settling the books", "ترتيب الحسابات"],
+  "s5.p": ["מי חייב כמה, כמה הוצאתם וכמה הרווחתם. קובץ מבנה אחיד מוכן לרואה החשבון.", "Who owes what, what you spent and what you earned. A uniform-format (מבנה אחיד) file ready for your accountant.", "من مدين بكم، وكم صرفت وكم ربحت. وملف \"المبنى الموحد\" جاهز للمحاسب."],
+  "easy.eyebrow": ["בנוי למוסכניקים, לא למתכנתים", "Built for mechanics, not programmers", "مصمَّم للميكانيكيين، لا للمبرمجين"],
+  "easy.h2": ["לא צריך להבין במחשבים", "No computer skills needed", "لا حاجة لخبرة في الحاسوب"],
+  "e1.b": ["מדריך בתוך התוכנה", "A guide inside the app", "دليل داخل البرنامج"],
+  "e1.s": ["בכל דף יש סיור קצר שמראה מה עושים, ותרגול צעד אחר צעד על המסך האמיתי.", "Every page has a short tour that shows what to do, and step-by-step practice on the real screen.", "في كل صفحة جولة قصيرة تشرح ما يجب فعله، وتدريب خطوة بخطوة على الشاشة الحقيقية."],
+  "e2.b": ["טקסט גדול", "Bigger text", "خط أكبر"],
+  "e2.s": ["שלושה גדלים: רגיל, גדול וגדול מאוד. כל התוכנה גדלה יחד.", "Three sizes: normal, large and extra large. The whole app grows with it.", "ثلاثة أحجام: عادي وكبير وكبير جدًا. البرنامج كله يكبر معه."],
+  "e3.b": ["מצב בהיר או כהה", "Light or dark mode", "وضع فاتح أو داكن"],
+  "e3.s": ["מה שנוח לעיניים, בלחיצה בהגדרות.", "Whatever is easier on your eyes, one click in Settings.", "ما هو مريح للعينين، بضغطة في الإعدادات."],
+  "e4.b": ["עדכונים לבד", "Updates by themselves", "تحديثات تلقائية"],
+  "e4.s": ["כשיש גרסה חדשה מופיעה הודעה. לוחצים \"עדכן\" וזהו.", "When there's a new version, a message appears. Press \"Update\" and that's it.", "عند صدور نسخة جديدة تظهر رسالة. تضغط \"تحديث\" وهذا كل شيء."],
+  "e5.b": ["עברית או אנגלית", "Hebrew or English", "العبرية أو الإنجليزية"],
+  "e5.s": ["מחליפים שפה בלחיצה, וכל התוכנה מתהפכת.", "Switch language with one click and the whole app turns around.", "تغيّر لغة البرنامج بضغطة، فيتحوّل كله."],
+  "legal.eyebrow": ["חוקי, מגובה ופרטי", "Legal, backed up and private", "قانوني ومحفوظ وخاص"],
+  "legal.h2": ["מסמכים שרשות המסים מכירה", "Documents the Tax Authority recognises", "مستندات تعترف بها سلطة الضرائب"],
+  "stamp.k1": ["אוטו רשומה במערכת רישום התוכנות של רשות המסים", "Oto is registered in the Israel Tax Authority's software registry", "أوتو مسجّل في سجل البرامج لدى سلطة الضرائب"],
+  "stamp.k2": ["מספר תעודת הרישום", "Registration certificate number", "رقم شهادة التسجيل"],
+  "stamp.v": ["בתוקף עד 31/07/2028", "Valid until 31/07/2028", "سارية حتى 31/07/2028"],
+  "g1.b": ["כל סוגי המסמכים", "Every document type", "كل أنواع المستندات"],
+  "g1.s": ["חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה, תעודת משלוח והצעת מחיר.", "Tax invoice-receipt, tax invoice, receipt, credit note, order and job card, delivery note and quote.", "فاتورة ضريبية-إيصال، فاتورة ضريبية، إيصال، فاتورة زيكوي (إلغاء)، طلبية وبطاقة عمل، إرسالية وعرض سعر."],
+  "g2.b": ["מספור רציף, בלי מחיקות", "Sequential numbers, no deletions", "ترقيم متسلسل بلا حذف"],
+  "g2.s": ["מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.", "An issued document is never changed or deleted. Corrections are made with a credit note, as the law requires.", "المستند الصادر لا يُعدَّل ولا يُحذف. التصحيح يتم بفاتورة زيكوي كما يطلب القانون."],
+  "g3.b": ["מבנה אחיד", "Uniform format (מבנה אחיד)", "المبنى الموحد (מבנה אחיד)"],
+  "g3.s": ["קובץ OPENFRMT לרואה החשבון ולביקורת, בלחיצה.", "An OPENFRMT file for your accountant and for audits, in one click.", "ملف OPENFRMT للمحاسب وللتدقيق، بضغطة واحدة."],
+  "g4.b": ["כל מוסך רואה רק את שלו", "Each garage sees only its own data", "كل كراج يرى بياناته فقط"],
+  "g4.s": ["כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.", "Each copy signs in with its own link code. The data is backed up in the cloud and never opened to anyone else.", "كل نسخة تدخل برمز ربط خاص بها. البيانات محفوظة في السحابة ولا تُفتح لأي أحد آخر."],
+  "pr.h2": ["מנוי חודשי, לפי מה שהמוסך צריך", "A monthly plan, sized to your garage", "اشتراك شهري حسب احتياج الكراج"],
+  "pr.lead": ["בכל התוכניות: התקנה במוסך, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.",
+              "Every plan includes installation at your garage, updates, cloud backup and the in-app guide. You can switch plans remotely, with no reinstall.",
+              "كل الباقات تشمل التركيب في الكراج، التحديثات، النسخ الاحتياطي في السحابة والدليل داخل البرنامج. يمكن تغيير الباقة عن بُعد بدون إعادة تركيب."],
+  "plan.basic": ["בסיס", "Basic", "أساسي"],
+  "plan.pro": ["פרו", "Pro", "برو"],
+  "plan.premium": ["פרימיום", "Premium", "بريميوم"],
+  "basic.for": ["כל מה שצריך כדי לעבוד מסודר", "Everything you need to work in order", "كل ما تحتاجه للعمل بترتيب"],
+  "pro.for": ["למוסך שרוצה סדר מלא", "For a garage that wants everything organised", "لكراج يريد تنظيمًا كاملًا"],
+  "prem.for": ["למוסך עם הרבה לקוחות חוזרים", "For a garage with many returning customers", "لكراج لديه زبائن دائمون كثيرون"],
+  "per": ["לחודש", "per month", "شهريًا"],
+  "vat": ["+ מע״מ", "+ VAT", "+ ضريبة القيمة المضافة"],
+  "badge": ["מומלץ", "Recommended", "موصى به"],
+  "b1": ["מסמכים חוקיים ומספור רציף", "Legal documents, sequential numbering", "مستندات قانونية وترقيم متسلسل"],
+  "b2": ["לקוחות, רכבים והיסטוריית טיפולים", "Customers, cars and service history", "زبائن وسيارات وسجل صيانة"],
+  "b3": ["איתור רכב לפי מספר", "Car lookup by plate number", "البحث عن السيارة حسب رقمها"],
+  "b4": ["הצעות מחיר", "Quotes", "عروض أسعار"],
+  "b5": ["חייבים ותזכורת תשלום", "Debtors and payment reminders", "المدينون وتذكير بالدفع"],
+  "b6": ["הוצאות, רווח וסטטיסטיקה", "Expenses, profit and statistics", "مصاريف وأرباح وإحصائيات"],
+  "b7": ["מבנה אחיד לרואה החשבון", "Uniform-format file for your accountant", "ملف المبنى الموحد للمحاسب"],
+  "pro.head": ["הכל בבסיס, ועוד:", "Everything in Basic, plus:", "كل ما في الأساسي، بالإضافة إلى:"],
+  "p1": ["לוח תורים שבועי", "Weekly appointments board", "لوح مواعيد أسبوعي"],
+  "p2": ["תזכורות טסט וטיפול, ורשימה יומית מוכנה", "Test and service reminders, with a daily list ready", "تذكير بالفحص والصيانة، وقائمة يومية جاهزة"],
+  "p3": ["מלאי חלקים וסורק ברקוד", "Parts inventory and barcode scanner", "مخزون قطع وماسح باركود"],
+  "p4": ["600 הודעות וואטסאפ אוטומטיות בחודש", "600 automatic WhatsApp messages a month", "600 رسالة واتساب تلقائية شهريًا"],
+  "prem.head": ["הכל בפרו, ועוד:", "Everything in Pro, plus:", "كل ما في برو، بالإضافة إلى:"],
+  "m1": ["1,000 הודעות וואטסאפ אוטומטיות בחודש", "1,000 automatic WhatsApp messages a month", "1,000 رسالة واتساب تلقائية شهريًا"],
+  "soon": ["בקרוב", "Soon", "قريبًا"],
+  "cta.basic": ["אני רוצה את בסיס", "I want Basic", "أريد الأساسي"],
+  "cta.pro": ["אני רוצה את פרו", "I want Pro", "أريد برو"],
+  "cta.premium": ["אני רוצה את פרימיום", "I want Premium", "أريد بريميوم"],
+  "note.vat": ["המחירים לפני מע״מ", "Prices are before VAT", "الأسعار قبل ضريبة القيمة المضافة"],
+  "note.today": ["היום: אוטו כותב את ההודעה ואתם שולחים בלחיצה", "Today: Oto writes the message and you send it in one tap", "اليوم: أوتو يكتب الرسالة وأنت ترسلها بضغطة"],
+  "note.soon": ["בקרוב: שליחה אוטומטית ממספר הוואטסאפ של אוטו", "Soon: fully automatic sending from Oto's WhatsApp number", "قريبًا: إرسال تلقائي بالكامل من رقم واتساب أوتو"],
+  "faq.h2": ["מה שמוסכניקים שואלים אותנו", "What mechanics ask us", "ما يسألنا عنه الميكانيكيون"],
+  "q1": ["על איזה מחשב זה עובד?", "What computer does it run on?", "على أي حاسوب يعمل؟"],
+  "a1": ["על מחשב עם Windows. אנחנו מתקינים את אוטו במוסך ומקשרים אותו למוסך שלכם, וזה לוקח כמה דקות.", "A Windows PC. We install Oto at your garage and link it to your account, which takes a few minutes.", "على حاسوب بنظام Windows. نحن نركّب أوتو في الكراج ونربطه بحسابك، وهذا يستغرق بضع دقائق."],
+  "q2": ["צריך ניסיון עם מחשבים?", "Do I need computer experience?", "هل أحتاج خبرة في الحاسوب؟"],
+  "a2": ["לא. בכל דף יש סיור קצר שמראה מה עושים, ואפשר לתרגל צעד אחר צעד. אפשר גם להגדיל את כל הטקסט.", "No. Every page has a short tour that shows what to do, and you can practise step by step. You can also make all the text bigger.", "لا. في كل صفحة جولة قصيرة تشرح ما يجب فعله، ويمكن التدرّب خطوة بخطوة. ويمكن أيضًا تكبير كل النص."],
+  "q3": ["באיזו שפה התוכנה?", "What language is the app in?", "بأي لغة البرنامج؟"],
+  "a3": ["בעברית או באנגלית. מחליפים שפה בלחיצה בהגדרות.", "Hebrew or English. Switch with one click in Settings.", "البرنامج بالعبرية أو بالإنجليزية، وتغيير اللغة بضغطة في الإعدادات. هذا الموقع متوفر بالعربية أيضًا."],
+  "q4": ["מה רואה החשבון מקבל?", "What does my accountant get?", "ماذا يحصل المحاسب؟"],
+  "a4": ["כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.", "Every document is saved as a tidy PDF, and you can produce a uniform-format file (OPENFRMT) that accountants and the Tax Authority's systems read.", "كل مستند يُحفظ كملف PDF مرتّب، ويمكن إصدار ملف المبنى الموحد (OPENFRMT) الذي يقرؤه المحاسب وأنظمة سلطة الضرائب."],
+  "q5": ["הנתונים שלי בטוחים?", "Is my data safe?", "هل بياناتي آمنة؟"],
+  "a5": ["הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.", "Your data is stored and backed up in the cloud. Each garage signs in with its own link code and sees only its own data.", "البيانات محفوظة في السحابة مع نسخ احتياطي. كل كراج يدخل برمز ربط خاص به ويرى بياناته فقط."],
+  "q6": ["אפשר לעבור בין תוכניות?", "Can I switch plans?", "هل يمكن تغيير الباقة؟"],
+  "a6": ["כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.", "Yes. Switching between Basic, Pro and Premium is done remotely and reaches Oto at your garage within a few hours.", "نعم. التغيير بين الأساسي وبرو وبريميوم يتم عن بُعد ويصل إلى أوتو في الكراج خلال ساعات قليلة."],
+  "q7": ["איך עובדות ההודעות בוואטסאפ?", "How do the WhatsApp messages work?", "كيف تعمل رسائل الواتساب؟"],
+  "a7": ["היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב לפרו ולפרימיום.",
+         "Today Oto prepares the message (test reminder, tomorrow's appointment, car ready) and you send it with one tap. Fully automatic sending from Oto's WhatsApp number is coming soon to Pro and Premium.",
+         "اليوم يجهّز أوتو الرسالة (تذكير بالفحص، موعد الغد، السيارة جاهزة) وأنت ترسلها بضغطة. الإرسال التلقائي بالكامل من رقم واتساب أوتو قادم قريبًا لباقتي برو وبريميوم."],
+  "c.eyebrow": ["צור קשר", "Contact", "تواصل معنا"],
+  "c.h2": ["בואו נראה לכם את אוטו", "Let us show you Oto", "دعنا نعرض لك أوتو"],
+  "c.lead": ["ספרו לנו על המוסך ונחזור אליכם. אפשר גם לכתוב לנו ישר בוואטסאפ.", "Tell us about your garage and we'll get back to you. Or message us straight on WhatsApp.", "أخبرنا عن الكراج وسنعود إليك. أو راسلنا مباشرة على واتساب."],
+  "way.wa": ["וואטסאפ", "WhatsApp", "واتساب"],
+  "way.phone": ["טלפון", "Phone", "هاتف"],
+  "way.email": ["אימייל", "Email", "بريد إلكتروني"],
+  "copy": ["העתקה", "Copy", "نسخ"],
+  "copied": ["הועתק", "Copied", "تم النسخ"],
+  "f.h3": ["השאירו פרטים", "Leave your details", "اترك تفاصيلك"],
+  "f.name": ["שם", "Name", "الاسم"],
+  "f.phone": ["טלפון", "Phone", "الهاتف"],
+  "f.garage": ["שם המוסך", "Garage name", "اسم الكراج"],
+  "f.city": ["עיר", "Town", "البلدة"],
+  "f.plan": ["תוכנית שמעניינת אתכם", "Plan you're interested in", "الباقة التي تهمّك"],
+  "f.unsure": ["עוד לא יודעים", "Not sure yet", "لم أقرّر بعد"],
+  "f.msg": ["הודעה (לא חובה)", "Message (optional)", "رسالة (اختياري)"],
+  "f.send": ["שליחה בוואטסאפ", "Send on WhatsApp", "إرسال عبر واتساب"],
+  "f.hint": ["ממלאים שם וטלפון, והפרטים נשלחים אלינו כהודעת וואטסאפ מוכנה.", "Fill in your name and phone, and your details reach us as a ready WhatsApp message.", "املأ الاسم والهاتف، فتصلنا التفاصيل كرسالة واتساب جاهزة."],
+  "msg.hello": ["שלום, אשמח לשמוע על אוטו.", "Hi, I'd like to hear about Oto.", "مرحبًا، أودّ أن أعرف عن أوتو."],
+  "msg.name": ["שם", "Name", "الاسم"],
+  "msg.phone": ["טלפון", "Phone", "الهاتف"],
+  "msg.garage": ["מוסך", "Garage", "الكراج"],
+  "msg.city": ["עיר", "Town", "البلدة"],
+  "msg.plan": ["תוכנית", "Plan", "الباقة"],
+  "foot": ["© 2026 אוטו · עובידה ג׳בארה · תעודת רישום 280401", "© 2026 Oto · Obida Jbara · Registration certificate 280401", "© 2026 أوتو · عبيدة جبارة · شهادة تسجيل 280401"],
+  "download": ["הורדת אוטו ללקוחות קיימים", "Download Oto (existing customers)", "تنزيل أوتو للزبائن الحاليين"],
+  "title": ["אוטו · תוכנה לניהול מוסך", "Oto · Garage management software", "أوتو · برنامج لإدارة الكراج"],
+};
+
+/* Oto's own screens (the demo and the guide) speak Oto's languages: [Hebrew, English]. */
+const UI = {
+  new: ["+ מסמך חדש", "+ New document"], home: ["בית", "Home"], customers: ["לקוחות", "Customers"], debtors: ["חייבים", "Debtors"],
+  inventory: ["מלאי", "Inventory"], finder: ["איתור רכב", "Car finder"], appts: ["תורים", "Appointments"], stats: ["סטטיסטיקה", "Statistics"],
+  title: ["מסמך חדש", "New document"], sub: ["חשבונית מס קבלה · מס׳ 001044", "Tax invoice-receipt · No. 001044"],
+  fetch: ["שליפת פרטי רכב", "Look up car"], car: ["מאזדה 3 · 2019 · לבן", "Mazda 3 · 2019 · White"],
+  test: ["טסט בתוקף עד 14/03/2027", "Test valid until 14/03/2027"],
+  l1: ["טיפול 10,000 ק״מ", "10,000 km service"], l2: ["פילטר שמן", "Oil filter"], l3: ["החלפת רפידות בלם קדמי", "Front brake pads"],
+  totalLbl: ["סה״כ לתשלום, כולל מע״מ", "Total to pay, incl. VAT"], save: ["שמור והדפס", "Save and print"],
+  toast: ["חשבונית מס קבלה 001044 נשמרה", "Tax invoice-receipt 001044 saved"],
+  lk: ["שלב 2 מתוך 5 · צופים", "Step 2 of 5 · Watching"], lb: ["מספר הרכב", "The plate number"],
+  ls: ["מקלידים את מספר הרכב. המקפים לא משנים.", "Type the plate number. Dashes don't matter."],
+  next: ["הבא", "Next"], back: ["הקודם", "Back"], pause: ["השהה", "Pause"],
+  size: ["גודל טקסט:", "Text size:"], normal: ["רגיל", "Normal"], large: ["גדול", "Large"], xl: ["גדול מאוד", "Extra large"],
+};
+
+const LANGS = ["he", "en", "ar"];
+let lang = "he";
+const t = (key) => (T[key] ? T[key][LANGS.indexOf(lang)] : "");
 
 (function () {
   const $ = (id) => document.getElementById(id);
+  const site = $("site");
+
+  function applyLang(next) {
+    lang = LANGS.includes(next) ? next : "he";
+    const i = LANGS.indexOf(lang);
+    const dir = lang === "en" ? "ltr" : "rtl";
+    site.setAttribute("lang", lang); site.setAttribute("dir", dir);
+    document.documentElement.setAttribute("lang", lang);
+    document.documentElement.setAttribute("dir", dir);
+    document.querySelectorAll("[data-i18n]").forEach((el) => { const v = T[el.dataset.i18n]; if (v) el.textContent = v[i]; });
+    // Oto's screens: English on the English page, Hebrew otherwise (Oto has no Arabic interface)
+    const ui = lang === "en" ? 1 : 0;
+    document.querySelectorAll("[data-ui]").forEach((el) => { const v = UI[el.dataset.ui]; if (v) el.textContent = v[ui]; });
+    ["demo", "lesson"].forEach((id) => { $(id).setAttribute("dir", ui ? "ltr" : "rtl"); $(id).setAttribute("lang", ui ? "en" : "he"); });
+    $("app-note").hidden = lang !== "ar";
+    document.querySelectorAll(".langs button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    document.title = t("title");
+    renderWays();
+    updateSend();
+    try { localStorage.setItem("oto-lang", lang); } catch (e) {}
+  }
 
   /* ── Contact ways ── */
   const ways = $("ways");
-  const items = [];
-  if (CONTACT.whatsapp) items.push({ icon: "i-wa", k: "וואטסאפ", v: "+" + CONTACT.whatsapp, href: "https://wa.me/" + CONTACT.whatsapp });
-  if (CONTACT.phone) items.push({ icon: "i-phone", k: "טלפון", v: CONTACT.phone });
-  if (CONTACT.email) items.push({ icon: "i-mail", k: "אימייל", v: CONTACT.email });
-  for (const it of items) {
-    const row = document.createElement("div");
-    row.className = "way";
-    row.innerHTML = '<span class="ico"><svg aria-hidden="true"><use href="#' + it.icon + '"/></svg></span><div><div class="k"></div><div class="v"></div></div>';
-    row.querySelector(".k").textContent = it.k;
-    const v = row.querySelector(".v");
-    if (it.href) { const a = document.createElement("a"); a.href = it.href; a.target = "_blank"; a.rel = "noopener"; a.textContent = it.v; v.append(a); }
-    else v.textContent = it.v;
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "copy"; b.textContent = "העתקה";
-    b.addEventListener("click", () => {
-      const done = () => { b.textContent = "הועתק"; setTimeout(() => (b.textContent = "העתקה"), 1600); };
-      const fallback = () => { const r = document.createRange(); r.selectNodeContents(v); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
-      try { navigator.clipboard.writeText(it.v).then(done, fallback); } catch (e) { fallback(); }
-    });
-    row.append(b);
-    ways.append(row);
+  function renderWays() {
+    ways.textContent = "";
+    const items = [];
+    if (CONTACT.whatsapp) items.push({ icon: "i-wa", k: t("way.wa"), v: "+" + CONTACT.whatsapp, href: "https://wa.me/" + CONTACT.whatsapp });
+    if (CONTACT.phone) items.push({ icon: "i-phone", k: t("way.phone"), v: CONTACT.phone });
+    if (CONTACT.email) items.push({ icon: "i-mail", k: t("way.email"), v: CONTACT.email });
+    for (const it of items) {
+      const row = document.createElement("div");
+      row.className = "way";
+      row.innerHTML = '<span class="ico"><svg aria-hidden="true"><use href="#' + it.icon + '"/></svg></span><div><div class="k"></div><div class="v ltr ltr-field"></div></div>';
+      row.querySelector(".k").textContent = it.k;
+      const v = row.querySelector(".v");
+      if (it.href) { const a = document.createElement("a"); a.href = it.href; a.target = "_blank"; a.rel = "noopener"; a.textContent = it.v; v.append(a); }
+      else v.textContent = it.v;
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "copy"; b.textContent = t("copy");
+      b.addEventListener("click", () => {
+        const done = () => { b.textContent = t("copied"); setTimeout(() => (b.textContent = t("copy")), 1600); };
+        const fallback = () => { const r = document.createRange(); r.selectNodeContents(v); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+        try { navigator.clipboard.writeText(it.v).then(done, fallback); } catch (e) { fallback(); }
+      });
+      row.append(b);
+      ways.append(row);
+    }
   }
 
-  /* ── The form writes a WhatsApp message ── */
+  /* ── The form writes a WhatsApp message, in the page's language ── */
   const f = { name: $("f-name"), phone: $("f-phone"), garage: $("f-garage"), city: $("f-city"), plan: $("f-plan"), msg: $("f-msg") };
-  const send = $("send"), hint = $("hint");
-  function update() {
-    const ready = f.name.value.trim().length > 1 && f.phone.value.replace(/\D/g, "").length >= 9;
-    if (!CONTACT.whatsapp) {
-      send.setAttribute("aria-disabled", "true");
-      hint.className = "missing";
-      hint.textContent = "מספר הוואטסאפ של אוטו עוד לא הוגדר באתר.";
-      return;
-    }
-    const lines = ["שלום, אשמח לשמוע על אוטו.", "שם: " + f.name.value.trim(), "טלפון: " + f.phone.value.trim()];
-    if (f.garage.value.trim()) lines.push("מוסך: " + f.garage.value.trim());
-    if (f.city.value.trim()) lines.push("עיר: " + f.city.value.trim());
-    if (f.plan.value) lines.push("תוכנית: " + f.plan.value);
+  const send = $("send");
+  function updateSend() {
+    const ready = CONTACT.whatsapp && f.name.value.trim().length > 1 && f.phone.value.replace(/\D/g, "").length >= 9;
+    const lines = [t("msg.hello"), t("msg.name") + ": " + f.name.value.trim(), t("msg.phone") + ": " + f.phone.value.trim()];
+    if (f.garage.value.trim()) lines.push(t("msg.garage") + ": " + f.garage.value.trim());
+    if (f.city.value.trim()) lines.push(t("msg.city") + ": " + f.city.value.trim());
+    if (f.plan.value) lines.push(t("msg.plan") + ": " + t("plan." + f.plan.value));
     if (f.msg.value.trim()) lines.push(f.msg.value.trim());
     send.href = "https://wa.me/" + CONTACT.whatsapp + "?text=" + encodeURIComponent(lines.join("\n"));
     send.setAttribute("aria-disabled", ready ? "false" : "true");
   }
-  Object.values(f).forEach((el) => el.addEventListener("input", update));
+  Object.values(f).forEach((el) => el.addEventListener("input", updateSend));
   $("lead").addEventListener("submit", (e) => e.preventDefault());
-  update();
+  document.querySelectorAll("[data-plan]").forEach((a) => a.addEventListener("click", () => { f.plan.value = a.dataset.plan; updateSend(); }));
 
-  /* Plan buttons pre-select the plan in the form */
-  document.querySelectorAll("[data-plan]").forEach((a) => a.addEventListener("click", () => { f.plan.value = a.dataset.plan; update(); }));
+  /* ── Language: saved choice, or ?lang= in the address, else Hebrew ── */
+  document.querySelectorAll(".langs button").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.lang)));
+  let start = "he";
+  try { start = new URLSearchParams(location.search).get("lang") || localStorage.getItem("oto-lang") || "he"; } catch (e) {}
+  applyLang(start);
 
   /* ── Hero demo: type a plate, fetch the car, add lines, save. The page loads on its finished frame. ── */
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -705,7 +927,6 @@ const CONTACT = { whatsapp: "972535311267", phone: "053-531-1267", email: "" };
   async function play() {
     while (true) {
       while (!visible) await sleep(400);
-      // reset
       plate.textContent = "12-345-67"; plate.classList.add("empty");
       chips.classList.add("hide"); lines.forEach((l) => l.classList.add("hide"));
       total.textContent = fmt(0); toast.classList.add("hide");
