@@ -164,7 +164,7 @@ p { margin: 0; }
 
 /* The Oto window (built in HTML, plays a short demo) */
 .app { background: var(--night); color: var(--night-ink); border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px -20px rgba(21,23,28,.45), 0 0 0 1px rgba(255,255,255,.04);
-       display: grid; grid-template-columns: 158px minmax(0, 1fr); font: 13.5px/1.45 "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; min-height: 430px; text-align: start; }
+       display: grid; grid-template-columns: 158px minmax(0, 1fr); font: 13.5px/1.45 "IBM Plex Sans Hebrew", "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif; min-height: 430px; text-align: start; }
 .app .side { background: #111216; padding: 16px 12px; display: flex; flex-direction: column; gap: 3px; }
 .app .side .mk { display: flex; align-items: center; gap: 8px; font: 400 19px/1 "Secular One", sans-serif; color: #fff; margin: 2px 6px 14px; }
 .app .side .mk svg { width: 24px; height: 24px; }
@@ -186,15 +186,14 @@ p { margin: 0; }
 .app .ln span { color: var(--night-muted); }
 .app .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
 .app .total { font: 700 22px/1 var(--f-plate); letter-spacing: .02em; color: #fff; }
-.app .total small { font: 500 12px "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; color: var(--night-muted); display: block; margin-bottom: 3px; letter-spacing: 0; }
+.app .total small { font: 500 12px "IBM Plex Sans Hebrew", "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif; color: var(--night-muted); display: block; margin-bottom: 3px; letter-spacing: 0; }
 .app .save { background: #4F46E5; color: #fff; border-radius: 10px; padding: 9px 14px; font-weight: 600; transition: transform .2s; }
 .app .save.press { transform: scale(.95); }
 .app-wrap { position: relative; }
 .app-wrap .toast { position: absolute; inset-inline: 0; margin-inline: auto; bottom: 16px; width: max-content; max-width: 90%; background: #fff; color: #15171C; border-radius: 12px;
-              padding: 9px 14px; font: 600 13px "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; display: flex; gap: 8px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+              padding: 9px 14px; font: 600 13px "IBM Plex Sans Hebrew", "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif; display: flex; gap: 8px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.35);
               transition: opacity .3s, transform .35s cubic-bezier(.3,1.4,.5,1); }
 .app-wrap .toast svg { width: 16px; height: 16px; color: #0F7B55; }
-.app-note { margin-top: 12px; color: var(--muted); font-size: 14px; }
 .hide { opacity: 0; transform: translateY(8px); }
 @media (max-width: 620px) {
   .app { grid-template-columns: minmax(0, 1fr); min-height: 0; }
@@ -226,7 +225,7 @@ section { padding-block: 72px; }
 .easy li span { color: var(--muted); font-size: 15.5px; }
 .lesson { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: grid; gap: 14px; justify-items: start; }
 .lesson .bubble { background: var(--night); color: var(--night-ink); border-radius: 16px; padding: 16px 18px; display: grid; gap: 6px; justify-self: stretch;
-                  font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif; text-align: start; }
+                  font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif; text-align: start; }
 .lesson .bubble .k { font-size: 12.5px; color: var(--night-muted); }
 .lesson .bubble b { font: 400 19px/1.2 "Secular One", "IBM Plex Sans Hebrew", sans-serif; color: #fff; }
 .lesson .bubble .acts { display: flex; gap: 8px; margin-top: 6px; }
@@ -264,6 +263,7 @@ section { padding-block: 72px; }
 .price .amt { font: 700 64px/0.9 var(--f-plate); letter-spacing: .01em; }
 .price .cur { font: 700 30px/1 var(--f-plate); }
 .price .per { color: var(--muted); font-size: 14.5px; line-height: 1.25; }
+.plan .fee { color: var(--muted); font-size: 14.5px; margin-top: -10px; }
 .plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .plan li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 15.5px; }
 .plan li svg { width: 18px; height: 18px; color: var(--good); margin-top: 4px; }
@@ -271,7 +271,7 @@ section { padding-block: 72px; }
 .soon { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent-ink); background: var(--soft); border-radius: 999px; padding: 1px 8px; margin-inline-start: 6px; vertical-align: 1px; }
 .plan .btn { margin-top: auto; justify-content: center; }
 .plan.pro { background: var(--night); color: var(--night-ink); border-color: var(--night); position: relative; }
-.plan.pro .for, .plan.pro .per, .plan.pro li.head { color: var(--night-muted); }
+.plan.pro .for, .plan.pro .per, .plan.pro .fee, .plan.pro li.head { color: var(--night-muted); }
 .plan.pro li svg { color: #5EE08A; }
 .plan.pro .soon { background: #2E2A66; color: #C5C2FB; }
 .plan.pro .badge { position: absolute; top: -13px; inset-inline-start: 24px; background: #4F46E5; color: #fff; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 4px 12px; }
@@ -281,11 +281,9 @@ section { padding-block: 72px; }
 .setup .k { font-size: 13.5px; font-weight: 600; color: var(--accent-ink); }
 .setup h3 { font-size: 22px; margin-block: 2px 6px; }
 .setup p { color: var(--muted); font-size: 15.5px; max-width: 62ch; }
-.setup .offer { display: grid; justify-items: end; gap: 2px; text-align: end; }
-.setup .was { font: 700 24px/1 var(--f-plate); color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; }
-.setup .free { font: 700 50px/1 var(--f-plate); color: var(--good); }
-.setup .when { color: var(--muted); font-size: 14px; }
-@media (max-width: 620px) { .setup .offer { justify-items: start; text-align: start; } }
+.setup .fees { display: grid; gap: 8px; min-width: 220px; }
+.setup .fees div { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; font-size: 16px; font-weight: 600; }
+.setup .fees .num { font: 700 26px/1 var(--f-plate); }
 @media (max-width: 620px) { .setup { grid-template-columns: minmax(0, 1fr); } }
 .plans-note { margin-top: 22px; color: var(--muted); font-size: 15px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
 .plans-note span { display: inline-flex; gap: 7px; align-items: center; }
@@ -442,7 +440,6 @@ section { padding-block: 72px; }
         </div>
         <div class="toast hide" id="d-toast" role="status"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-ui="toast">חשבונית מס קבלה 001044 נשמרה</span></div>
       </div>
-      <p class="app-note" id="app-note" hidden data-i18n="demo.note"></p>
     </div>
   </div>
 </section>
@@ -498,7 +495,7 @@ section { padding-block: 72px; }
         <li><span class="ico"><svg aria-hidden="true"><use href="#i-play"/></svg></span><div><b data-i18n="e1.b">מדריך בתוך התוכנה</b><span data-i18n="e1.s">בכל דף יש סיור קצר שמראה מה עושים, ותרגול צעד אחר צעד על המסך האמיתי.</span></div></li>
         <li><span class="ico"><svg aria-hidden="true"><use href="#i-text"/></svg></span><div><b data-i18n="e2.b">טקסט גדול</b><span data-i18n="e2.s">שלושה גדלים: רגיל, גדול וגדול מאוד. כל התוכנה גדלה יחד.</span></div></li>
         <li><span class="ico"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><b data-i18n="e3.b">מצב בהיר או כהה</b><span data-i18n="e3.s">מה שנוח לעיניים, בלחיצה בהגדרות.</span></div></li>
-        <li><span class="ico"><svg aria-hidden="true"><use href="#i-lang"/></svg></span><div><b data-i18n="e5.b">עברית או אנגלית</b><span data-i18n="e5.s">מחליפים שפה בלחיצה, וכל התוכנה מתהפכת.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-lang"/></svg></span><div><b data-i18n="e5.b">עברית, ערבית או אנגלית</b><span data-i18n="e5.s">מחליפים שפה בלחיצה, וכל התוכנה מתהפכת.</span></div></li>
         <li><span class="ico"><svg aria-hidden="true"><use href="#i-update"/></svg></span><div><b data-i18n="e4.b">עדכונים לבד</b><span data-i18n="e4.s">כשיש גרסה חדשה מופיעה הודעה. לוחצים "עדכן" וזהו.</span></div></li>
       </ul>
     </div>
@@ -552,16 +549,14 @@ section { padding-block: 72px; }
       <article class="plan">
         <div>
           <div class="name" data-i18n="plan.basic">בסיס</div>
-          <p class="for" data-i18n="basic.for">כל מה שצריך כדי לעבוד מסודר</p>
+          <p class="for" data-i18n="basic.for">למוסך שצריך רק חשבוניות מסודרות</p>
         </div>
-        <div class="price"><span class="cur">₪</span><span class="amt num">149</span><span class="per" data-i18n="per">לחודש</span></div>
+        <div class="price"><span class="cur">₪</span><span class="amt num">69</span><span class="per" data-i18n="per">לחודש</span></div>
+        <div class="fee" data-i18n="fee.basic">+ ₪250 דמי הקמה, פעם אחת</div>
         <ul>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b1">מסמכים חוקיים ומספור רציף</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b2">לקוחות, רכבים והיסטוריית טיפולים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b3">איתור רכב לפי מספר</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b4">הצעות מחיר</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b5">חייבים ותזכורת תשלום</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b6">הוצאות, רווח וסטטיסטיקה</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b2">לקוחות וכל המסמכים של כל לקוח</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b3">שליפת פרטי רכב לפי מספר, בתוך המסמך</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b7">מבנה אחיד לרואה החשבון</span></li>
         </ul>
         <a class="btn btn-ghost" href="#contact" data-plan="basic" data-i18n="cta.basic">אני רוצה את בסיס</a>
@@ -574,8 +569,13 @@ section { padding-block: 72px; }
           <p class="for" data-i18n="pro.for">למוסך שרוצה סדר מלא</p>
         </div>
         <div class="price"><span class="cur">₪</span><span class="amt num">199</span><span class="per" data-i18n="per">לחודש</span></div>
+        <div class="fee" data-i18n="fee.pro">+ ₪500 דמי הקמה, פעם אחת</div>
         <ul>
           <li class="head" data-i18n="pro.head">הכל בבסיס, ועוד:</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="px1">מסך בית: הרכבים במוסך, התורים והכסף של היום</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="px2">הצעות מחיר, חייבים ותזכורת תשלום</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b6">הוצאות, רווח וסטטיסטיקה</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="px3">איתור רכב והיסטוריית רכב</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p1">לוח תורים שבועי</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p2">תזכורות טסט וטיפול, ורשימה יומית מוכנה</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p3">מלאי חלקים וסורק ברקוד</span></li>
@@ -592,6 +592,7 @@ section { padding-block: 72px; }
           <p class="for" data-i18n="prem.for">למוסך עם עובדים והרבה לקוחות חוזרים</p>
         </div>
         <div class="price"><span class="cur">₪</span><span class="amt num">249</span><span class="per" data-i18n="per">לחודש</span></div>
+        <div class="fee" data-i18n="fee.premium">+ ₪750 דמי הקמה, פעם אחת</div>
         <ul>
           <li class="head" data-i18n="prem.head">הכל בפרו, ועוד:</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m2">מצב מכונאי: העובדים עובדים באוטו בלי לראות כסף והגדרות</span></li>
@@ -602,14 +603,14 @@ section { padding-block: 72px; }
     </div>
     <div class="setup">
       <div>
-        <div class="k" data-i18n="setup.k">מבצע השקה</div>
+        <div class="k" data-i18n="setup.k">פעם אחת, בהתחלה</div>
         <h3 data-i18n="setup.h">דמי הקמה</h3>
         <p data-i18n="setup.p">התקנה במוסך, קישור התוכנה למוסך שלכם, הגדרת פרטי העסק והדרכה ראשונה. משלמים פעם אחת, בהתחלה.</p>
       </div>
-      <div class="offer">
-        <span class="was num">₪1,000</span>
-        <span class="free num">₪500</span>
-        <span class="when" data-i18n="setup.when">למוסכים שמצטרפים עכשיו</span>
+      <div class="fees">
+        <div><span data-i18n="plan.basic">בסיס</span><span class="num">₪250</span></div>
+        <div><span data-i18n="plan.pro">פרו</span><span class="num">₪500</span></div>
+        <div><span data-i18n="plan.premium">פרימיום</span><span class="num">₪750</span></div>
       </div>
     </div>
     <div class="plans-note">
@@ -630,11 +631,11 @@ section { padding-block: 72px; }
     <div>
       <details open><summary data-i18n="q1">על איזה מחשב זה עובד?</summary><p data-i18n="a1">על מחשב עם Windows. אנחנו מתקינים את אוטו במוסך ומקשרים אותו למוסך שלכם, וזה לוקח כמה דקות.</p></details>
       <details><summary data-i18n="q2">צריך ניסיון עם מחשבים?</summary><p data-i18n="a2">לא. בכל דף יש סיור קצר שמראה מה עושים, ואפשר לתרגל צעד אחר צעד. אפשר גם להגדיל את כל הטקסט.</p></details>
-      <details><summary data-i18n="q3">באיזו שפה התוכנה?</summary><p data-i18n="a3">בעברית או באנגלית. מחליפים שפה בלחיצה בהגדרות.</p></details>
+      <details><summary data-i18n="q3">באיזו שפה התוכנה?</summary><p data-i18n="a3">בעברית, בערבית או באנגלית. מחליפים שפה בלחיצה, ואת התזכורות ללקוחות אפשר לשלוח בעברית או בערבית.</p></details>
       <details><summary data-i18n="q9">אפשר שהמכונאים לא יראו את ההכנסות?</summary><p data-i18n="a9">כן. בחבילת פרימיום יש מצב מכונאי: העובדים פותחים כרטיסי עבודה, לקוחות ותורים, בלי לראות הכנסות, הוצאות, חובות והגדרות. יוצאים ממנו רק עם קוד מנהל, וכל מחשב מוגדר בנפרד.</p></details>
       <details><summary data-i18n="q4">מה רואה החשבון מקבל?</summary><p data-i18n="a4">כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.</p></details>
       <details><summary data-i18n="q5">הנתונים שלי בטוחים?</summary><p data-i18n="a5">הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.</p></details>
-      <details><summary data-i18n="q8">יש תשלום חד-פעמי?</summary><p data-i18n="a8">כן, דמי הקמה, פעם אחת בהתחלה: ₪1,000, ועכשיו ₪500 בלבד למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. אחר כך משלמים רק את המנוי החודשי.</p></details>
+      <details><summary data-i18n="q8">יש תשלום חד-פעמי?</summary><p data-i18n="a8">כן, דמי הקמה, פעם אחת בהתחלה: ₪250 בבסיס, ₪500 בפרו ו-₪750 בפרימיום. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. אחר כך משלמים רק את המנוי החודשי.</p></details>
       <details><summary data-i18n="q6">אפשר לעבור בין תוכניות?</summary><p data-i18n="a6">כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.</p></details>
       <details><summary data-i18n="q7">איך עובדות ההודעות בוואטסאפ?</summary><p data-i18n="a7">היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב לפרו ולפרימיום.</p></details>
     </div>
@@ -712,7 +713,6 @@ const T = {
   "proof.1": ["תעודת רישום 280401", "Registration certificate 280401", "شهادة تسجيل 280401"],
   "proof.2": ["התקנה וקישור במוסך על ידינו", "We install and set it up at your garage", "نركّب البرنامج ونجهّزه في الكراج"],
   "proof.3": ["עדכונים מגיעים לבד", "Updates arrive by themselves", "التحديثات تصل تلقائيًا"],
-  "demo.note": ["", "", "واجهة البرنامج نفسها بالعبرية أو بالإنجليزية."],
   "day.eyebrow": ["יום במוסך, עם אוטו", "A day at the garage, with Oto", "يوم في الكراج مع أوتو"],
   "day.h2": ["מהבוקר ועד סוף החודש", "From opening time to month-end", "من الصباح حتى نهاية الشهر"],
   "day.lead": ["אוטו בנוי סביב מה שקורה במוסך באמת: רכב נכנס, עבודה נעשית, לקוח משלם, ורואה החשבון מקבל את מה שהוא צריך.",
@@ -742,7 +742,7 @@ const T = {
   "e3.s": ["מה שנוח לעיניים, בלחיצה בהגדרות.", "Whatever is easier on your eyes, one click in Settings.", "ما هو مريح للعينين، بضغطة في الإعدادات."],
   "e4.b": ["עדכונים לבד", "Updates by themselves", "تحديثات تلقائية"],
   "e4.s": ["כשיש גרסה חדשה מופיעה הודעה. לוחצים \"עדכן\" וזהו.", "When there's a new version, a message appears. Press \"Update\" and that's it.", "عند صدور نسخة جديدة تظهر رسالة. تضغط \"تحديث\" وهذا كل شيء."],
-  "e5.b": ["עברית או אנגלית", "Hebrew or English", "العبرية أو الإنجليزية"],
+  "e5.b": ["עברית, ערבית או אנגלית", "Hebrew, Arabic or English", "العبرية أو العربية أو الإنجليزية"],
   "e5.s": ["מחליפים שפה בלחיצה, וכל התוכנה מתהפכת.", "Switch language with one click and the whole app turns around.", "تغيّر لغة البرنامج بضغطة، فيتحوّل كله."],
   "legal.eyebrow": ["חוקי, מגובה ופרטי", "Legal, backed up and private", "قانوني ومحفوظ وخاص"],
   "legal.h2": ["מסמכים שרשות המסים מכירה", "Documents the Tax Authority recognises", "مستندات تعترف بها سلطة الضرائب"],
@@ -761,25 +761,28 @@ const T = {
   "pr.lead": ["בכל התוכניות: עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אפשר לעבור תוכנית מרחוק, בלי להתקין מחדש.",
               "Every plan includes updates, cloud backup and the in-app guide. You can switch plans remotely, with no reinstall.",
               "كل الباقات تشمل التحديثات، النسخ الاحتياطي في السحابة والدليل داخل البرنامج. يمكن تغيير الباقة عن بُعد بدون إعادة تركيب."],
-  "setup.k": ["מבצע השקה", "Launch offer", "عرض الإطلاق"],
+  "setup.k": ["פעם אחת, בהתחלה", "Once, at the start", "مرة واحدة، في البداية"],
   "setup.h": ["דמי הקמה", "Setup fee", "رسوم التجهيز"],
   "setup.p": ["התקנה במוסך, קישור התוכנה למוסך שלכם, הגדרת פרטי העסק והדרכה ראשונה. משלמים פעם אחת, בהתחלה.",
               "Installation at your garage, linking the app to your garage, setting up your business details and a first training session. Paid once, at the start.",
               "التركيب في الكراج، ربط البرنامج بالكراج، إعداد تفاصيل المصلحة وتدريب أوّل. تُدفع مرة واحدة في البداية."],
-  "setup.when": ["למוסכים שמצטרפים עכשיו", "for garages joining now", "للكراجات التي تنضم الآن"],
+  "fee.basic": ["+ ₪250 דמי הקמה, פעם אחת", "+ ₪250 setup fee, once", "+ ₪250 رسوم تجهيز، مرة واحدة"],
+  "fee.pro": ["+ ₪500 דמי הקמה, פעם אחת", "+ ₪500 setup fee, once", "+ ₪500 رسوم تجهيز، مرة واحدة"],
+  "fee.premium": ["+ ₪750 דמי הקמה, פעם אחת", "+ ₪750 setup fee, once", "+ ₪750 رسوم تجهيز، مرة واحدة"],
   "plan.basic": ["בסיס", "Basic", "أساسي"],
   "plan.pro": ["פרו", "Pro", "برو"],
   "plan.premium": ["פרימיום", "Premium", "بريميوم"],
-  "basic.for": ["כל מה שצריך כדי לעבוד מסודר", "Everything you need to work in order", "كل ما تحتاجه للعمل بترتيب"],
+  "basic.for": ["למוסך שצריך רק חשבוניות מסודרות", "For a garage that only needs proper invoices", "لكراج يحتاج فواتير مرتّبة فقط"],
   "pro.for": ["למוסך שרוצה סדר מלא", "For a garage that wants everything organised", "لكراج يريد تنظيمًا كاملًا"],
   "prem.for": ["למוסך עם עובדים והרבה לקוחות חוזרים", "For a garage with workers and many returning customers", "لكراج لديه عمّال وزبائن دائمون كثيرون"],
   "per": ["לחודש", "per month", "شهريًا"],
   "badge": ["מומלץ", "Recommended", "موصى به"],
   "b1": ["מסמכים חוקיים ומספור רציף", "Legal documents, sequential numbering", "مستندات قانونية وترقيم متسلسل"],
-  "b2": ["לקוחות, רכבים והיסטוריית טיפולים", "Customers, cars and service history", "زبائن وسيارات وسجل صيانة"],
-  "b3": ["איתור רכב לפי מספר", "Car lookup by plate number", "البحث عن السيارة حسب رقمها"],
-  "b4": ["הצעות מחיר", "Quotes", "عروض أسعار"],
-  "b5": ["חייבים ותזכורת תשלום", "Debtors and payment reminders", "المدينون وتذكير بالدفع"],
+  "b2": ["לקוחות וכל המסמכים של כל לקוח", "Customers and every document of each customer", "الزبائن وكل مستندات كل زبون"],
+  "b3": ["שליפת פרטי רכב לפי מספר, בתוך המסמך", "Car details by plate, right in the document", "جلب تفاصيل السيارة حسب الرقم داخل المستند"],
+  "px1": ["מסך בית: הרכבים במוסך, התורים והכסף של היום", "A home screen: the cars in, today's bookings and money", "شاشة رئيسية: السيارات في الكراج، مواعيد اليوم والمال"],
+  "px2": ["הצעות מחיר, חייבים ותזכורת תשלום", "Quotes, debtors and payment reminders", "عروض أسعار، المدينون وتذكير بالدفع"],
+  "px3": ["איתור רכב והיסטוריית רכב", "Car finder and full vehicle history", "البحث عن سيارة وسجل السيارة الكامل"],
   "b6": ["הוצאות, רווח וסטטיסטיקה", "Expenses, profit and statistics", "مصاريف وأرباح وإحصائيات"],
   "b7": ["מבנה אחיד לרואה החשבון", "Uniform-format file for your accountant", "ملف المبنى الموحد للمحاسب"],
   "pro.head": ["הכל בבסיס, ועוד:", "Everything in Basic, plus:", "كل ما في الأساسي، بالإضافة إلى:"],
@@ -807,15 +810,15 @@ const T = {
   "q2": ["צריך ניסיון עם מחשבים?", "Do I need computer experience?", "هل أحتاج خبرة في الحاسوب؟"],
   "a2": ["לא. בכל דף יש סיור קצר שמראה מה עושים, ואפשר לתרגל צעד אחר צעד. אפשר גם להגדיל את כל הטקסט.", "No. Every page has a short tour that shows what to do, and you can practise step by step. You can also make all the text bigger.", "لا. في كل صفحة جولة قصيرة تشرح ما يجب فعله، ويمكن التدرّب خطوة بخطوة. ويمكن أيضًا تكبير كل النص."],
   "q3": ["באיזו שפה התוכנה?", "What language is the app in?", "بأي لغة البرنامج؟"],
-  "a3": ["בעברית או באנגלית. מחליפים שפה בלחיצה בהגדרות.", "Hebrew or English. Switch with one click in Settings.", "البرنامج بالعبرية أو بالإنجليزية، وتغيير اللغة بضغطة في الإعدادات. هذا الموقع متوفر بالعربية أيضًا."],
+  "a3": ["בעברית, בערבית או באנגלית. מחליפים שפה בלחיצה, ואת התזכורות ללקוחות אפשר לשלוח בעברית או בערבית.", "Hebrew, Arabic or English. Switch with one click, and customer reminders can go out in Hebrew or Arabic.", "بالعبرية أو العربية أو الإنجليزية. تغيير اللغة بضغطة، ويمكن إرسال التذكيرات للزبائن بالعبرية أو بالعربية."],
   "q4": ["מה רואה החשבון מקבל?", "What does my accountant get?", "ماذا يحصل المحاسب؟"],
   "a4": ["כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.", "Every document is saved as a tidy PDF, and you can produce a uniform-format file (OPENFRMT) that accountants and the Tax Authority's systems read.", "كل مستند يُحفظ كملف PDF مرتّب، ويمكن إصدار ملف المبنى الموحد (OPENFRMT) الذي يقرؤه المحاسب وأنظمة سلطة الضرائب."],
   "q5": ["הנתונים שלי בטוחים?", "Is my data safe?", "هل بياناتي آمنة؟"],
   "a5": ["הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.", "Your data is stored and backed up in the cloud. Each garage signs in with its own link code and sees only its own data.", "البيانات محفوظة في السحابة مع نسخ احتياطي. كل كراج يدخل برمز ربط خاص به ويرى بياناته فقط."],
   "q8": ["יש תשלום חד-פעמי?", "Is there a one-time payment?", "هل هناك دفعة لمرة واحدة؟"],
-  "a8": ["כן, דמי הקמה, פעם אחת בהתחלה: ₪1,000, ועכשיו ₪500 בלבד למוסכים שמצטרפים. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. אחר כך משלמים רק את המנוי החודשי.",
-         "Yes, a setup fee, once at the start: ₪1,000, and right now only ₪500 for garages that join. It covers installation at your garage, linking, setting up your business details and training. After that you only pay the monthly plan.",
-         "نعم، رسوم تجهيز مرة واحدة في البداية: ₪1,000، والآن ₪500 فقط للكراجات التي تنضم. وتشمل التركيب في الكراج، الربط، إعداد تفاصيل المصلحة والتدريب. بعد ذلك تدفع الاشتراك الشهري فقط."],
+  "a8": ["כן, דמי הקמה, פעם אחת בהתחלה: ₪250 בבסיס, ₪500 בפרו ו-₪750 בפרימיום. הם כוללים התקנה במוסך, קישור, הגדרת פרטי העסק והדרכה. אחר כך משלמים רק את המנוי החודשי.",
+         "Yes, a setup fee, once at the start: ₪250 on Basic, ₪500 on Pro and ₪750 on Premium. It covers installation at your garage, linking, setting up your business details and training. After that you only pay the monthly plan.",
+         "نعم، رسوم تجهيز مرة واحدة في البداية: ₪250 في الأساسي، ₪500 في برو و-₪750 في بريميوم. وتشمل التركيب في الكراج، الربط، إعداد تفاصيل المصلحة والتدريب. بعد ذلك تدفع الاشتراك الشهري فقط."],
   "q6": ["אפשר לעבור בין תוכניות?", "Can I switch plans?", "هل يمكن تغيير الباقة؟"],
   "a6": ["כן. מעבר בין בסיס, פרו ופרימיום נעשה מרחוק, והשינוי מגיע לאוטו במוסך תוך כמה שעות.", "Yes. Switching between Basic, Pro and Premium is done remotely and reaches Oto at your garage within a few hours.", "نعم. التغيير بين الأساسي وبرو وبريميوم يتم عن بُعد ويصل إلى أوتو في الكراج خلال ساعات قليلة."],
   "q7": ["איך עובדות ההודעות בוואטסאפ?", "How do the WhatsApp messages work?", "كيف تعمل رسائل الواتساب؟"],
@@ -853,18 +856,18 @@ const T = {
 
 /* Oto's own screens (the demo and the guide) speak Oto's languages: [Hebrew, English]. */
 const UI = {
-  new: ["+ מסמך חדש", "+ New document"], home: ["בית", "Home"], customers: ["לקוחות", "Customers"], debtors: ["חייבים", "Debtors"],
-  inventory: ["מלאי", "Inventory"], finder: ["איתור רכב", "Car finder"], appts: ["תורים", "Appointments"], stats: ["סטטיסטיקה", "Statistics"],
-  title: ["מסמך חדש", "New document"], sub: ["חשבונית מס קבלה · מס׳ 001044", "Tax invoice-receipt · No. 001044"],
-  fetch: ["שליפת פרטי רכב", "Look up car"], car: ["מאזדה 3 · 2019 · לבן", "Mazda 3 · 2019 · White"],
-  test: ["טסט בתוקף עד 14/03/2027", "Test valid until 14/03/2027"],
-  l1: ["טיפול 10,000 ק״מ", "10,000 km service"], l2: ["פילטר שמן", "Oil filter"], l3: ["החלפת רפידות בלם קדמי", "Front brake pads"],
-  totalLbl: ["סה״כ לתשלום, כולל מע״מ", "Total to pay, incl. VAT"], save: ["שמור והדפס", "Save and print"],
-  toast: ["חשבונית מס קבלה 001044 נשמרה", "Tax invoice-receipt 001044 saved"],
-  lk: ["שלב 2 מתוך 5 · צופים", "Step 2 of 5 · Watching"], lb: ["מספר הרכב", "The plate number"],
-  ls: ["מקלידים את מספר הרכב. המקפים לא משנים.", "Type the plate number. Dashes don't matter."],
-  next: ["הבא", "Next"], back: ["הקודם", "Back"], pause: ["השהה", "Pause"],
-  size: ["גודל טקסט:", "Text size:"], normal: ["רגיל", "Normal"], large: ["גדול", "Large"], xl: ["גדול מאוד", "Extra large"],
+  new: ["+ מסמך חדש", "+ New document", "+ مستند جديد"], home: ["בית", "Home", "الرئيسية"], customers: ["לקוחות", "Customers", "الزبائن"], debtors: ["חייבים", "Debtors", "المدينون"],
+  inventory: ["מלאי", "Inventory", "المخزون"], finder: ["איתור רכב", "Car finder", "البحث عن سيارة"], appts: ["תורים", "Appointments", "المواعيد"], stats: ["סטטיסטיקה", "Statistics", "الإحصائيات"],
+  title: ["מסמך חדש", "New document", "مستند جديد"], sub: ["חשבונית מס קבלה · מס׳ 001044", "Tax invoice-receipt · No. 001044", "חשבונית מס קבלה · رقم 001044"],
+  fetch: ["שליפת פרטי רכב", "Look up car", "جلب تفاصيل السيارة"], car: ["מאזדה 3 · 2019 · לבן", "Mazda 3 · 2019 · White", "مازدا 3 · 2019 · أبيض"],
+  test: ["טסט בתוקף עד 14/03/2027", "Test valid until 14/03/2027", "الفحص ساري حتى 14/03/2027"],
+  l1: ["טיפול 10,000 ק״מ", "10,000 km service", "صيانة 10,000 كم"], l2: ["פילטר שמן", "Oil filter", "فلتر زيت"], l3: ["החלפת רפידות בלם קדמי", "Front brake pads", "تبديل فحمات فرامل أمامية"],
+  totalLbl: ["סה״כ לתשלום, כולל מע״מ", "Total to pay, incl. VAT", "المجموع للدفع، شامل الضريبة"], save: ["שמור והדפס", "Save and print", "حفظ وطباعة"],
+  toast: ["חשבונית מס קבלה 001044 נשמרה", "Tax invoice-receipt 001044 saved", "صدر المستند 001044"],
+  lk: ["שלב 2 מתוך 5 · צופים", "Step 2 of 5 · Watching", "خطوة 2 من 5 · مشاهدة"], lb: ["מספר הרכב", "The plate number", "رقم السيارة"],
+  ls: ["מקלידים את מספר הרכב. המקפים לא משנים.", "Type the plate number. Dashes don't matter.", "اكتبوا رقم السيارة. الشَّرطات لا تهمّ."],
+  next: ["הבא", "Next", "التالي"], back: ["הקודם", "Back", "السابق"], pause: ["השהה", "Pause", "إيقاف مؤقت"],
+  size: ["גודל טקסט:", "Text size:", "حجم النص:"], normal: ["רגיל", "Normal", "عادي"], large: ["גדול", "Large", "كبير"], xl: ["גדול מאוד", "Extra large", "كبير جداً"],
 };
 
 const LANGS = ["he", "en", "ar"];
@@ -883,11 +886,10 @@ const t = (key) => (T[key] ? T[key][LANGS.indexOf(lang)] : "");
     document.documentElement.setAttribute("lang", lang);
     document.documentElement.setAttribute("dir", dir);
     document.querySelectorAll("[data-i18n]").forEach((el) => { const v = T[el.dataset.i18n]; if (v) el.textContent = v[i]; });
-    // Oto's screens: English on the English page, Hebrew otherwise (Oto has no Arabic interface)
-    const ui = lang === "en" ? 1 : 0;
+    // Oto's own screens, in the page's language (Oto speaks Hebrew, English and Arabic)
+    const ui = i;
     document.querySelectorAll("[data-ui]").forEach((el) => { const v = UI[el.dataset.ui]; if (v) el.textContent = v[ui]; });
-    ["demo", "lesson"].forEach((id) => { $(id).setAttribute("dir", ui ? "ltr" : "rtl"); $(id).setAttribute("lang", ui ? "en" : "he"); });
-    $("app-note").hidden = lang !== "ar";
+    ["demo", "lesson"].forEach((id) => { $(id).setAttribute("dir", dir); $(id).setAttribute("lang", lang); });
     document.querySelectorAll(".langs button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
     document.title = t("title");
     renderWays();
