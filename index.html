@@ -348,6 +348,8 @@ section { padding-block: 72px; }
   <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6h16v12H4z M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></symbol>
   <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 18L8.5 6 13 18 M5.6 14h5.8 M15 18l3-8 3 8 M15.9 15.5h4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.8l2.1 7.1 7.1 2.1-7.1 2.1-2.1 7.1-2.1-7.1-7.1-2.1 7.1-2.1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-screens" viewBox="0 0 24 24"><path d="M2.5 5.5h11v8h-11z M10.5 9.5h11v8h-11z M6 16.5h3 M14 20.5h3.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-update" viewBox="0 0 24 24"><path d="M12 4v11 M7.5 10.5L12 15l4.5-4.5 M4.5 19.5h15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 12h17 M12 3.5c2.6 2.6 2.6 14.4 0 17 M12 3.5c-2.6 2.6-2.6 14.4 0 17" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
@@ -387,7 +389,7 @@ section { padding-block: 72px; }
     <div>
       <div class="eyebrow" data-i18n="hero.eyebrow">תוכנה לניהול מוסך · רשומה ברשות המסים</div>
       <h1><span data-i18n="hero.h1a">מקלידים מספר רכב.</span><span class="line2" data-i18n="hero.h1b">אוטו עושה את השאר.</span></h1>
-      <p class="lead" data-i18n="hero.lead">פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית, בלי סיבוכים, גם למי שלא אוהב מחשבים.</p>
+      <p class="lead" data-i18n="hero.lead">פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית או בערבית, בלי סיבוכים, גם למי שלא אוהב מחשבים.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="hero.cta1">רוצים לשמוע עוד</span></a>
         <a class="btn btn-ghost" href="#pricing" data-i18n="nav.pricing">מחירים</a>
@@ -457,6 +459,7 @@ section { padding-block: 72px; }
         <div class="time num">07:30</div>
         <h3 data-i18n="s1.h">פותחים את המוסך</h3>
         <p data-i18n="s1.p">במסך הראשי: התורים של היום, תזכורות מוכנות לשליחה (טסט, עבודה שנדחתה, בקשת ביקורת), ומי עוד לא שילם.</p>
+        <span class="tag" data-i18n="s1.tag">מסך הבית: בפרו</span>
       </article>
       <article class="step">
         <div class="time num">09:00</div>
@@ -473,11 +476,13 @@ section { padding-block: 72px; }
         <div class="time num">16:30</div>
         <h3 data-i18n="s4.h">הרכב מוכן</h3>
         <p data-i18n="s4.p">חשבונית מס קבלה במספור רציף, מוכנה להדפסה. הודעת "הרכב מוכן" ללקוח בוואטסאפ, בלחיצה.</p>
+        <span class="tag" data-i18n="s4.tag">הודעת "הרכב מוכן": בפרו</span>
       </article>
       <article class="step">
         <div class="time word" data-i18n="s5.time">סוף החודש</div>
         <h3 data-i18n="s5.h">מסדרים חשבונות</h3>
         <p data-i18n="s5.p">מי חייב כמה, כמה הוצאתם וכמה הרווחתם. קובץ מבנה אחיד מוכן לרואה החשבון.</p>
+        <span class="tag" data-i18n="s5.tag">חייבים, הוצאות ורווח: בפרו</span>
       </article>
     </div>
   </div>
@@ -497,6 +502,8 @@ section { padding-block: 72px; }
         <li><span class="ico"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><b data-i18n="e3.b">מצב בהיר או כהה</b><span data-i18n="e3.s">מה שנוח לעיניים, בלחיצה בהגדרות.</span></div></li>
         <li><span class="ico"><svg aria-hidden="true"><use href="#i-lang"/></svg></span><div><b data-i18n="e5.b">עברית, ערבית או אנגלית</b><span data-i18n="e5.s">מחליפים שפה בלחיצה, וכל התוכנה מתהפכת.</span></div></li>
         <li><span class="ico"><svg aria-hidden="true"><use href="#i-update"/></svg></span><div><b data-i18n="e4.b">עדכונים לבד</b><span data-i18n="e4.s">כשיש גרסה חדשה מופיעה הודעה. לוחצים "עדכן" וזהו.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-spark"/></svg></span><div><b data-i18n="e6.b">עזרה ברגע שצריך</b><span data-i18n="e6.s">אם משהו מסתבך, אוטו שם לב ומציע עזרה. ויש מדריכים לכל עבודה, מההתחלה ועד הסוף.</span></div></li>
+        <li><span class="ico"><svg aria-hidden="true"><use href="#i-screens"/></svg></span><div><b data-i18n="e7.b">כמה מחשבים, אותו מוסך</b><span data-i18n="e7.s">המחשב במשרד והמחשב בעמדת העבודה עובדים על אותם נתונים. מתקינים פעם אחת בכל מחשב.</span></div></li>
       </ul>
     </div>
     <div class="lesson" id="lesson" dir="rtl" lang="he">
@@ -528,7 +535,7 @@ section { padding-block: 72px; }
         <span class="v"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="stamp.v">בתוקף עד 31/07/2028</span></span>
       </div>
       <ul>
-        <li><svg aria-hidden="true"><use href="#i-doc"/></svg><div><b data-i18n="g1.b">כל סוגי המסמכים</b><span data-i18n="g1.s">חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה, תעודת משלוח והצעת מחיר.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-doc"/></svg><div><b data-i18n="g1.b">כל סוגי המסמכים</b><span data-i18n="g1.s">חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה ותעודת משלוח. בפרו גם הצעות מחיר.</span></div></li>
         <li><svg aria-hidden="true"><use href="#i-undo"/></svg><div><b data-i18n="g2.b">מספור רציף, בלי מחיקות</b><span data-i18n="g2.s">מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.</span></div></li>
         <li><svg aria-hidden="true"><use href="#i-file"/></svg><div><b data-i18n="g3.b">מבנה אחיד</b><span data-i18n="g3.s">קובץ OPENFRMT לרואה החשבון ולביקורת, בלחיצה.</span></div></li>
         <li><svg aria-hidden="true"><use href="#i-lock"/></svg><div><b data-i18n="g4.b">כל מוסך רואה רק את שלו</b><span data-i18n="g4.s">כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.</span></div></li>
@@ -582,6 +589,7 @@ section { padding-block: 72px; }
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p5">מעקב אחרי עבודות שהלקוח דחה, עם תזכורת בזמן</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p6">בקשת ביקורת בגוגל אחרי כל ביקור</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p7">סגירת יום בשתי דקות: כמה נכנס, מה בקופה ומי מגיע מחר</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p9">תזכורות ללקוחות גם בערבית</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p8">טעימה מהעוזר של אוטו: 10 שאלות בחודש</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span data-i18n="p4">600 הודעות וואטסאפ אוטומטיות בחודש</span><span class="soon" data-i18n="soon">בקרוב</span></span></li>
         </ul>
@@ -601,6 +609,8 @@ section { padding-block: 72px; }
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m4">העוזר מציע מה מגיע לכל רכב לפי ההיסטוריה שלו, ומתמחר לפי מה שלקחתם בעבר</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m5">קורא תמונות: חשבונית של ספק, פתק של מכונאי, נורה בלוח המחוונים</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m6">קובע תורים, רושם הוצאות ומעדכן מלאי באישור שלכם, ותדריך בוקר כל יום</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m7">תובנות על העסק: מי הפסיק להגיע, הלקוחות הטובים והעבודות הרווחיות</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m8">רואים כל חודש כמה עבודה העוזר הוסיף</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m2">מצב מכונאי: העובדים עובדים באוטו בלי לראות כסף והגדרות</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span data-i18n="m1">1,000 הודעות וואטסאפ אוטומטיות בחודש</span><span class="soon" data-i18n="soon">בקרוב</span></span></li>
         </ul>
@@ -713,9 +723,7 @@ const T = {
   "hero.eyebrow": ["תוכנה לניהול מוסך · רשומה ברשות המסים", "Garage management software · Registered with the Israel Tax Authority", "برنامج لإدارة الكراج · مسجّل لدى سلطة الضرائب"],
   "hero.h1a": ["מקלידים מספר רכב.", "Type a plate number.", "تكتب رقم السيارة،"],
   "hero.h1b": ["אוטו עושה את השאר.", "Oto does the rest.", "وأوتو يكمل الباقي."],
-  "hero.lead": ["פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית, בלי סיבוכים, גם למי שלא אוהב מחשבים.",
-                "The car's details, its service history, a legal tax invoice-receipt and a reminder before its annual test, all in one place. Simple, even if computers aren't your thing.",
-                "تفاصيل السيارة، سجل الصيانة، فاتورة ضريبية-إيصال قانونية وتذكير قبل الفحص السنوي (التِست)، كلها في مكان واحد. بسيط، حتى لمن لا يحب الحاسوب."],
+  "hero.lead": ["פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית או בערבית, בלי סיבוכים, גם למי שלא אוהב מחשבים.", "The car's details, its service history, a legal tax invoice-receipt and a reminder before its annual test, all in one place. In Hebrew or Arabic, simple even if computers aren't your thing.", "تفاصيل السيارة، سجل الصيانة، فاتورة ضريبية-إيصال قانونية وتذكير قبل الفحص السنوي (التِست)، كلها في مكان واحد. بالعربية أو بالعبرية، وبسيط حتى لمن لا يحب الحاسوب."],
   "hero.cta1": ["רוצים לשמוע עוד", "I'd like to hear more", "أريد أن أعرف أكثر"],
   "proof.1": ["תעודת רישום 280401", "Registration certificate 280401", "شهادة تسجيل 280401"],
   "proof.2": ["התקנה וקישור במוסך על ידינו", "We install and set it up at your garage", "نركّب البرنامج ونجهّزه في الكراج"],
@@ -757,7 +765,7 @@ const T = {
   "stamp.k2": ["מספר תעודת הרישום", "Registration certificate number", "رقم شهادة التسجيل"],
   "stamp.v": ["בתוקף עד 31/07/2028", "Valid until 31/07/2028", "سارية حتى 31/07/2028"],
   "g1.b": ["כל סוגי המסמכים", "Every document type", "كل أنواع المستندات"],
-  "g1.s": ["חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה, תעודת משלוח והצעת מחיר.", "Tax invoice-receipt, tax invoice, receipt, credit note, order and job card, delivery note and quote.", "فاتورة ضريبية-إيصال، فاتورة ضريبية، إيصال، فاتورة زيكوي (إلغاء)، طلبية وبطاقة عمل، إرسالية وعرض سعر."],
+  "g1.s": ["חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה ותעודת משלוח. בפרו גם הצעות מחיר.", "Tax invoice-receipt, tax invoice, receipt, credit note, order and job card, and delivery note. Quotes too, on Pro.", "فاتورة ضريبية-إيصال، فاتورة ضريبية، إيصال، فاتورة زيكوي، أمر وبطاقة عمل، وإرسالية. وفي برو أيضاً عروض الأسعار."],
   "g2.b": ["מספור רציף, בלי מחיקות", "Sequential numbers, no deletions", "ترقيم متسلسل بلا حذف"],
   "g2.s": ["מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.", "An issued document is never changed or deleted. Corrections are made with a credit note, as the law requires.", "المستند الصادر لا يُعدَّل ولا يُحذف. التصحيح يتم بفاتورة زيكوي كما يطلب القانون."],
   "g3.b": ["מבנה אחיד", "Uniform format (מבנה אחיד)", "المبنى الموحد (מבנה אחיד)"],
@@ -804,6 +812,16 @@ const T = {
   "m4": ["העוזר מציע מה מגיע לכל רכב לפי ההיסטוריה שלו, ומתמחר לפי מה שלקחתם בעבר", "It suggests what's due on each car from its history, and prices jobs from what you charged before", "يقترح ما تحتاجه كل سيارة حسب تاريخها، ويسعّر حسب ما أخذتموه سابقاً"],
   "m5": ["קורא תמונות: חשבונית של ספק, פתק של מכונאי, נורה בלוח המחוונים", "Reads photos: a supplier invoice, a mechanic's note, a dashboard warning light", "يقرأ الصور: فاتورة مورّد، ملاحظة ميكانيكي، ضوء تحذير في لوحة القيادة"],
   "m6": ["קובע תורים, רושם הוצאות ומעדכן מלאי באישור שלכם, ותדריך בוקר כל יום", "Books appointments, records expenses and updates stock with your OK, plus a morning briefing every day", "يحدّد المواعيد، يسجّل المصاريف ويحدّث المخزون بموافقتكم، مع إيجاز صباحي كل يوم"],
+  "s1.tag": ["מסך הבית: בפרו", "Home screen: Pro", "الشاشة الرئيسية: برو"],
+  "s4.tag": ["הודעת \"הרכב מוכן\": בפרו", "\"Car is ready\" message: Pro", "رسالة «السيارة جاهزة»: برو"],
+  "s5.tag": ["חייבים, הוצאות ורווח: בפרו", "Debtors, expenses and profit: Pro", "المدينون والمصاريف والربح: برو"],
+  "e6.b": ["עזרה ברגע שצריך", "Help the moment you need it", "مساعدة في اللحظة المناسبة"],
+  "e6.s": ["אם משהו מסתבך, אוטו שם לב ומציע עזרה. ויש מדריכים לכל עבודה, מההתחלה ועד הסוף.", "If something gets tricky, Oto notices and offers help. And there are start-to-finish guides for every job.", "إذا تعقّد شيء، ينتبه أوتو ويعرض المساعدة. وهناك أدلة لكل عمل، من البداية حتى النهاية."],
+  "e7.b": ["כמה מחשבים, אותו מוסך", "Several computers, one garage", "عدة حواسيب، كراج واحد"],
+  "e7.s": ["המחשב במשרד והמחשב בעמדת העבודה עובדים על אותם נתונים. מתקינים פעם אחת בכל מחשב.", "The office PC and the workshop PC work on the same data. Install once on each computer.", "حاسوب المكتب وحاسوب الورشة يعملان على البيانات نفسها. التركيب مرة واحدة على كل حاسوب."],
+  "p9": ["תזכורות ללקוחות גם בערבית", "Customer reminders in Arabic too", "تذكيرات للزبائن بالعربية أيضاً"],
+  "m7": ["תובנות על העסק: מי הפסיק להגיע, הלקוחות הטובים והעבודות הרווחיות", "Business insights: who stopped coming, your best customers, your most profitable jobs", "رؤى عن العمل: مَن توقّف عن المجيء، أفضل الزبائن والأعمال الأكثر ربحاً"],
+  "m8": ["רואים כל חודש כמה עבודה העוזר הוסיף", "See every month how much work the assistant added", "ترون كل شهر كم من العمل أضاف المساعد"],
   "m3": ["העוזר של אוטו: שואלים בכתב או בקול על המוסך, על אוטו ועל רכבים, והוא גם מראה על המסך איפה כל דבר", "Oto's assistant: ask by typing or talking about your garage, Oto or a car, and it shows you on the screen where everything is", "مساعد أوتو: اسألوا كتابةً أو بالصوت عن الكراج، عن أوتو أو عن سيارة، وهو يريكم على الشاشة أين كل شيء"],
   "q10": ["מה העוזר של אוטו יודע לעשות?", "What can Oto's assistant do?", "ماذا يستطيع مساعد أوتو أن يفعل؟"],
   "a10": ["בחבילת פרימיום שואלים אותו בכתב או בקול: כמה הכנסתי החודש, מי חייב לי, מה מגיע לרכב הזה, כמה לקחת על מצמד. הוא מראה על המסך איפה כל כפתור, קורא תמונות של חשבוניות, ממלא מסמכים ומכין תורים, הוצאות והודעות, אבל שום דבר לא נשמר או יוצא בלי הלחיצה שלכם. בחבילת פרו יש 10 שאלות בחודש לטעימה. מספרי טלפון ותעודות זהות של הלקוחות לא נשלחים אליו.", "On Premium you ask it by typing or talking: how much did I make this month, who owes me, what's due on this car, what to charge for a clutch. It shows you on the screen where each button is, reads photos of invoices, fills in documents and prepares bookings, expenses and messages, but nothing is saved or sent without your press. Pro includes 10 questions a month as a taste. Customers' phone and ID numbers are never sent to it.", "في باقة بريميوم تسألونه كتابةً أو بالصوت: كم دخلي هذا الشهر، مَن مدين لي، ماذا تحتاج هذه السيارة، كم آخذ على الكلتش. يريكم على الشاشة أين كل زر، يقرأ صور الفواتير، يملأ المستندات ويجهّز المواعيد والمصاريف والرسائل، لكن لا شيء يُحفظ أو يُرسل دون ضغطتكم. في باقة برو 10 أسئلة شهرياً للتجربة. أرقام هواتف الزبائن وهوياتهم لا تُرسل إليه."],
