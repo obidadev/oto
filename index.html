@@ -288,6 +288,7 @@ section { padding-block: 72px; }
 .setup .fees .now { color: var(--accent-ink); }
 .plan .fee .was { color: inherit; opacity: .75; }
 .plan .fee .what { display: block; }
+.plan .fee .nofee { font-size: 17px; color: #5EE08A; }
 .plan .fee .prices { display: flex; align-items: baseline; gap: 10px; margin-top: 4px; }
 .plan .fee .now { font-size: 22px; font-weight: 700; }
 .plan.pro .fee .now { color: var(--night-ink); }
@@ -411,7 +412,7 @@ section { padding-block: 72px; }
       </div>
       <div class="proof">
         <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="proof.1">תעודת רישום 280401</span></span>
-        <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="proof.2">התקנה וקישור במוסך על ידינו</span></span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="proof.2">התקנה במוסך על ידינו, בחינם</span></span>
         <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="proof.3">עדכונים מגיעים לבד</span></span>
       </div>
     </div>
@@ -571,10 +572,9 @@ section { padding-block: 72px; }
             <div class="name" data-i18n="plan.one">אוטו</div>
             <p class="for" data-i18n="one.for">תוכנית אחת לכל מוסך. בלי חבילות ובלי תוספות.</p>
           </div>
-          <div class="price"><span class="cur">₪</span><span class="amt num">199</span><span class="per" data-i18n="per">לחודש</span></div>
-          <div class="fee"><span class="what" data-i18n="fee.one">+ התקנה והדרכה אישית, פעם אחת</span>
-            <span class="prices"><b class="now num">₪1,499</b> <s class="was num">₪1,999</s></span>
-            <span class="launch" data-i18n="fee.launch">מחיר השקה ל-5 המוסכים הראשונים</span></div>
+          <div class="price"><span class="cur">₪</span><span class="amt num">80</span><span class="per" data-i18n="per">לחודש</span></div>
+          <div class="fee"><b class="what nofee" data-i18n="fee.one">בלי דמי הקמה ובלי תשלום חד-פעמי</b>
+            <span class="launch" data-i18n="fee.launch">ההתקנה וההדרכה במוסך עלינו, בחינם</span></div>
           <a class="btn btn-primary" href="#contact" data-i18n="cta.one">אני רוצה את אוטו</a>
         </div>
         <ul>
@@ -607,16 +607,16 @@ section { padding-block: 72px; }
     </div>
     <div class="setup">
       <div>
-        <div class="k" data-i18n="setup.k">פעם אחת, בהתחלה</div>
-        <h3 data-i18n="setup.h">התקנה והדרכה אישית</h3>
-        <p data-i18n="setup.p">מגיעים אליכם למוסך, מתקינים את אוטו, מכניסים את פרטי העסק והלוגו ומלמדים אתכם ואת העובדים לעבוד איתו. אתם מתחילים לעבוד באותו יום.</p>
+        <div class="k" data-i18n="setup.k">חינם</div>
+        <h3 data-i18n="setup.h">התקנה והדרכה אישית, בחינם</h3>
+        <p data-i18n="setup.p">מגיעים אליכם למוסך, מתקינים את אוטו, מכניסים את פרטי העסק והלוגו ומלמדים אתכם ואת העובדים לעבוד איתו. אתם מתחילים לעבוד באותו יום. בלי דמי הקמה.</p>
       </div>
       <div class="fees">
-        <div><span data-i18n="fee.all">מחיר רגיל</span><s class="num was">₪1,999</s></div>
-        <div class="now"><span data-i18n="fee.first5">ל-5 המוסכים הראשונים</span><span class="num">₪1,499</span></div>
+        <div class="now"><span data-i18n="fee.all">דמי הקמה</span><span class="num">₪0</span></div>
       </div>
     </div>
     <div class="plans-note">
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.nosetup">בלי דמי הקמה</span></span>
       <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.vat">המחירים סופיים</span></span>
       <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.today">היום: אוטו כותב את ההודעה ואתם שולחים בלחיצה</span></span>
       <span><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="note.soon">בקרוב: שליחה אוטומטית ממספר הוואטסאפ של אוטו</span></span>
@@ -639,7 +639,7 @@ section { padding-block: 72px; }
       <details><summary data-i18n="q10">מה העוזר של אוטו יודע לעשות?</summary><p data-i18n="a10">שואלים אותו בכתב או בקול: כמה הכנסתי החודש, מי חייב לי, מה מגיע לרכב הזה, כמה לקחת על מצמד. הוא מראה על המסך איפה כל כפתור, קורא תמונות של חשבוניות, ממלא מסמכים ומכין תורים, הוצאות והודעות, אבל שום דבר לא נשמר או יוצא בלי הלחיצה שלכם. מספרי טלפון ותעודות זהות של הלקוחות לא נשלחים אליו.</p></details>
       <details><summary data-i18n="q4">מה רואה החשבון מקבל?</summary><p data-i18n="a4">כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.</p></details>
       <details><summary data-i18n="q5">הנתונים שלי בטוחים?</summary><p data-i18n="a5">הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.</p></details>
-      <details><summary data-i18n="q8">יש תשלום חד-פעמי?</summary><p data-i18n="a8">כן, התקנה והדרכה אישית במוסך, פעם אחת בהתחלה: ₪1,999, ו-₪1,499 בלבד ל-5 המוסכים הראשונים. מגיעים אליכם, מתקינים, מגדירים את פרטי העסק והלוגו ומדריכים אתכם. אחר כך משלמים רק את המנוי החודשי.</p></details>
+      <details><summary data-i18n="q8">יש דמי הקמה או תשלום חד-פעמי?</summary><p data-i18n="a8">לא. אין דמי הקמה ואין שום תשלום חד-פעמי. מגיעים אליכם למוסך, מתקינים, מגדירים את פרטי העסק והלוגו ומדריכים אתכם, בחינם. משלמים רק ₪80 לחודש.</p></details>
       <details><summary data-i18n="q6">מה כלול במחיר?</summary><p data-i18n="a6">הכל. כל מה שיש באוטו, כולל העוזר ומצב מכונאי, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אין חבילות ואין תוספות.</p></details>
       <details><summary data-i18n="q7">איך עובדות ההודעות בוואטסאפ?</summary><p data-i18n="a7">היום אוטו מכין את ההודעה (תזכורת לטסט, תור למחר, הרכב מוכן) ואתם שולחים בלחיצה. שליחה אוטומטית לגמרי, ממספר הוואטסאפ של אוטו, מגיעה בקרוב.</p></details>
     </div>
@@ -706,7 +706,7 @@ const T = {
   "hero.lead": ["פרטי הרכב, היסטוריית הטיפולים, חשבונית מס קבלה חוקית ותזכורת לטסט, הכל במקום אחד. בעברית או בערבית, בלי סיבוכים, גם למי שלא אוהב מחשבים.", "The car's details, its service history, a legal tax invoice-receipt and a reminder before its annual test, all in one place. In Hebrew or Arabic, simple even if computers aren't your thing.", "تفاصيل السيارة، سجل الصيانة، فاتورة ضريبية-إيصال قانونية وتذكير قبل الفحص السنوي (التِست)، كلها في مكان واحد. بالعربية أو بالعبرية، وبسيط حتى لمن لا يحب الحاسوب."],
   "hero.cta1": ["רוצים לשמוע עוד", "I'd like to hear more", "أريد أن أعرف أكثر"],
   "proof.1": ["תעודת רישום 280401", "Registration certificate 280401", "شهادة تسجيل 280401"],
-  "proof.2": ["התקנה וקישור במוסך על ידינו", "We install and set it up at your garage", "نركّب البرنامج ونجهّزه في الكراج"],
+  "proof.2": ["התקנה במוסך על ידינו, בחינם", "We install and set it up at your garage, free", "نركّب البرنامج ونجهّزه في الكراج، مجاناً"],
   "proof.3": ["עדכונים מגיעים לבד", "Updates arrive by themselves", "التحديثات تصل تلقائيًا"],
   "day.eyebrow": ["יום במוסך, עם אוטו", "A day at the garage, with Oto", "يوم في الكراج مع أوتو"],
   "day.h2": ["מהבוקר ועד סוף החודש", "From opening time to month-end", "من الصباح حتى نهاية الشهر"],
@@ -753,17 +753,16 @@ const T = {
   "g4.s": ["כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.", "Each copy signs in with its own link code. The data is backed up in the cloud and never opened to anyone else.", "كل نسخة تدخل برمز ربط خاص بها. البيانات محفوظة في السحابة ولا تُفتح لأي أحد آخر."],
   "pr.h2": ["מחיר אחד. הכל כלול.", "One price. Everything included.", "سعر واحد. كل شيء مشمول."],
   "pr.lead": ["כל מה שיש באוטו, לכל מוסך: מסמכים, לקוחות, תורים, תזכורות, מלאי, העוזר ומצב מכונאי. כולל עדכונים, גיבוי בענן ומדריך בתוך התוכנה.", "Everything in Oto, for every garage: documents, customers, bookings, reminders, inventory, the assistant and mechanic mode. Updates, cloud backup and the in-app guide included.", "كل ما في أوتو، لكل كراج: المستندات، الزبائن، المواعيد، التذكيرات، المخزون، المساعد ووضع الميكانيكي. يشمل التحديثات، النسخ الاحتياطي في السحابة والدليل داخل البرنامج."],
-  "setup.k": ["פעם אחת, בהתחלה", "Once, at the start", "مرة واحدة، في البداية"],
-  "setup.h": ["התקנה והדרכה אישית", "Personal setup and training", "تركيب وتدريب شخصي"],
-  "setup.p": ["מגיעים אליכם למוסך, מתקינים את אוטו, מכניסים את פרטי העסק והלוגו ומלמדים אתכם ואת העובדים לעבוד איתו. אתם מתחילים לעבוד באותו יום.", "We come to your garage, install Oto, set up your business details and logo, and teach you and your workers to use it. You start working the same day.", "نأتي إليكم إلى الكراج، نركّب أوتو، نُدخل تفاصيل المصلحة والشعار، ونعلّمكم أنتم والعمّال العمل عليه. تبدؤون العمل في اليوم نفسه."],
-  "fee.all": ["מחיר רגיל", "Regular price", "السعر العادي"],
-  "fee.first5": ["ל-5 המוסכים הראשונים", "First 5 garages", "لأول 5 كراجات"],
+  "setup.k": ["חינם", "Free", "مجاناً"],
+  "setup.h": ["התקנה והדרכה אישית, בחינם", "Personal setup and training, free", "تركيب وتدريب شخصي، مجاناً"],
+  "setup.p": ["מגיעים אליכם למוסך, מתקינים את אוטו, מכניסים את פרטי העסק והלוגו ומלמדים אתכם ואת העובדים לעבוד איתו. אתם מתחילים לעבוד באותו יום. בלי דמי הקמה.", "We come to your garage, install Oto, set up your business details and logo, and teach you and your workers to use it. You start working the same day. No setup fee.", "نأتي إليكم إلى الكراج، نركّب أوتو، نُدخل تفاصيل المصلحة والشعار، ونعلّمكم أنتم والعمّال العمل عليه. تبدؤون العمل في اليوم نفسه. بدون رسوم تأسيس."],
+  "fee.all": ["דמי הקמה", "Setup fee", "رسوم التأسيس"],
   "per": ["לחודש", "per month", "شهريًا"],
   "badge": ["הכל כלול", "Everything included", "كل شيء مشمول"],
   "plan.one": ["אוטו", "Oto", "أوتو"],
   "one.for": ["תוכנית אחת לכל מוסך. בלי חבילות ובלי תוספות.", "One plan for every garage. No tiers, no add-ons.", "باقة واحدة لكل كراج. بدون مستويات وبدون إضافات."],
-  "fee.one": ["+ התקנה והדרכה אישית, פעם אחת", "+ personal setup and training, once", "+ تركيب وتدريب شخصي، مرة واحدة"],
-  "fee.launch": ["מחיר השקה ל-5 המוסכים הראשונים", "Launch price for the first 5 garages", "سعر الإطلاق لأول 5 كراجات"],
+  "fee.one": ["בלי דמי הקמה ובלי תשלום חד-פעמי", "No setup fee, no one-time payment", "بدون رسوم تأسيس وبدون دفعة لمرة واحدة"],
+  "fee.launch": ["ההתקנה וההדרכה במוסך עלינו, בחינם", "We install and train you at your garage, free", "التركيب والتدريب في الكراج علينا، مجاناً"],
   "cta.one": ["אני רוצה את אוטו", "I want Oto", "أريد أوتو"],
   "b1": ["מסמכים חוקיים ומספור רציף", "Legal documents, sequential numbering", "مستندات قانونية وترقيم متسلسل"],
   "b8": ["הלוגו של המוסך על כל מסמך", "Your garage's logo on every document", "شعار الكراج على كل مستند"],
@@ -798,6 +797,7 @@ const T = {
   "a9": ["כן. יש מצב מכונאי: העובדים פותחים כרטיסי עבודה, לקוחות ותורים, בלי לראות הכנסות, הוצאות, חובות והגדרות. יוצאים ממנו רק עם קוד מנהל, וכל מחשב מוגדר בנפרד.", "Yes. There's a mechanic mode: workers open job cards, customers and bookings without seeing income, expenses, debts or settings. Only the manager's PIN switches it off, and each computer is set separately.", "نعم. يوجد وضع الميكانيكي: العمّال يفتحون بطاقات العمل والزبائن والمواعيد دون رؤية الإيرادات والمصاريف والديون والإعدادات. لا يُغلق إلا برمز المدير، وكل حاسوب يُضبط على حدة."],
   "m1": ["1,000 הודעות וואטסאפ אוטומטיות בחודש", "1,000 automatic WhatsApp messages a month", "1,000 رسالة واتساب تلقائية شهريًا"],
   "soon": ["בקרוב", "Soon", "قريبًا"],
+  "note.nosetup": ["בלי דמי הקמה", "No setup fee", "بدون رسوم تأسيس"],
   "note.vat": ["המחירים סופיים", "Prices are final", "الأسعار نهائية"],
   "note.today": ["היום: אוטו כותב את ההודעה ואתם שולחים בלחיצה", "Today: Oto writes the message and you send it in one tap", "اليوم: أوتو يكتب الرسالة وأنت ترسلها بضغطة"],
   "note.soon": ["בקרוב: שליחה אוטומטית ממספר הוואטסאפ של אוטו", "Soon: fully automatic sending from Oto's WhatsApp number", "قريبًا: إرسال تلقائي بالكامل من رقم واتساب أوتو"],
@@ -812,8 +812,8 @@ const T = {
   "a4": ["כל מסמך נשמר כ-PDF מסודר, ואפשר להפיק קובץ מבנה אחיד (OPENFRMT) שרואה החשבון והמערכות של רשות המסים קוראים.", "Every document is saved as a tidy PDF, and you can produce a uniform-format file (OPENFRMT) that accountants and the Tax Authority's systems read.", "كل مستند يُحفظ كملف PDF مرتّب، ويمكن إصدار ملف المبنى الموحد (OPENFRMT) الذي يقرؤه المحاسب وأنظمة سلطة الضرائب."],
   "q5": ["הנתונים שלי בטוחים?", "Is my data safe?", "هل بياناتي آمنة؟"],
   "a5": ["הנתונים נשמרים בענן ומגובים. כל מוסך נכנס עם קוד קישור משלו ורואה רק את הנתונים של המוסך שלו.", "Your data is stored and backed up in the cloud. Each garage signs in with its own link code and sees only its own data.", "البيانات محفوظة في السحابة مع نسخ احتياطي. كل كراج يدخل برمز ربط خاص به ويرى بياناته فقط."],
-  "q8": ["יש תשלום חד-פעמי?", "Is there a one-time payment?", "هل هناك دفعة لمرة واحدة؟"],
-  "a8": ["כן, התקנה והדרכה אישית במוסך, פעם אחת בהתחלה: ₪1,999, ו-₪1,499 בלבד ל-5 המוסכים הראשונים. מגיעים אליכם, מתקינים, מגדירים את פרטי העסק והלוגו ומדריכים אתכם. אחר כך משלמים רק את המנוי החודשי.", "Yes, personal setup and training at your garage, once at the start: ₪1,999, and only ₪1,499 for the first 5 garages. We come to you, install Oto, set up your business details and logo, and train you. After that you only pay the monthly plan.", "نعم، تركيب وتدريب شخصي في الكراج، مرة واحدة في البداية: ₪1,999، و-₪1,499 فقط لأول 5 كراجات. نأتي إليكم، نركّب أوتو، نُعدّ تفاصيل المصلحة والشعار وندرّبكم. بعد ذلك تدفعون الاشتراك الشهري فقط."],
+  "q8": ["יש דמי הקמה או תשלום חד-פעמי?", "Is there a setup fee or a one-time payment?", "هل هناك رسوم تأسيس أو دفعة لمرة واحدة؟"],
+  "a8": ["לא. אין דמי הקמה ואין שום תשלום חד-פעמי. מגיעים אליכם למוסך, מתקינים, מגדירים את פרטי העסק והלוגו ומדריכים אתכם, בחינם. משלמים רק ₪80 לחודש.", "No. There's no setup fee and no one-time payment at all. We come to your garage, install Oto, set up your business details and logo and train you, free. You only pay ₪80 a month.", "لا. لا توجد رسوم تأسيس ولا أي دفعة لمرة واحدة. نأتي إليكم إلى الكراج، نركّب أوتو، نُعدّ تفاصيل المصلحة والشعار وندرّبكم، مجاناً. تدفعون فقط ₪80 شهرياً."],
   "q6": ["מה כלול במחיר?", "What does the price include?", "ماذا يشمل السعر؟"],
   "a6": ["הכל. כל מה שיש באוטו, כולל העוזר ומצב מכונאי, עדכונים, גיבוי בענן ומדריך בתוך התוכנה. אין חבילות ואין תוספות.", "Everything. All of Oto, including the assistant and mechanic mode, updates, cloud backup and the in-app guide. No tiers, no add-ons.", "كل شيء. كل ما في أوتو، بما في ذلك المساعد ووضع الميكانيكي، التحديثات، النسخ الاحتياطي في السحابة والدليل داخل البرنامج. بدون مستويات وبدون إضافات."],
   "q7": ["איך עובדות ההודעות בוואטסאפ?", "How do the WhatsApp messages work?", "كيف تعمل رسائل الواتساب؟"],
