@@ -267,6 +267,7 @@ section { padding-block: 72px; }
 .plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .plan li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 15.5px; }
 .plan li svg { width: 18px; height: 18px; color: var(--good); margin-top: 4px; }
+.plan li b { font-weight: 700; } /* the big things stand out */
 .plan li.head { grid-template-columns: minmax(0, 1fr); font-weight: 600; color: var(--muted); font-size: 14.5px; }
 .soon { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent-ink); background: var(--soft); border-radius: 999px; padding: 1px 8px; margin-inline-start: 6px; vertical-align: 1px; }
 .plan .btn { margin-top: auto; justify-content: center; }
@@ -551,6 +552,7 @@ section { padding-block: 72px; }
         <li><svg aria-hidden="true"><use href="#i-doc"/></svg><div><b data-i18n="g1.b">כל סוגי המסמכים</b><span data-i18n="g1.s">חשבונית מס קבלה, חשבונית מס, קבלה, חשבונית זיכוי, הזמנה וכרטיס עבודה, תעודת משלוח והצעת מחיר.</span></div></li>
         <li><svg aria-hidden="true"><use href="#i-undo"/></svg><div><b data-i18n="g2.b">מספור רציף, בלי מחיקות</b><span data-i18n="g2.s">מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.</span></div></li>
         <li><svg aria-hidden="true"><use href="#i-file"/></svg><div><b data-i18n="g3.b">מבנה אחיד</b><span data-i18n="g3.s">קובץ OPENFRMT לרואה החשבון ולביקורת, בלחיצה.</span></div></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b data-i18n="g5.b">מספרי הקצאה אוטומטיים</b><span data-i18n="g5.s">אוטו מחובר לרשות המסים: חשבונית שצריכה מספר הקצאה מקבלת אותו לבד ברגע ההפקה.</span></div></li>
         <li><svg aria-hidden="true"><use href="#i-lock"/></svg><div><b data-i18n="g4.b">כל מוסך רואה רק את שלו</b><span data-i18n="g4.s">כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.</span></div></li>
       </ul>
     </div>
@@ -579,14 +581,16 @@ section { padding-block: 72px; }
           <a class="btn btn-primary" href="#contact" data-i18n="cta.one">אני רוצה את אוטו</a>
         </div>
         <ul>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b1">מסמכים חוקיים ומספור רציף</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><b data-i18n="b1">מסמכים חוקיים ומספור רציף</b></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><b data-i18n="n8">מספרי הקצאה אוטומטיים מרשות המסים: החשבונית יוצאת עם המספר, בלי להקליד כלום</b></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><b data-i18n="n9">שליחת קובץ המבנה האחיד לרשות המסים ישירות מאוטו</b></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b8">הלוגו של המוסך על כל מסמך</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b2">לקוחות וכל המסמכים של כל לקוח</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="b3">שליפת פרטי רכב לפי מספר, בתוך המסמך</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="n1">יומן עבודה כמו הספר במוסך, וכרטיס עבודה עם חתימת הלקוח</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><b data-i18n="n1">יומן עבודה כמו הספר במוסך, וכרטיס עבודה עם חתימת הלקוח</b></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="n2">כמה רכבים לכל לקוח, ותאריך הטסט מתעדכן לבד</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="n3">כמה עסקים תחת אותו עוסק (למשל מוסך וחנות חלקים), לכל אחד פרטים ומספור משלו</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="n4">פיצול תשלום: חלק במזומן וחלק בכרטיס, בהעברה או בביט</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><b data-i18n="n4">פיצול תשלום וצ׳קים: חלק במזומן, חלק בכרטיס, בהעברה, בביט או בכמה צ׳קים</b></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="n5">מחיר כולל לקבוצת חלקים או עבודות, והנחה וסוג חלק בכל שורה</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="n6">טיוטה לבדיקה לפני כל מסמך, כדי שאף מספר לא ילך לאיבוד</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="n7">גיבוי יומי אוטומטי גם במחשב של המוסך</span></li>
@@ -602,7 +606,7 @@ section { padding-block: 72px; }
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p5">מעקב אחרי עבודות שהלקוח דחה, עם תזכורת בזמן</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p6">בקשת ביקורת בגוגל אחרי כל ביקור</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p9">תזכורות ללקוחות גם בערבית</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m3">העוזר של אוטו: שואלים בכתב או בקול על המוסך, על אוטו ועל רכבים, והוא גם מראה על המסך איפה כל דבר</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><b data-i18n="m3">העוזר של אוטו: שואלים בכתב או בקול על המוסך, על אוטו ועל רכבים, והוא גם מראה על המסך איפה כל דבר</b></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m4">העוזר מציע מה מגיע לכל רכב לפי ההיסטוריה שלו, ומתמחר לפי מה שלקחתם בעבר</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m5">קורא תמונות: חשבונית של ספק, פתק של מכונאי, נורה בלוח המחוונים</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="m6">קובע תורים, רושם הוצאות ומעדכן מלאי באישור שלכם, ותדריך בוקר כל יום</span></li>
@@ -757,6 +761,8 @@ const T = {
   "g2.s": ["מסמך שהופק לא משתנה ולא נמחק. תיקון נעשה בחשבונית זיכוי, כמו שהחוק דורש.", "An issued document is never changed or deleted. Corrections are made with a credit note, as the law requires.", "المستند الصادر لا يُعدَّل ولا يُحذف. التصحيح يتم بفاتورة زيكوي كما يطلب القانون."],
   "g3.b": ["מבנה אחיד", "Uniform format (מבנה אחיד)", "المبنى الموحد (מבנה אחיד)"],
   "g3.s": ["קובץ OPENFRMT לרואה החשבון ולביקורת, בלחיצה.", "An OPENFRMT file for your accountant and for audits, in one click.", "ملف OPENFRMT للمحاسب وللتدقيق، بضغطة واحدة."],
+  "g5.b": ["מספרי הקצאה אוטומטיים", "Automatic allocation numbers", "أرقام تخصيص تلقائية"],
+  "g5.s": ["אוטו מחובר לרשות המסים: חשבונית שצריכה מספר הקצאה מקבלת אותו לבד ברגע ההפקה.", "Oto is connected to the Tax Authority: an invoice that needs an allocation number gets it by itself as it's issued.", "أوتو مربوط مع سلطة الضرائب: الفاتورة التي تحتاج رقم تخصيص تحصل عليه تلقائياً لحظة إصدارها."],
   "g4.b": ["כל מוסך רואה רק את שלו", "Each garage sees only its own data", "كل كراج يرى بياناته فقط"],
   "g4.s": ["כל עותק נכנס עם קוד קישור משלו. הנתונים מגובים בענן ולא נפתחים לאף אחד אחר.", "Each copy signs in with its own link code. The data is backed up in the cloud and never opened to anyone else.", "كل نسخة تدخل برمز ربط خاص بها. البيانات محفوظة في السحابة ولا تُفتح لأي أحد آخر."],
   "pr.h2": ["מחיר אחד. הכל כלול.", "One price. Everything included.", "سعر واحد. كل شيء مشمول."],
@@ -784,12 +790,14 @@ const T = {
   "n1": ["יומן עבודה כמו הספר במוסך, וכרטיס עבודה עם חתימת הלקוח", "A work log like the garage's book, and a work card the customer signs", "سجل عمل مثل دفتر الكراج، وبطاقة عمل يوقّعها الزبون"],
   "n2": ["כמה רכבים לכל לקוח, ותאריך הטסט מתעדכן לבד", "Several cars per customer, with test dates filled in by themselves", "عدة سيارات لكل زبون، وتاريخ الفحص يتحدّث تلقائياً"],
   "n3": ["כמה עסקים תחת אותו עוסק (למשל מוסך וחנות חלקים), לכל אחד פרטים ומספור משלו", "Several businesses under one VAT number (say a garage and a parts shop), each with its own details and numbering", "عدة مصالح تحت نفس رقم المشتغل (مثلاً كراج ومحل قطع)، لكل منها تفاصيل وترقيم خاص"],
-  "n4": ["פיצול תשלום: חלק במזומן וחלק בכרטיס, בהעברה או בביט", "Split payments: part cash, part card, transfer or Bit", "تقسيم الدفع: جزء نقداً وجزء ببطاقة أو تحويل أو Bit"],
+  "n4": ["פיצול תשלום וצ׳קים: חלק במזומן, חלק בכרטיס, בהעברה, בביט או בכמה צ׳קים", "Split payments and cheques: part cash, part card, transfer, Bit or several cheques", "تقسيم الدفع والشيكات: جزء نقداً وجزء ببطاقة أو تحويل أو Bit أو عدة شيكات"],
   "n5": ["מחיר כולל לקבוצת חלקים או עבודות, והנחה וסוג חלק בכל שורה", "One price for a group of parts or jobs, plus a discount and part type on every line", "سعر إجمالي لمجموعة قطع أو أعمال، وخصم ونوع القطعة في كل سطر"],
   "n6": ["טיוטה לבדיקה לפני כל מסמך, כדי שאף מספר לא ילך לאיבוד", "A draft to check before every document, so no number is ever wasted", "مسودة للفحص قبل كل مستند، كي لا يضيع أي رقم"],
   "n7": ["גיבוי יומי אוטומטי גם במחשב של המוסך", "An automatic daily backup on the garage's own computer too", "نسخة احتياطية يومية تلقائية على حاسوب الكراج أيضاً"],
   "e8.b": ["בודקים לפני שמפיקים", "Check before you issue", "افحص قبل الإصدار"],
   "e8.s": ["לפני כל חשבונית מוצגת טיוטה. רואים טעות? חוזרים לתקן, ושום מספר לא הולך לאיבוד.", "Before every invoice you see a draft. Spot a mistake? Go back and fix it, and no number is wasted.", "قبل كل فاتورة تظهر مسودة. رأيت خطأ؟ عد وصحّحه، ولا يضيع أي رقم."],
+  "n8": ["מספרי הקצאה אוטומטיים מרשות המסים: החשבונית יוצאת עם המספר, בלי להקליד כלום", "Automatic allocation numbers from the Tax Authority: the invoice comes out with its number, nothing to type", "أرقام تخصيص تلقائية من سلطة الضرائب: الفاتورة تخرج مع رقمها دون كتابة أي شيء"],
+  "n9": ["שליחת קובץ המבנה האחיד לרשות המסים ישירות מאוטו", "Send the uniform-format file to the Tax Authority straight from Oto", "إرسال ملف المبنى الموحد لسلطة الضرائب مباشرة من أوتو"],
   "p1": ["לוח תורים שבועי", "Weekly appointments board", "لوح مواعيد أسبوعي"],
   "p2": ["תזכורות טסט וטיפול, ורשימה יומית מוכנה", "Test and service reminders, with a daily list ready", "تذكير بالفحص والصيانة، وقائمة يومية جاهزة"],
   "p3": ["מלאי חלקים וסורק ברקוד", "Parts inventory and barcode scanner", "مخزون قطع وماسح باركود"],
